@@ -17,5 +17,5 @@ func _process(_delta):
 	label.text = buffer
 	buffer = ""
 
-func display(s: String):
-	buffer += s + "\n"
+func display(thing):
+	buffer += str(thing) + "\n"

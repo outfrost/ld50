@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/Camera.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1, 1, 1 )
+
+[node name="Level" type="Spatial"]
+
+[node name="CameraReference" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.92388, 0.382683, 0, -0.382683, 0.92388, 0, 2, 2.5 )
+__meta__ = {
+"_edit_group_": true,
+"_editor_description_": "Move and rotate this if you want to reposition the camera."
+}
+
+[node name="Camera" type="Camera" parent="CameraReference"]
+current = true
+fov = 90.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": "Maybe don't move this."
+}
+rotation_extent_degrees = 10.0
+aim_area_aspect_ratio = 1.6
+
+[node name="test" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="test"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="test"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = null
