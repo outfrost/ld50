@@ -72,6 +72,13 @@ window/size/height=720
 
 enabled=PoolStringArray( "res://addons/fmod/plugin.cfg" )
 
+[importer_defaults]
+
+scene={
+"materials/storage": 2,
+"meshes/light_baking": 2
+}
+
 [input]
 
 menu={
@@ -86,4 +93,5 @@ common/physics_fps=160
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"
