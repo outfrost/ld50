@@ -70,6 +70,8 @@ func _ready() -> void:
 
 	Fmod.load_bank("res://sound/Master.strings.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
 	Fmod.load_bank("res://sound/Master.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	Fmod.load_bank("res://sound/Bank3D.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	Fmod.load_bank("res://sound/Bank2D.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
 	Fmod.wait_for_all_loads()
 
 	# Main bus volume

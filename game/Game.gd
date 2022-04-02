@@ -27,6 +27,7 @@ func _ready() -> void:
 			debug = debug_script.new(self)
 			debug.startup()
 
+
 	main_menu.connect("start_game", self, "on_start_game")
 
 func _process(delta: float) -> void:
@@ -40,6 +41,9 @@ func on_start_game() -> void:
 	level = level_scene.instance()
 	level_container.add_child(level)
 	loop_controller.shifts_loop()
+	#Fmod.stop_event(instanceId: 1, stopMode: 0)
+	Sound.instance("Drills").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
+		# Currently the event only plays one drill sound
 
 func back_to_menu() -> void:
 	if level:
