@@ -25,16 +25,19 @@ extends Node
 # - improve the timer stuff
 # - refactor some mess between _process and procedural stages (it works actually)
 # - public func to adjust robot's speed maybe.
+# - resetting gameplay variables in _shift_init()
 # - what else must be public here?
 
 # GAMEPLAY
-export var shift_number = 0
 export(float, 1, 4, 0.01) var robot_speed
 export(float, 1, 8, 0.01) var median_assembly_time
-var assembly_line_works:bool = false
+var assembly_line_works:bool
+var shift_number:int
+export var points_treshold = 20
+var is_lose:bool
 
 # ASSEMBLY LINE TIMING STUFF
-export var shift_time_limit = 5 #seconds
+export var shift_time_limit:int = 5 #seconds
 var time_left:int #must be in seconds
 var time_left_prev:int #must be in seconds
 var time_shift_started:int = 0
@@ -43,10 +46,6 @@ var time_shift_passed:int = 0
 export(NodePath) var shift_timer_path
 onready var shift_timer: Node = get_node(shift_timer_path)
 
-# WIN/LOSE COND
-export var points_treshold = 20
-var is_lose:bool = false
-
 # STATS
 var player_assembled_current_shift:int = 0
 var robot_assembled_current_shift:int = 0
@@ -54,59 +53,46 @@ var robot_assembled_current_shift:int = 0
 var player_assembled_total:int = 0
 var robot_assembled_total:int = 0
 
-var money_current_shift = 0
-var money_total = 0
+var money_current_shift:int = 0
+var money_total:int = 0
 
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 
 func shifts_init():
-	if shift_number == 0:
-		_introduction()
-		
-	_shift_start() # first time called here, next times called from win-lose checks.
+	_zeroing_variables()
+	_introduction()
+	_shift_start()
 
 func _shift_start():
 
-#	This function:
-#	- self-documented
-#	- OS.get_ticks_msec is unnecessary since we added the Timer node.
-#	- starts the assembly line (this means Enabling some things in _process using boolean flags)
-
 	shift_number += 1
 	print("\n-- start of ",shift_number," shift --")
-	print("Your shift started! You have ", shift_time_limit, " seconds.")
-	
-	time_shift_started = OS.get_ticks_msec()
-#	yield(get_tree().create_timer(5.0), "timeout")
+	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
+
 	assembly_line_works = true
 	shift_timer.start()
+	time_left = 0
 
 func _shift_end():
 
-#	This function:
-#	- stops the assembly line (this means Disabling some things in _process using boolean flags)
-#	- calculating stats (assembled models and money)
-#	- win-lose check (according to scores gap)
-#	- proceeding to _gameover() or to _shift_start()
-
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false
-	
-	player_assembled_total += player_assembled_current_shift
-	robot_assembled_total += robot_assembled_current_shift
-	
-	print("\nSHIFT RESULTS:")
-	print("Player: ", player_assembled_current_shift," models.")
-	print("Robot: ", robot_assembled_current_shift," models.")
-	print("\nOVERALL RESULTS:")
-	print("Player: ", player_assembled_total," total.")
-	print("Robot: ", robot_assembled_total," total.")
-	
-	player_assembled_current_shift = 0
-	robot_assembled_current_shift = 0
-	
-	# WIN-LOSE CHECK
+	_stats_after_shift()
+#	_win_lose_check()
+
+	# temp.overwriting is_lose for prototyping purposes
+	randomize()
+	is_lose = randi()%2 # dummy calc until real stats will work properly
+	print("is_lose: ", is_lose)
+	# this snippet above might be deleted after improving other part
+
+	if is_lose:
+		_gameover()
+	else:
+		_shift_start()
+
+func _win_lose_check():
 	if robot_assembled_total > player_assembled_total:
 		if (robot_assembled_total-player_assembled_total) >= points_treshold:
 			print("You have assembled ",
@@ -119,32 +105,9 @@ func _shift_end():
 				" assembled models!")
 	else:
 		print("You are neck-and-neck with robot! Work faster!")
-		
-	
-	money_total += money_current_shift
-	print("\nYou earned ", money_current_shift, " today.")
-	print("Your total earnings: ", money_total)
-	money_current_shift = 0
-	
-	is_lose = _check_for_lose()
-	print("\nLOSE STATE: ", is_lose)
-	
-	if is_lose:
-		_gameover()
-	else:
-		_shift_start()
-	
-func _check_for_lose():
-	# dummy yes/no result
-	randomize()
-	return randi()%2
 
 func _shift_running():
 	pass
-	
-
-func _gameover():
-	print("GAME OVER! +stats and outro")
 
 func _introduction():
 	print("\nWE READ THE INTRO:\n",
@@ -152,30 +115,23 @@ func _introduction():
 			"- HOW WE CAN COMPETE WITH ROBOT TO STAY EMPLOYED.\n",
 			"- ABOUT CONTROLS. GOOD LUCK!\n")
 
-func add_assembly(recipient:String  = 'undefined'):
-	if recipient == "player":
-		player_assembled_current_shift += 1
-	if recipient == "robot":
-		robot_assembled_current_shift += 1
-	if recipient != "player" and recipient != "robot":
-		print("ERROR: undefined recipient in the 'add_assembly' func.")
-
-func add_money(some_variable:int = 100):
-	money_current_shift += some_variable
+func _gameover():
+	print("\nGAME OVER!")
+	print("SHIFTS: ", shift_number)
+	print("ASSEMBLED: ", player_assembled_total)
+	print("EARNED: ", money_total)
 
 func _process(delta):
+
+	# assembly line kicks in
 	if assembly_line_works:
-#		time_shift_passed = OS.get_ticks_msec() - time_shift_started
-		time_left_prev = time_left
-		time_left = floor(shift_timer.get_time_left()) + 1
-		if time_left != time_left_prev:
-			print(time_left," seconds left")
-#		if time_shift_passed >= shift_time_limit * 1000:
-#			assembly_line_works = false
-#			_shift_end()
-	
+		_seconds_counter()
+
 func _seconds_counter():
-	pass
+	time_left = floor(shift_timer.get_time_left())
+	if time_left != time_left_prev:
+		print(time_left," seconds left")
+	time_left_prev = time_left
 
 func _dummy_assembly_process():
 	pass
@@ -183,3 +139,61 @@ func _dummy_assembly_process():
 
 func _on_ShiftTimer_timeout():
 	pass # Replace with function body.
+
+func _stats_after_shift():
+
+	player_assembled_total += player_assembled_current_shift
+	robot_assembled_total += robot_assembled_current_shift
+
+	print("\nSHIFT RESULTS:")
+	print("Player: ", player_assembled_current_shift," models.")
+	print("Robot: ", robot_assembled_current_shift," models.")
+	print("\nOVERALL RESULTS:")
+	print("Player: ", player_assembled_total," total.")
+	print("Robot: ", robot_assembled_total," total.")
+
+	player_assembled_current_shift = 0
+	robot_assembled_current_shift = 0
+
+	money_total += money_current_shift
+	print("\nYou earned ", money_current_shift, " today.")
+	print("Your total earnings: ", money_total)
+	money_current_shift = 0
+
+func _zeroing_variables():
+	player_assembled_current_shift = 0
+	robot_assembled_current_shift = 0
+	player_assembled_total = 0
+	robot_assembled_total = 0
+	money_current_shift = 0
+	money_total = 0
+	shift_number = 0
+	is_lose = false
+	assembly_line_works = false
+
+
+
+
+#############################################
+#     P U B L I C     F U N C T I O N S     #
+#############################################
+
+func get_stats():
+	pass
+
+func add_assembly(recipient:String  = 'undefined'):
+	if assembly_line_works:
+		if recipient == "player":
+			player_assembled_current_shift += 1
+		if recipient == "robot":
+			robot_assembled_current_shift += 1
+		if recipient != "player" and recipient != "robot":
+			print("ERROR: undefined recipient in the 'add_assembly' func.")
+	else:
+		print("ERROR. Can not add assembled counter: line is not working!")
+
+func add_money(some_variable:int = 100):
+	if assembly_line_works:
+		money_current_shift += some_variable
+	else:
+		print("ERROR. Can not add money: line is not working!")
