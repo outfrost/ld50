@@ -12,8 +12,8 @@ extends Node
 # - switching conditions between "procedural" and "_process" parts of game loop.
 
 # PUBLIC FUNCTIONS:
-# - add_assembly(arg) // args: "robot" or "player" - adds scores point
-# - add_money(arg) // arg is currently the amount. May be implemented some other way.
+# - add_assembly(string) // args: "robot" or "player" - adds scores point
+# - add_money(int) // arg is currently the amount. May be implemented some other way.
 # - shifts_init // called once as game starts
 
 # VARIABLES, USEFUL AS PUBLIC:
@@ -24,6 +24,7 @@ extends Node
 # - add signals for essential events
 # - improve the timer stuff
 # - refactor some mess between _process and procedural stages (it works actually)
+# - public func to adjust robot's speed maybe.
 # - what else must be public here?
 
 # GAMEPLAY
@@ -63,9 +64,15 @@ func shifts_init():
 	if shift_number == 0:
 		_introduction()
 		
-	_shift_start()
+	_shift_start() # first time called here, next times called from win-lose checks.
 
 func _shift_start():
+
+#	This function:
+#	- self-documented
+#	- OS.get_ticks_msec is unnecessary since we added the Timer node.
+#	- starts the assembly line (this means Enabling some things in _process using boolean flags)
+
 	shift_number += 1
 	print("\n-- start of ",shift_number," shift --")
 	print("Your shift started! You have ", shift_time_limit, " seconds.")
@@ -76,6 +83,13 @@ func _shift_start():
 	shift_timer.start()
 
 func _shift_end():
+
+#	This function:
+#	- stops the assembly line (this means Disabling some things in _process using boolean flags)
+#	- calculating stats (assembled models and money)
+#	- win-lose check (according to scores gap)
+#	- proceeding to _gameover() or to _shift_start()
+
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false
 	
