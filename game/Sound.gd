@@ -1,5 +1,16 @@
 extends Node
-# Autoload helper script to simplify interactions with fmod-gdnative
+# Sound system interface
+# Helps simplify interactions with fmod-gdnative
+#
+# Example usage:
+# ```
+# Sound.instance("Fart")
+# 	.pitch(0.8)
+# 	.reverb(0, 0.5)
+# 	.param("Dampness", 0.2)
+# 	.attach(self)
+# 	.start()
+# ```
 
 class EvInstance:
 	# Represents an instance of a sound event
@@ -57,19 +68,16 @@ class EvInstance:
 		Fmod.set_event_parameter_by_name(self.id, param_name, v)
 		return self
 
-var saved_instances: Dictionary = {}
-
-var event_instances: Array = []
-
 func _ready() -> void:
 	Fmod.set_software_format(0, Fmod.FMOD_SPEAKERMODE_STEREO, 0)
 	Fmod.init(1024, Fmod.FMOD_STUDIO_INIT_LIVEUPDATE, Fmod.FMOD_INIT_NORMAL)
 	Fmod.set_sound_3D_settings(1.0, 8.0, 1.0)
 
-	Fmod.load_bank("res://sound/banks/Master.strings.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
-	Fmod.load_bank("res://sound/banks/Master.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	Fmod.load_bank("res://sound/Master.strings.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
+	Fmod.load_bank("res://sound/Master.bank", Fmod.FMOD_STUDIO_LOAD_BANK_NORMAL)
 	Fmod.wait_for_all_loads()
 
+	# Main bus volume
 	Fmod.set_bus_volume("bus:/", 0.5)
 
 func set_listener(listener: Node) -> void:
@@ -87,9 +95,23 @@ func play_file(path: String) -> void:
 	var id: int = Fmod.create_sound_instance(path)
 	Fmod.play_sound(id)
 
-#	var my_music_event = Fmod.create_event_instance("event:/Muzyka")
-#	Fmod.start_event(my_music_event)
-#	yield(get_tree().create_timer(30.0), "timeout")
-#	Fmod.stop_event(my_music_event, Fmod.FMOD_STUDIO_STOP_ALLOWFADEOUT)
-#	yield(get_tree().create_timer(5.0), "timeout")
-#	Fmod.release_event(my_music_event)
+func pause_all() -> void:
+	Fmod.pause_all_events(true)
+
+func resume_all() -> void:
+	Fmod.pause_all_events(false)
+
+func mute(bus_name: String = "") -> void:
+	Fmod.set_bus_mute("bus:/" + bus_name, true)
+
+func unmute(bus_name: String = "") -> void:
+	Fmod.set_bus_mute("bus:/" + bus_name, false)
+
+func set_volume(v: float, bus_name: String = "") -> void:
+	Fmod.set_bus_volume("bus:/" + bus_name, v)
+
+func pause_bus(bus_name: String) -> void:
+	Fmod.set_bus_paused("bus:/" + bus_name, true)
+
+func unpause_bus(bus_name: String) -> void:
+	Fmod.set_bus_paused("bus:/" + bus_name, false)
