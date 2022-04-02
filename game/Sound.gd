@@ -4,12 +4,7 @@ extends Node
 #
 # Example usage:
 # ```
-# Sound.instance("Fart")
-# 	.pitch(0.8)
-# 	.reverb(0, 0.5)
-# 	.param("Dampness", 0.2)
-# 	.attach(self)
-# 	.start()
+# Sound.instance("Fart").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
 # ```
 
 class EvInstance:
