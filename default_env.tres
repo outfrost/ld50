@@ -2,7 +2,15 @@
 
 [sub_resource type="ProceduralSky" id=1]
 sky_energy = 0.63
+sun_latitude = 55.65
 
 [resource]
 background_mode = 2
 background_sky = SubResource( 1 )
+ssao_enabled = true
+ssao_radius = 0.5
+ssao_intensity = 0.7
+ssao_radius2 = 0.06
+ssao_intensity2 = 2.0
+ssao_light_affect = 0.8
+ssao_blur = 1
