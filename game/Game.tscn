@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://game/menu/MainMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/loading/TransitionScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/Game.gd" type="Script" id=5]
+
+[node name="Game" type="Node"]
+script = ExtResource( 5 )
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" parent="UI" instance=ExtResource( 3 )]
+
+[node name="TransitionScreen" parent="UI" instance=ExtResource( 4 )]
+visible = false

@@ -1,0 +1,37 @@
+name: Build and release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.*'
+
+jobs:
+  export_release_project:
+    # Always use ubuntu-latest for this action
+    runs-on: ubuntu-latest
+    name: Export and release project
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2.4.0
+      # Ensure that we get the entire project history
+      with:
+        fetch-depth: 0
+
+      # Job creates release under the same version as the tag
+    - name: Get version from tag
+      id: tag_version
+      run: |
+        echo ::set-output name=TAG_VERSION::${GITHUB_REF#refs/tags/v}
+
+    - name: Export and release
+      uses: firebelley/godot-export@v3.0.0
+      with:
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_linux_headless.64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.4.4/Godot_v3.4.4-stable_export_templates.tpz
+        relative_project_path: ./
+        create_release: true
+        generate_release_notes: true
+        base_version: ${{ steps.tag_version.outputs.TAG_VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

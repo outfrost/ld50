@@ -1,0 +1,178 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/menu/CreditsPopup.gd" type="Script" id=2]
+[ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=3]
+[ext_resource path="res://game/menu/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://game/ui-theme/panel_style_popup.tres" type="StyleBox" id=5]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VersionLabel" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -64.0
+margin_right = 512.0
+margin_bottom = -8.0
+grow_vertical = 0
+text = "v0.1.0"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.5
+theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center][/center]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.4
+anchor_top = 0.5
+anchor_right = 0.6
+anchor_bottom = 0.9
+grow_horizontal = 2
+theme = ExtResource( 3 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 22.0
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChooseLevelButton" type="Button" parent="VBoxContainer"]
+margin_top = 32.0
+margin_right = 256.0
+margin_bottom = 54.0
+disabled = true
+text = "Choose level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+margin_top = 64.0
+margin_right = 256.0
+margin_bottom = 86.0
+disabled = true
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 256.0
+margin_bottom = 118.0
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+margin_top = 128.0
+margin_right = 256.0
+margin_bottom = 150.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsPopup" type="Popup" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CreditsPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -430.0
+margin_top = -286.0
+margin_right = 430.0
+margin_bottom = 286.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CreditsPopup/Panel"]
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -8.0
+margin_bottom = -54.0
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsPopup/Panel"]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -54.0
+bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="Button" parent="CreditsPopup/Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -176.0
+margin_top = -38.0
+margin_right = -16.0
+margin_bottom = -16.0
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}

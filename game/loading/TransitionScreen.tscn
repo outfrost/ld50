@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://game/loading/TransitionScreen.gd" type="Script" id=2]
+
+[node name="TransitionScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Content"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 480.0
+margin_top = 360.0
+margin_right = -480.0
+margin_bottom = -360.0
+theme = ExtResource( 1 )
+text = "Loading ..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
