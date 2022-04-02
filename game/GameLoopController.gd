@@ -56,8 +56,13 @@ var robot_assembled_total:int = 0
 var money_current_shift:int = 0
 var money_total:int = 0
 
+# Sound
+var shift_music: Sound.EvInstance
+
 func _ready():
 	shift_timer.wait_time = shift_time_limit
+	shift_music = Sound.instance("Music Gameplay")
+	# This event plays Music_1_v1 with an artificial (not musically-prepared) loop, to serve as a test dummy
 
 func shifts_init():
 	_zeroing_variables()
@@ -74,7 +79,10 @@ func _shift_start():
 	shift_timer.start()
 	time_left = 0
 
+	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+
 func _shift_end():
+	shift_music.stop()
 
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false

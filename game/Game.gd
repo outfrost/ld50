@@ -35,8 +35,6 @@ func on_start_game() -> void:
 	level = level_scene.instance()
 	level_container.add_child(level)
 	loop_controller.shifts_init()
-	Sound.instance("Music Gameplay").param("Dampness", 0.2).attach(self).start()
-	# This event plays Music_1_v1 with an artificial (not musically-prepared) loop, to serve as a test dummy
 
 func back_to_menu() -> void:
 	if level:
