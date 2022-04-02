@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="New Game Project"
+config/name="LD50"
 run/main_scene="res://game/Game.tscn"
 config/icon="res://icon.png"
 
