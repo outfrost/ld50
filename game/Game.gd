@@ -9,6 +9,9 @@ extends Node
 
 export var level_scene: PackedScene
 
+export(NodePath) var loop_controller_path
+onready var loop_controller: Node = get_node(loop_controller_path)
+
 onready var main_menu: Control = $UI/MainMenu
 onready var transition_screen: TransitionScreen = $UI/TransitionScreen
 onready var level_container: Spatial = $LevelContainer
@@ -36,6 +39,7 @@ func on_start_game() -> void:
 	main_menu.hide()
 	level = level_scene.instance()
 	level_container.add_child(level)
+	loop_controller.shifts_loop()
 
 func back_to_menu() -> void:
 	if level:
