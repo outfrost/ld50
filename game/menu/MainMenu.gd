@@ -17,8 +17,8 @@ func _ready() -> void:
 	play_button.connect("pressed", self, "on_play_pressed")
 	credits_button.connect("pressed", self, "on_credits_pressed")
 	quit_button.connect("pressed", self, "on_quit_pressed")
-	Sound.instance("Menu Music").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
-		# This is a random, unrelated track of mine to serve as a test dummy
+	Sound.instance("Drill").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
+		# This is a singular drill sound, placed to serve as a test dummy
 
 func on_play_pressed() -> void:
 	emit_signal("start_game")
@@ -26,7 +26,7 @@ func on_play_pressed() -> void:
 
 func on_credits_pressed() -> void:
 	credits_popup.show()
-	Fmod.pause_all_events(true)
+	Fmod.pause_all_events(true) #Why is this not working?
 
 func on_quit_pressed() -> void:
 	get_tree().quit()
