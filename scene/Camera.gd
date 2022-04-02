@@ -3,6 +3,8 @@ extends Camera
 export(float, 0.0, 60.0) var rotation_extent_degrees: float = 30.0
 export(float, 0.0, 2.0) var aim_area_aspect_ratio: float = 1.0
 
+onready var base_x_rotation_degrees: float = rotation_degrees.x
+
 func _process(delta: float) -> void:
 	var viewport: Viewport = get_viewport()
 	var viewport_middle: Vector2 = viewport.size * 0.5
@@ -22,3 +24,9 @@ func _process(delta: float) -> void:
 		- rotation_proportion.y,
 		- rotation_proportion.x,
 		0.0)
+	rotation_degrees.x += base_x_rotation_degrees
+
+#	DebugOverlay.display(aim)
+#	DebugOverlay.display(rotation_proportion)
+#	DebugOverlay.display(base_x_rotation_degrees)
+#	DebugOverlay.display(rotation_degrees)
