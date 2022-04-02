@@ -39,7 +39,7 @@ func on_start_game() -> void:
 	main_menu.hide()
 	level = level_scene.instance()
 	level_container.add_child(level)
-	loop_controller.shifts_loop()
+	loop_controller.shifts_init()
 
 func back_to_menu() -> void:
 	if level:
