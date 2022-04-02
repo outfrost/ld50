@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "FmodEventEmitter",
+"language": "GDScript",
+"path": "res://addons/fmod/nodes/FmodEventEmitter.gd"
+}, {
+"base": "",
+"class": "FmodNative",
+"language": "NativeScript",
+"path": "res://addons/fmod/Fmod.gdns"
+}, {
 "base": "Node",
 "class": "Game",
 "language": "GDScript",
@@ -25,6 +35,8 @@ _global_script_classes=[ {
 "path": "res://game/loading/TransitionScreen.gd"
 } ]
 _global_script_class_icons={
+"FmodEventEmitter": "",
+"FmodNative": "",
 "Game": "",
 "GroupMessenger": "",
 "TransitionScreen": ""
@@ -39,6 +51,8 @@ config/icon="res://icon.png"
 [autoload]
 
 DebugOverlay="*res://game/DebugOverlay.tscn"
+Fmod="*res://addons/fmod/Fmod.tscn"
+Sound="*res://game/Sound.gd"
 
 [debug]
 
@@ -53,6 +67,10 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1280
 window/size/height=720
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/fmod/plugin.cfg" )
 
 [input]
 
