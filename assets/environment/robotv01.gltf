@@ -1,0 +1,138 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.8.19",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                2
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "robot",
+            "rotation" : [
+                0.70710688829422,
+                0.7071066498756409,
+                0,
+                -3.090862676913275e-08
+            ],
+            "translation" : [
+                0,
+                1.98111891746521,
+                2.5527758598327637
+            ]
+        },
+        {
+            "name" : "Bone"
+        },
+        {
+            "children" : [
+                0,
+                1
+            ],
+            "name" : "robotArmature"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "robotMat",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.75,
+                    0.12911921739578247,
+                    0,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.4000000059604645
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cylinder.033",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 3564,
+            "max" : [
+                2.3746418952941895,
+                0.5568950176239014,
+                2.946382999420166
+            ],
+            "min" : [
+                -1.9811179637908936,
+                -1.1005473136901855,
+                -0.4009576141834259
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 3564,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 3564,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 12399,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 42768,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 42768,
+            "byteOffset" : 42768
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28512,
+            "byteOffset" : 85536
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 24798,
+            "byteOffset" : 114048
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 138848,
+            "uri" : "robotv01.bin"
+        }
+    ]
+}
