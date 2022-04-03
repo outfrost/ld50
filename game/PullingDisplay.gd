@@ -1,7 +1,5 @@
 extends Control
 
-export(NodePath) var animplayer_path
-onready var animplayer: Node = get_node(animplayer_path)
 
 var display_shown:bool = false
 var display_busy:bool = false
