@@ -18,6 +18,7 @@ onready var gameloopcontroller: Node = get_node("/root/Game/GameLoopController")
 var current_assembly: Spatial
 var last_assembly: Spatial
 var sendable: bool = false
+var production_running: bool = true
 
 var picked_attachment_scene: PackedScene = null
 var picked_attachment: Spatial
@@ -76,6 +77,8 @@ func tween_attachment_rotation() -> void:
 		tween.start()
 
 func spawn_assembly() -> void:
+	if !production_running:
+		return
 	current_assembly = assembly_scene.instance()
 	tween.interpolate_property(
 		current_assembly,
@@ -133,7 +136,7 @@ func tween_completed(object: Object, _key: NodePath) -> void:
 
 func part_picked(part_scene: PackedScene) -> void:
 	unpick_part()
-	if !part_scene:
+	if !production_running || !part_scene:
 		return
 	picked_attachment_scene = part_scene
 	picked_attachment = picked_attachment_scene.instance()
@@ -156,10 +159,20 @@ func unpick_part() -> void:
 		child.queue_free()
 
 func assembly_clicked() -> void:
-	if !picked_attachment_scene:
+	if !production_running || !picked_attachment_scene:
 		return
 
 	var euler = target_attachment_rotation.get_euler()
 	var degrees = Vector3(rad2deg(euler.x), rad2deg(euler.y), rad2deg(euler.z))
 	if current_assembly.try_place_attachment(picked_attachment_scene, degrees):
 		unpick_part()
+
+func stop_production() -> void:
+	if current_assembly:
+		current_assembly.hoverable = false
+	sendable = false
+	production_running = false
+	unpick_part()
+	tween.stop_all()
+	tween.remove_all()
+	belt.stop()

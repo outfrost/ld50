@@ -29,6 +29,7 @@ extends Node
 # - what else must be public here?
 
 signal spawn_first_assembly()
+signal stop_production()
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -89,6 +90,7 @@ func _shift_start():
 
 func _shift_end():
 	shift_music.stop()
+	emit_signal("stop_production")
 
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false

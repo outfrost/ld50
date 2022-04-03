@@ -36,6 +36,7 @@ func on_start_game() -> void:
 	level = level_scene.instance()
 	level_container.add_child(level)
 	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
+	loop_controller.connect("stop_production", level.get_node("Room/Conveyor"), "stop_production")
 	level.get_node("Room/Conveyor").connect("finished_assembly", loop_controller, "finished_assembly")
 	loop_controller.shifts_init()
 
