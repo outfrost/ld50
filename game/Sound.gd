@@ -92,8 +92,8 @@ func play_file(path: String) -> void:
 	var id: int = Fmod.create_sound_instance(path)
 	Fmod.play_sound(id)
 
-func pause_all() -> void:
-	Fmod.pause_all_events(true)
+func pause_all() -> EvInstance:
+	return Fmod.pause_all_events(true)
 
 func resume_all() -> void:
 	Fmod.pause_all_events(false)
