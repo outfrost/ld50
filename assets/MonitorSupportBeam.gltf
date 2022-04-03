@@ -37,7 +37,7 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 1217,
+            "count" : 1004,
             "max" : [
                 0.25,
                 3.2300000190734863,
@@ -53,47 +53,47 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 1217,
+            "count" : 1004,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 1217,
+            "count" : 1004,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 2214,
+            "count" : 1806,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 14604,
+            "byteLength" : 12048,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 14604,
-            "byteOffset" : 14604
+            "byteLength" : 12048,
+            "byteOffset" : 12048
         },
         {
             "buffer" : 0,
-            "byteLength" : 9736,
-            "byteOffset" : 29208
+            "byteLength" : 8032,
+            "byteOffset" : 24096
         },
         {
             "buffer" : 0,
-            "byteLength" : 4428,
-            "byteOffset" : 38944
+            "byteLength" : 3612,
+            "byteOffset" : 32128
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 43372,
+            "byteLength" : 35740,
             "uri" : "MonitorSupportBeam.bin"
         }
     ]
