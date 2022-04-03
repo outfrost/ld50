@@ -12,6 +12,9 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var hovered_blank: Spatial = null
 var hoverable: bool = false
 
+var num_connectors: int = 0
+var num_attachments: int = 0
+
 func _ready() -> void:
 	rng.seed = randi()
 	hover_vis.hide()
@@ -20,6 +23,7 @@ func _ready() -> void:
 func generate(num_connectors: int) -> void:
 	if num_connectors > 16:
 		num_connectors = 16
+	self.num_connectors = num_connectors
 	var blanks = []
 	for i in range(0, num_connectors):
 		blanks.append(blank_scenes[rng.randi_range(0, blank_scenes.size() - 1)].instance())
@@ -37,6 +41,11 @@ func generate(num_connectors: int) -> void:
 			blanks[index].connect("unhovered", self, "blank_unhovered", [ blanks[index] ])
 			blanks[index].connect("clicked", self, "blank_clicked", [ blanks[index] ])
 			blanks.remove(index)
+
+func percent_done() -> float:
+	if num_connectors == 0:
+		return 1.0
+	return float(num_attachments) / float(num_connectors)
 
 func blank_hovered(blank: Spatial) -> void:
 	if !hoverable:
@@ -87,6 +96,7 @@ func try_place_attachment(attachment_scene: PackedScene, rotation_deg: Vector3) 
 	attachment.translation = hovered_blank.translation
 	attachment.translation.y += 0.2
 	add_child(attachment)
+	num_attachments += 1
 	hovered_blank.get_node("CollisionShape").disabled = true
 	hovered_blank = null
 	hover_vis.hide()
