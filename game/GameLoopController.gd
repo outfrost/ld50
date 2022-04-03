@@ -193,7 +193,7 @@ func _zeroing_variables():
 #############################################
 
 func get_stats():
-	pass
+	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
 
 func add_assembly(recipient:String  = 'undefined'):
 	if assembly_line_works:
