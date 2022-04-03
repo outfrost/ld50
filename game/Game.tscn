@@ -49,4 +49,7 @@ shift_timer_path = NodePath("ShiftTimer")
 [node name="ShiftTimer" type="Timer" parent="GameLoopController"]
 one_shot = true
 
+[node name="SecondsEmitter" type="Timer" parent="GameLoopController"]
+one_shot = true
+
 [connection signal="timeout" from="GameLoopController/ShiftTimer" to="GameLoopController" method="_shift_end"]
