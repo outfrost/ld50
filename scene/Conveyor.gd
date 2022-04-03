@@ -92,7 +92,6 @@ func spawn_assembly() -> void:
 	add_child(current_assembly)
 	current_assembly.generate(9)
 	current_assembly.connect("clicked", self, "assembly_clicked")
-	Sound.instance("Belt").attach(self).start() #Conveyor belt loop sound
 
 func send_assembly() -> void:
 	if !sendable:
@@ -180,4 +179,3 @@ func stop_production() -> void:
 	tween.stop_all()
 	tween.remove_all()
 	belt.stop()
-	Sound.pause_all()
