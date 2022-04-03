@@ -18,6 +18,7 @@ func _ready() -> void:
 
 func spawn_assembly() -> void:
 	current_assembly = assembly_scene.instance()
+	current_assembly.generate(5)
 	tween.interpolate_property(
 		current_assembly,
 		"transform",

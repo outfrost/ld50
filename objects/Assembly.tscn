@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Material.tres" type="Material" id=1]
+[ext_resource path="res://objects/Assembly.gd" type="Script" id=2]
+[ext_resource path="res://objects/blanks/Blank001.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/blanks/BlankingPlate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/extras/HoverVis.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 material = ExtResource( 1 )
 size = Vector3( 0.8, 0.2, 0.8 )
 
 [node name="Assembly" type="Spatial"]
+script = ExtResource( 2 )
+blank_scenes = [ ExtResource( 3 ) ]
+blanking_plate_scene = ExtResource( 4 )
+hover_vis_scene = ExtResource( 5 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )

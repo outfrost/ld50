@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/Material.tres" type="Material" id=1]
+[ext_resource path="res://objects/blanks/Blank.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.1, 0.1, 0.1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 1 )
+size = Vector3( 0.2, 0.2, 0.2 )
+
+[node name="BlankingPlate" type="Area"]
+script = ExtResource( 2 )
+attaches_at = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+mesh = SubResource( 2 )
+material/0 = null
