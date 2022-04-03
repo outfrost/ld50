@@ -22,6 +22,13 @@ func _ready() -> void:
 	for bucket in $PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if (event is InputEventMouseButton
+		&& event.button_index == 2
+		&& event.is_pressed()
+	):
+		unpick_part()
+
 func spawn_assembly() -> void:
 	current_assembly = assembly_scene.instance()
 	current_assembly.generate(5)
@@ -77,8 +84,12 @@ func tween_completed(object: Object, _key: NodePath) -> void:
 		current_assembly.hoverable = true
 
 func part_picked(part_scene: PackedScene) -> void:
+	unpick_part()
 	picked_attachment_scene = part_scene
+	attachment_preview.add_child(picked_attachment_scene.instance())
+
+func unpick_part() -> void:
+	picked_attachment_scene = null
 	for child in attachment_preview.get_children():
 		attachment_preview.remove_child(child)
 		child.queue_free()
-	attachment_preview.add_child(picked_attachment_scene.instance())
