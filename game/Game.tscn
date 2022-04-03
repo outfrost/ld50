@@ -142,6 +142,7 @@ anims/RESET = SubResource( 3 )
 script = ExtResource( 6 )
 robot_speed = 1.0
 median_assembly_time = 1.0
+shift_time_limit = 600
 shift_timer_path = NodePath("ShiftTimer")
 
 [node name="ShiftTimer" type="Timer" parent="GameLoopController"]

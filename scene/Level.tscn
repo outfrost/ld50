@@ -315,13 +315,13 @@ transform = Transform( 0.793353, 0.0794593, -0.603553, 0, 0.991445, 0.130526, 0.
 transform = Transform( 0.793353, -0.0794593, -0.603553, 0, 0.991445, -0.130526, 0.608761, 0.103553, 0.786566, 2.3, 2.9, 0.7 )
 
 [node name="MonitorSupportBeam" parent="." instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.67501, 0, 0.389554 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.675, 0, 0.352 )
 
 [node name="MonitorCables" parent="MonitorSupportBeam" instance=ExtResource( 9 )]
 transform = Transform( 0.121696, 0, -0.992567, 0, 1, 0, 0.992567, 0, 0.121696, 0, 0, 0 )
 
 [node name="MonitorSupportBeam2" parent="." instance=ExtResource( 8 )]
-transform = Transform( -4.3751e-08, 0, 1.00091, 0, 1.00091, 0, -1.00091, 0, -4.3751e-08, -2.675, 0, 0.39 )
+transform = Transform( 0.0444967, 0, 0.99992, 0, 1.00091, 0, -0.99992, 0, 0.0444967, -2.675, 0, 0.351514 )
 
 [node name="MonitorCables" parent="MonitorSupportBeam2" instance=ExtResource( 9 )]
 transform = Transform( -0.153331, 0, -0.988175, 0, 1, 0, 0.988175, 0, -0.153331, -2.98023e-08, 0, 0 )
