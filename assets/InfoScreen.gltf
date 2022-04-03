@@ -77,29 +77,29 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 281,
+            "count" : 274,
             "max" : [
                 0.6959999799728394,
-                0.3999999761581421,
-                0.05000000074505806
+                0.40000003576278687,
+                0.015473703853785992
             ],
             "min" : [
                 -0.6959999799728394,
-                -0.3999999761581421,
-                0.019999971613287926
+                -0.40000003576278687,
+                -0.014526325277984142
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 281,
+            "count" : 274,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 281,
+            "count" : 274,
             "type" : "VEC2"
         },
         {
@@ -114,13 +114,13 @@
             "count" : 4,
             "max" : [
                 0.6859999895095825,
-                0.38999998569488525,
-                0.04800000041723251
+                0.39000004529953003,
+                0.013473703525960445
             ],
             "min" : [
                 -0.6859999895095825,
-                -0.38999998569488525,
-                0.047999996691942215
+                -0.39000004529953003,
+                0.013473699800670147
             ],
             "type" : "VEC3"
         },
@@ -146,48 +146,48 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 3372,
+            "byteLength" : 3288,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 3372,
-            "byteOffset" : 3372
+            "byteLength" : 3288,
+            "byteOffset" : 3288
         },
         {
             "buffer" : 0,
-            "byteLength" : 2248,
-            "byteOffset" : 6744
+            "byteLength" : 2192,
+            "byteOffset" : 6576
         },
         {
             "buffer" : 0,
             "byteLength" : 876,
-            "byteOffset" : 8992
+            "byteOffset" : 8768
         },
         {
             "buffer" : 0,
             "byteLength" : 48,
-            "byteOffset" : 9868
+            "byteOffset" : 9644
         },
         {
             "buffer" : 0,
             "byteLength" : 48,
-            "byteOffset" : 9916
+            "byteOffset" : 9692
         },
         {
             "buffer" : 0,
             "byteLength" : 32,
-            "byteOffset" : 9964
+            "byteOffset" : 9740
         },
         {
             "buffer" : 0,
             "byteLength" : 12,
-            "byteOffset" : 9996
+            "byteOffset" : 9772
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 10008,
+            "byteLength" : 9784,
             "uri" : "InfoScreen.bin"
         }
     ]
