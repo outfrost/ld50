@@ -8,11 +8,10 @@ onready var hover_vis: Spatial = hover_vis_scene.instance()
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var hovered_blank: Spatial = null
-
-func _init() -> void:
-	rng.randomize()
+var hoverable: bool = false
 
 func _ready() -> void:
+	rng.randomize()
 	hover_vis.hide()
 	add_child(hover_vis)
 
@@ -37,6 +36,8 @@ func generate(num_connectors: int) -> void:
 			blanks.remove(index)
 
 func blank_hovered(blank: Spatial) -> void:
+	if !hoverable:
+		return
 	hovered_blank = blank
 	hover_vis.translation = hovered_blank.translation + Vector3(0.0, 0.2, 0.0)
 	hover_vis.show()

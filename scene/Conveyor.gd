@@ -2,19 +2,25 @@ extends Spatial
 
 export(float, 0.0, 10.0) var conveyor_speed: float = 1.02
 export var assembly_scene: PackedScene
+export var attachment_preview_path: NodePath
 
 onready var spawn_point: Spatial = $AssemblySpawnPoint
 onready var assembly_point: Spatial = $AssemblyAssemblyPoint
 onready var exit_point: Spatial = $AssemblyExitPoint
 onready var tween: Tween = $Tween
 onready var belt = $conveyorBeltChunkv01
+onready var attachment_preview: Spatial = get_node(attachment_preview_path)
 
 var current_assembly: Spatial
 var last_assembly: Spatial
 var sendable: bool = false
 
+var picked_attachment_scene: PackedScene = null
+
 func _ready() -> void:
 	tween.connect("tween_completed", self, "tween_completed")
+	for bucket in $PartsBuckets.get_children():
+		bucket.connect("part_picked", self, "part_picked")
 
 func spawn_assembly() -> void:
 	current_assembly = assembly_scene.instance()
@@ -34,8 +40,21 @@ func send_assembly() -> void:
 	if !sendable:
 		return
 	sendable = false
+
+	# hide new attachment placement visualisation
+	current_assembly.hoverable = false
+	current_assembly.hover_vis.hide()
+
+	# clean up leftover nonsense
+	if last_assembly:
+		remove_child(last_assembly)
+		last_assembly.queue_free()
+		last_assembly = null
+
 	last_assembly = current_assembly
 	spawn_assembly()
+
+	# roll the finished one out the door
 	tween.interpolate_property(
 		last_assembly,
 		"transform",
@@ -55,3 +74,11 @@ func tween_completed(object: Object, _key: NodePath) -> void:
 		last_assembly = null
 	if object == current_assembly:
 		sendable = true
+		current_assembly.hoverable = true
+
+func part_picked(part_scene: PackedScene) -> void:
+	picked_attachment_scene = part_scene
+	for child in attachment_preview.get_children():
+		attachment_preview.remove_child(child)
+		child.queue_free()
+	attachment_preview.add_child(picked_attachment_scene.instance())
