@@ -80,7 +80,7 @@ func _shift_start():
 	shift_timer.start()
 	time_left = 0
 
-	shift_music.param("Music Gameplay", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
 
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(5.0), "timeout")
