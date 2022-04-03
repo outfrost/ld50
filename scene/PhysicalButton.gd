@@ -8,3 +8,4 @@ func _input_event(camera: Object, event: InputEvent, position: Vector3, normal: 
 		&& event.is_pressed()
 	):
 		emit_signal("pressed")
+		Sound.instance("Button").attach(self).start()
