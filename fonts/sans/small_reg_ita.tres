@@ -1,6 +1,6 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://fonts/assets/Noto/NotoSans-Italic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/assets/Rajdhani/Rajdhani-Light.ttf" type="DynamicFontData" id=1]
 
 [resource]
 use_filter = true
