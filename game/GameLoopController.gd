@@ -78,10 +78,12 @@ func _shift_start():
 	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
 
 	assembly_line_works = true
+	
 	shift_timer.start()
 	time_left = 0
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+	
 
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(5.0), "timeout")
