@@ -37,7 +37,7 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 3155,
+            "count" : 3224,
             "max" : [
                 0.049999985843896866,
                 0.09630000591278076,
@@ -53,47 +53,47 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 3155,
+            "count" : 3224,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 3155,
+            "count" : 3224,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 5523,
+            "count" : 5643,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 37860,
+            "byteLength" : 38688,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 37860,
-            "byteOffset" : 37860
+            "byteLength" : 38688,
+            "byteOffset" : 38688
         },
         {
             "buffer" : 0,
-            "byteLength" : 25240,
-            "byteOffset" : 75720
+            "byteLength" : 25792,
+            "byteOffset" : 77376
         },
         {
             "buffer" : 0,
-            "byteLength" : 11046,
-            "byteOffset" : 100960
+            "byteLength" : 11286,
+            "byteOffset" : 103168
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 112008,
+            "byteLength" : 114456,
             "uri" : "attachment003.bin"
         }
     ]
