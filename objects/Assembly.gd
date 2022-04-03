@@ -65,7 +65,8 @@ func try_place_attachment(attachment_scene: PackedScene, rotation_deg: Vector3) 
 	print(str(hovered_blank.rotation_degrees) + " --- " + str(rotation_deg))
 
 	# determine attachment orientation
-	var adjusted_rotation = rotation_deg - hovered_blank.rotation_degrees
+	var adjusted_rotation: Vector3 = rotation_deg - hovered_blank.rotation_degrees
+	adjusted_rotation = adjusted_rotation.round()
 	adjusted_rotation = adjusted_rotation.posmod(360.0)
 	var rotation_check: int = 0
 	if (adjusted_rotation.is_equal_approx(Vector3(0.0, 0.0, 0.0))):
