@@ -29,6 +29,7 @@ extends Node
 # - what else must be public here?
 
 signal spawn_first_assembly()
+signal stop_production()
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -89,6 +90,7 @@ func _shift_start():
 
 func _shift_end():
 	shift_music.stop()
+	emit_signal("stop_production")
 
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false
@@ -194,6 +196,11 @@ func _zeroing_variables():
 
 func get_stats():
 	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
+
+func finished_assembly(num_connectors: int, num_attachments: int) -> void:
+	add_assembly("player")
+	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
+	add_money()
 
 func add_assembly(recipient:String  = 'undefined'):
 	if assembly_line_works:
