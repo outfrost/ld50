@@ -64,7 +64,7 @@ func blank_clicked(blank: Spatial) -> void:
 	if !hoverable:
 		return
 	emit_signal("clicked")
-	
+
 
 
 func try_place_attachment(attachment_scene: PackedScene, rotation_deg: Vector3) -> bool:
