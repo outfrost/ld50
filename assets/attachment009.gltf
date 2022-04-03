@@ -15,12 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "Attatchment009",
-            "translation" : [
-                0,
-                0.05000000074505806,
-                0
-            ]
+            "name" : "Attatchment009"
         }
     ],
     "meshes" : [
