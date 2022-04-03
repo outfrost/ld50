@@ -31,7 +31,7 @@ func _ready() -> void:
 	tween.connect("tween_completed", self, "tween_completed")
 	for bucket in $PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
-	gameloopcontroller.get_stats()
+	gameloopcontroller.get_stats("hello")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton

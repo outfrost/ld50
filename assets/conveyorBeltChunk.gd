@@ -10,9 +10,9 @@ func _ready() -> void:
 func roll(speed: float) -> void:
 	anim.play("conveyorBeltAnim", - 1.0, speed)
 	belt_sound.start()
-	
+
 
 func stop() -> void:
 	anim.stop(false)
 	belt_sound.stop()
-	
+
