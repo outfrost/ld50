@@ -7,16 +7,21 @@ onready var credits_button: Button = find_node("CreditsButton")
 onready var quit_button: Button = find_node("QuitButton")
 onready var credits_popup: Popup = $CreditsPopup
 
+var music_menu
+
 func _ready() -> void:
 	play_button.connect("pressed", self, "on_play_pressed")
 	credits_button.connect("pressed", self, "on_credits_pressed")
 	quit_button.connect("pressed", self, "on_quit_pressed")
 	Sound.instance("Drill").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
+	music_menu = Sound.instance("Music Menu").attach(self)
+	music_menu.start()
 		# This is a singular drill sound, placed to serve as a test dummy
 
 func on_play_pressed() -> void:
 	emit_signal("start_game")
 	Sound.instance("Drill GUI 2").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
+	music_menu.stop()
 
 
 func on_credits_pressed() -> void:
