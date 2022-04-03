@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scene/Level.tscn" type="PackedScene" id=2]
@@ -6,6 +6,81 @@
 [ext_resource path="res://game/loading/TransitionScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/Game.gd" type="Script" id=5]
 [ext_resource path="res://game/GameLoopController.gd" type="Script" id=6]
+[ext_resource path="res://images/pulling-display.png" type="Texture" id=7]
+[ext_resource path="res://game/PullingDisplay.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Display-In"
+step = 0.0166667
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TextureRect:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -1, -0.25, 0, 0.25, 0, -0.0444802, -0.25, 0, 0.1, -0.00527567, -0.1, -0.133333, 0.00127725, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.8, 1 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Display-Out"
+step = 0.0166667
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("TextureRect:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -0.1, -0.25, 0, 0.0666667, 0.00633249, -0.0228938, -0.05, 0, 0.25, 0, -1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.133333, 1 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -60 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("TextureRect:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -60, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("TextureRect:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("TextureRect:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
@@ -26,7 +101,6 @@ theme = ExtResource( 1 )
 visible = false
 
 [node name="StatsShowcase" type="Control" parent="UI"]
-visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -38,12 +112,37 @@ margin_bottom = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="PullingDisplay" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 8 )
+animplayer_path = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="UI/PullingDisplay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -60.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/PullingDisplay"]
+anims/Display-In = SubResource( 1 )
+anims/Display-Out = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
 [node name="LevelContainer" type="Spatial" parent="."]
 
 [node name="GameLoopController" type="Node" parent="."]
 script = ExtResource( 6 )
 robot_speed = 1.0
 median_assembly_time = 1.0
+shift_time_limit = 600
 shift_timer_path = NodePath("ShiftTimer")
 
 [node name="ShiftTimer" type="Timer" parent="GameLoopController"]

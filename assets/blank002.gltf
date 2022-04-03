@@ -36,7 +36,7 @@
     ],
     "meshes" : [
         {
-            "name" : "Cube",
+            "name" : "Cube.009",
             "primitives" : [
                 {
                     "attributes" : {
@@ -54,63 +54,63 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 202,
+            "count" : 356,
             "max" : [
-                0.04999999701976776,
-                0.05000000447034836,
+                0.050000011920928955,
+                0.025000013411045074,
                 0.04999998211860657
             ],
             "min" : [
-                -0.04999999701976776,
-                -0.05000000447034836,
-                -0.04999998211860657
+                -0.050000011920928955,
+                -0.0019999947398900986,
+                -0.04999997839331627
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 202,
+            "count" : 356,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 202,
+            "count" : 356,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 498,
+            "count" : 648,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 2424,
+            "byteLength" : 4272,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 2424,
-            "byteOffset" : 2424
+            "byteLength" : 4272,
+            "byteOffset" : 4272
         },
         {
             "buffer" : 0,
-            "byteLength" : 1616,
-            "byteOffset" : 4848
+            "byteLength" : 2848,
+            "byteOffset" : 8544
         },
         {
             "buffer" : 0,
-            "byteLength" : 996,
-            "byteOffset" : 6464
+            "byteLength" : 1296,
+            "byteOffset" : 11392
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 7460,
+            "byteLength" : 12688,
             "uri" : "blank002.bin"
         }
     ]
