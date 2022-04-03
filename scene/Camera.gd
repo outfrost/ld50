@@ -30,3 +30,7 @@ func _process(delta: float) -> void:
 #	DebugOverlay.display(rotation_proportion)
 #	DebugOverlay.display(base_x_rotation_degrees)
 #	DebugOverlay.display(rotation_degrees)
+
+
+func _on_Conveyor_finished_assembly(num_connectors, num_attachments):
+	pass # Replace with function body.

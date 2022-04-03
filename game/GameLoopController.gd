@@ -1,35 +1,20 @@
 extends Node
 
-# DESCRIPTION
-
-# Purposes of this script:
-# - handle gameplay entry point and the Introducion Story/Guidelines moment.
-# - track game loops, track timing
-# - provide information (stats, time left)
-# - checking for win/lose conditions
-# - adjusting the difficulty (robot speed, score gap)
-# - emitting signals about essential changes (win/lose, shift started etc)
-# - switching conditions between "procedural" and "_process" parts of game loop.
-
-# PUBLIC FUNCTIONS:
-# - add_assembly(string) // args: "robot" or "player" - adds scores point
-# - add_money(int) // arg is currently the amount. May be implemented some other way.
-# - shifts_init // called once as game starts
-
-# VARIABLES, USEFUL AS PUBLIC:
-# - time_left // seconds to the end of current shift
-# - shift_time_limit // [exported] shift time limit in seconds
-
 # TODO
 # - add signals for essential events
 # - improve the timer stuff
 # - refactor some mess between _process and procedural stages (it works actually)
 # - public func to adjust robot's speed maybe.
-# - resetting gameplay variables in _shift_init()
-# - what else must be public here?
 
 signal spawn_first_assembly()
 signal stop_production()
+
+onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
+
+# TESTING / PROTOTYPING VARIABLES
+var money_for_one_blank:int = 100
+var money_for_fully_assembled_base_multiplier:int = 3
+var money_to_pass_shift = money_for_one_blank * 1
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -50,13 +35,14 @@ export(NodePath) var shift_timer_path
 onready var shift_timer: Node = get_node(shift_timer_path)
 
 # STATS
+var player_attachments_current_shift:int = 0
 var player_assembled_current_shift:int = 0
 var robot_assembled_current_shift:int = 0
+var money_current_shift:int = 0
 
+var player_attachments_total:int = 0
 var player_assembled_total:int = 0
 var robot_assembled_total:int = 0
-
-var money_current_shift:int = 0
 var money_total:int = 0
 
 # Sound
@@ -72,6 +58,7 @@ func shifts_init():
 	_shift_start()
 
 func _shift_start():
+	transition_screen.fade_out()
 	shift_number += 1
 	print("\n-- start of ",shift_number," shift --")
 	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
@@ -82,7 +69,10 @@ func _shift_start():
 	time_left = 0
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+<<<<<<< HEAD
+=======
 
+>>>>>>> 361472a726bed925dea0407ceaec65c77252c29c
 
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(5.0), "timeout")
@@ -92,6 +82,7 @@ func _shift_start():
 func _shift_end():
 	shift_music.stop()
 	emit_signal("stop_production")
+	transition_screen.fade_in()
 
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false
@@ -99,8 +90,8 @@ func _shift_end():
 #	_win_lose_check()
 
 	# temp.overwriting is_lose for prototyping purposes
-	randomize()
-	is_lose = randi()%2 # dummy calc until real stats will work properly
+	if money_current_shift < money_to_pass_shift:
+		is_lose = true
 	print("is_lose: ", is_lose)
 	# this snippet above might be deleted after improving other part
 
@@ -134,9 +125,9 @@ func _introduction():
 
 func _gameover():
 	print("\nGAME OVER!")
-	print("SHIFTS: ", shift_number)
-	print("ASSEMBLED: ", player_assembled_total)
-	print("EARNED: ", money_total)
+	print("SHIFTS SURVIVED: ", shift_number)
+	print("FULLY ASSEMBLED: ", player_assembled_total)
+	print("MONEY EARNED: ", money_total)
 
 func _process(delta):
 
@@ -153,7 +144,6 @@ func _seconds_counter():
 func _dummy_assembly_process():
 	pass
 
-
 func _on_ShiftTimer_timeout():
 	pass # Replace with function body.
 
@@ -163,18 +153,22 @@ func _stats_after_shift():
 	robot_assembled_total += robot_assembled_current_shift
 
 	print("\nSHIFT RESULTS:")
-	print("Player: ", player_assembled_current_shift," models.")
-	print("Robot: ", robot_assembled_current_shift," models.")
-	print("\nOVERALL RESULTS:")
-	print("Player: ", player_assembled_total," total.")
-	print("Robot: ", robot_assembled_total," total.")
+	print("Attached: ", player_assembled_current_shift," blanks.")
+	print("Assembled: ", player_attachments_current_shift," models")
+	print("Robot assembled: ", robot_assembled_current_shift," models.")
 
-	player_assembled_current_shift = 0
-	robot_assembled_current_shift = 0
+	print("\nOVERALL RESULTS:")
+	print("Assembled: ", player_assembled_total," models total.")
+	print("Attached: ", player_attachments_total," blanks total.")
+	print("Robot assembled: ", robot_assembled_total," models total.")
 
 	money_total += money_current_shift
 	print("\nYou earned ", money_current_shift, " today.")
 	print("Your total earnings: ", money_total)
+
+	player_assembled_current_shift = 0
+	player_attachments_current_shift = 0
+	robot_assembled_current_shift = 0
 	money_current_shift = 0
 
 func _zeroing_variables():
@@ -182,26 +176,32 @@ func _zeroing_variables():
 	robot_assembled_current_shift = 0
 	player_assembled_total = 0
 	robot_assembled_total = 0
+	player_attachments_current_shift = 0
+	player_attachments_total = 0
 	money_current_shift = 0
 	money_total = 0
 	shift_number = 0
 	is_lose = false
 	assembly_line_works = false
 
-
-
-
 #############################################
 #     P U B L I C     F U N C T I O N S     #
 #############################################
 
-func get_stats():
+func get_stats(what):
 	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
+#	match what:
+
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
-	add_assembly("player")
+
 	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
-	add_money()
+
+	player_attachments_current_shift += num_attachments
+	add_money(num_attachments * money_for_one_blank)
+	if num_attachments == num_connectors:
+		add_money(num_connectors * money_for_one_blank * money_for_fully_assembled_base_multiplier)
+		add_assembly("player")
 
 func add_assembly(recipient:String  = 'undefined'):
 	if assembly_line_works:
