@@ -15,7 +15,12 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "Attatchment006"
+            "name" : "Attatchment006",
+            "translation" : [
+                0,
+                0.05000000447034836,
+                0
+            ]
         }
     ],
     "meshes" : [
@@ -37,10 +42,10 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 285,
+            "count" : 7527,
             "max" : [
-                0.04999999329447746,
-                0.04999998211860657,
+                0.050112444907426834,
+                0.025944367051124573,
                 0.04999998211860657
             ],
             "min" : [
@@ -53,47 +58,47 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 285,
+            "count" : 7527,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 285,
+            "count" : 7527,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 570,
+            "count" : 12888,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 3420,
+            "byteLength" : 90324,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 3420,
-            "byteOffset" : 3420
+            "byteLength" : 90324,
+            "byteOffset" : 90324
         },
         {
             "buffer" : 0,
-            "byteLength" : 2280,
-            "byteOffset" : 6840
+            "byteLength" : 60216,
+            "byteOffset" : 180648
         },
         {
             "buffer" : 0,
-            "byteLength" : 1140,
-            "byteOffset" : 9120
+            "byteLength" : 25776,
+            "byteOffset" : 240864
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 10260,
+            "byteLength" : 266640,
             "uri" : "attachment006.bin"
         }
     ]
