@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/environment/conveyorBeltChunkv01.gltf" type="PackedScene" id=1]
+[ext_resource path="res://assets/conveyorBeltChunk.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -35,6 +36,7 @@ tracks/0/keys = {
 }
 
 [node name="conveyorBeltChunkv01" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 anims/RESET = SubResource( 2 )
