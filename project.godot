@@ -72,6 +72,10 @@ window/size/height=720
 
 enabled=PoolStringArray( "res://addons/fmod/plugin.cfg" )
 
+[global]
+
+"object picking"=true
+
 [importer_defaults]
 
 scene={

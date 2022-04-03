@@ -2,8 +2,8 @@ extends Spatial
 
 onready var anim: AnimationPlayer = $AnimationPlayer
 
-func roll() -> void:
-	anim.play("conveyorBeltAnim")
+func roll(speed: float) -> void:
+	anim.play("conveyorBeltAnim", - 1.0, speed)
 
 func stop() -> void:
-	anim.stop()
+	anim.stop(false)
