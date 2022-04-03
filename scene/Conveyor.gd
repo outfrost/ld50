@@ -11,6 +11,8 @@ onready var tween: Tween = $Tween
 onready var belt = $conveyorBeltChunkv01
 onready var attachment_preview: Spatial = get_node(attachment_preview_path)
 
+onready var gameloopcontroller: Node = get_node("/root/Game/GameLoopController")
+
 var current_assembly: Spatial
 var last_assembly: Spatial
 var sendable: bool = false
@@ -26,6 +28,7 @@ func _ready() -> void:
 	tween.connect("tween_completed", self, "tween_completed")
 	for bucket in $PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
+	gameloopcontroller.get_stats()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton
