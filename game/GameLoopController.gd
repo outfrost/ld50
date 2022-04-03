@@ -28,6 +28,8 @@ extends Node
 # - resetting gameplay variables in _shift_init()
 # - what else must be public here?
 
+signal spawn_first_assembly()
+
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
 export(float, 1, 8, 0.01) var median_assembly_time
@@ -37,7 +39,7 @@ export var points_treshold = 20
 var is_lose:bool
 
 # ASSEMBLY LINE TIMING STUFF
-export var shift_time_limit:int = 5 #seconds
+export var shift_time_limit:int = 60 #seconds
 var time_left:int #must be in seconds
 var time_left_prev:int #must be in seconds
 var time_shift_started:int = 0
@@ -70,7 +72,6 @@ func shifts_init():
 	_shift_start()
 
 func _shift_start():
-
 	shift_number += 1
 	print("\n-- start of ",shift_number," shift --")
 	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
@@ -80,6 +81,11 @@ func _shift_start():
 	time_left = 0
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+
+	# Delay first incoming assemblies
+	yield(get_tree().create_timer(5.0), "timeout")
+
+	emit_signal("spawn_first_assembly")
 
 func _shift_end():
 	shift_music.stop()

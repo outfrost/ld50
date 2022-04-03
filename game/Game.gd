@@ -34,6 +34,7 @@ func on_start_game() -> void:
 	main_menu.hide()
 	level = level_scene.instance()
 	level_container.add_child(level)
+	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
 	loop_controller.shifts_init()
 
 func back_to_menu() -> void:
