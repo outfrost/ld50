@@ -65,7 +65,6 @@ var shift_music: Sound.EvInstance
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
-	# This event plays Music_1_v1 with an artificial (not musically-prepared) loop, to serve as a test dummy
 
 func shifts_init():
 	_zeroing_variables()
