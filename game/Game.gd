@@ -15,12 +15,13 @@ var level: Spatial
 var debug: Reference
 
 func _ready() -> void:
+	randomize()
+
 	if OS.has_feature("debug"):
 		var debug_script = load("res://debug.gd")
 		if debug_script:
 			debug = debug_script.new(self)
 			debug.startup()
-
 
 	main_menu.connect("start_game", self, "on_start_game")
 

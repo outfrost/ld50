@@ -16,6 +16,7 @@ var last_assembly: Spatial
 var sendable: bool = false
 
 var picked_attachment_scene: PackedScene = null
+var picked_attachment: Spatial
 
 func _ready() -> void:
 	tween.connect("tween_completed", self, "tween_completed")
@@ -31,8 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func spawn_assembly() -> void:
 	current_assembly = assembly_scene.instance()
-	current_assembly.generate(5)
-	current_assembly.connect("clicked", self, "assembly_clicked")
 	tween.interpolate_property(
 		current_assembly,
 		"transform",
@@ -43,6 +42,8 @@ func spawn_assembly() -> void:
 	tween.start()
 	belt.roll(conveyor_speed / 1.02)
 	add_child(current_assembly)
+	current_assembly.generate(5)
+	current_assembly.connect("clicked", self, "assembly_clicked")
 
 func send_assembly() -> void:
 	if !sendable:
@@ -89,10 +90,12 @@ func part_picked(part_scene: PackedScene) -> void:
 	if !part_scene:
 		return
 	picked_attachment_scene = part_scene
-	attachment_preview.add_child(picked_attachment_scene.instance())
+	picked_attachment = picked_attachment_scene.instance()
+	attachment_preview.add_child(picked_attachment)
 
 func unpick_part() -> void:
 	picked_attachment_scene = null
+	picked_attachment = null
 	for child in attachment_preview.get_children():
 		attachment_preview.remove_child(child)
 		child.queue_free()
@@ -101,5 +104,5 @@ func assembly_clicked() -> void:
 	if !picked_attachment_scene:
 		return
 
-	if current_assembly.try_place_attachment(picked_attachment_scene):
+	if current_assembly.try_place_attachment(picked_attachment_scene, picked_attachment.rotation_degrees):
 		unpick_part()

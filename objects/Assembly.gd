@@ -13,7 +13,7 @@ var hovered_blank: Spatial = null
 var hoverable: bool = false
 
 func _ready() -> void:
-	rng.randomize()
+	rng.seed = randi()
 	hover_vis.hide()
 	add_child(hover_vis)
 
@@ -55,10 +55,39 @@ func blank_clicked(blank: Spatial) -> void:
 		return
 	emit_signal("clicked")
 
-func try_place_attachment(attachment_scene: PackedScene) -> bool:
+func try_place_attachment(attachment_scene: PackedScene, rotation_deg: Vector3) -> bool:
 	if !hovered_blank:
 		return false
 	if attachment_scene != hovered_blank.attachment_scene:
 		hover_vis.flash_red()
 		return false
-	return false
+
+	print(str(hovered_blank.rotation_degrees) + " --- " + str(rotation_deg))
+
+	# determine attachment orientation
+	var adjusted_rotation = rotation_deg - hovered_blank.rotation_degrees
+	adjusted_rotation = adjusted_rotation.posmod(360.0)
+	var rotation_check: int = 0
+	if (adjusted_rotation.is_equal_approx(Vector3(0.0, 0.0, 0.0))):
+		rotation_check = 1
+	elif (adjusted_rotation.is_equal_approx(Vector3(0.0, 90.0, 0.0))):
+		rotation_check = 2
+	elif (adjusted_rotation.is_equal_approx(Vector3(0.0, 180.0, 0.0))):
+		rotation_check = 4
+	elif (adjusted_rotation.is_equal_approx(Vector3(0.0, 270.0, 0.0))):
+		rotation_check = 8
+
+	if !(rotation_check & hovered_blank.attaches_at):
+		hover_vis.flash_red()
+		return false
+
+	var attachment = attachment_scene.instance()
+	attachment.rotation_degrees = rotation_deg
+	attachment.translation = hovered_blank.translation
+	attachment.translation.y += 0.2
+	add_child(attachment)
+	hovered_blank.get_node("CollisionShape").disabled = true
+	hovered_blank = null
+	hover_vis.hide()
+
+	return true
