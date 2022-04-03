@@ -1,5 +1,7 @@
 extends Spatial
 
+signal clicked()
+
 export(Array, PackedScene) var blank_scenes: Array
 export var blanking_plate_scene: PackedScene
 export var hover_vis_scene: PackedScene
@@ -33,6 +35,7 @@ func generate(num_connectors: int) -> void:
 			add_child(blanks[index])
 			blanks[index].connect("hovered", self, "blank_hovered", [ blanks[index] ])
 			blanks[index].connect("unhovered", self, "blank_unhovered", [ blanks[index] ])
+			blanks[index].connect("clicked", self, "blank_clicked", [ blanks[index] ])
 			blanks.remove(index)
 
 func blank_hovered(blank: Spatial) -> void:
@@ -46,3 +49,16 @@ func blank_unhovered(blank: Spatial) -> void:
 	if hovered_blank == blank:
 		hovered_blank = null
 		hover_vis.hide()
+
+func blank_clicked(blank: Spatial) -> void:
+	if !hoverable:
+		return
+	emit_signal("clicked")
+
+func try_place_attachment(attachment_scene: PackedScene) -> bool:
+	if !hovered_blank:
+		return false
+	if attachment_scene != hovered_blank.attachment_scene:
+		hover_vis.flash_red()
+		return false
+	return false

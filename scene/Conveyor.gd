@@ -32,6 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func spawn_assembly() -> void:
 	current_assembly = assembly_scene.instance()
 	current_assembly.generate(5)
+	current_assembly.connect("clicked", self, "assembly_clicked")
 	tween.interpolate_property(
 		current_assembly,
 		"transform",
@@ -48,7 +49,7 @@ func send_assembly() -> void:
 		return
 	sendable = false
 
-	# hide new attachment placement visualisation
+	# hide new attachment placement visualisation and prevent placing stuff
 	current_assembly.hoverable = false
 	current_assembly.hover_vis.hide()
 
@@ -85,6 +86,8 @@ func tween_completed(object: Object, _key: NodePath) -> void:
 
 func part_picked(part_scene: PackedScene) -> void:
 	unpick_part()
+	if !part_scene:
+		return
 	picked_attachment_scene = part_scene
 	attachment_preview.add_child(picked_attachment_scene.instance())
 
@@ -93,3 +96,10 @@ func unpick_part() -> void:
 	for child in attachment_preview.get_children():
 		attachment_preview.remove_child(child)
 		child.queue_free()
+
+func assembly_clicked() -> void:
+	if !picked_attachment_scene:
+		return
+
+	if current_assembly.try_place_attachment(picked_attachment_scene):
+		unpick_part()
