@@ -1,6 +1,6 @@
 extends Spatial
 
-signal finished_assembly(percent_done)
+signal finished_assembly(num_connectors, num_attachments)
 
 export(float, 0.0, 10.0) var conveyor_speed: float = 1.02
 export var assembly_scene: PackedScene
@@ -125,7 +125,10 @@ func send_assembly() -> void:
 func tween_completed(object: Object, _key: NodePath) -> void:
 	if object == last_assembly:
 		belt.stop()
-		emit_signal("finished_assembly", last_assembly.percent_done())
+		emit_signal(
+			"finished_assembly",
+			last_assembly.num_connectors,
+			last_assembly.num_attachments)
 		remove_child(last_assembly)
 		last_assembly.queue_free()
 		last_assembly = null

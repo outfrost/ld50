@@ -197,9 +197,9 @@ func _zeroing_variables():
 func get_stats():
 	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
 
-func finished_assembly(percent_done: float) -> void:
+func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 	add_assembly("player")
-	print("yeet " + str(percent_done))
+	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
 	add_money()
 
 func add_assembly(recipient:String  = 'undefined'):
