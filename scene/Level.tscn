@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -11,6 +11,15 @@
 [ext_resource path="res://scene/MonitorCables.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scene/AttachmentPreview.gd" type="Script" id=10]
 [ext_resource path="res://objects/attachments/Attachment001.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/attachments/Attachment002.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/attachments/Attachment003.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/attachments/Attachment004.tscn" type="PackedScene" id=14]
+[ext_resource path="res://objects/attachments/Attachment005.tscn" type="PackedScene" id=15]
+[ext_resource path="res://objects/attachments/Attachment006.tscn" type="PackedScene" id=16]
+[ext_resource path="res://objects/attachments/Attachment007.tscn" type="PackedScene" id=17]
+[ext_resource path="res://objects/attachments/Attachment008.tscn" type="PackedScene" id=18]
+[ext_resource path="res://objects/attachments/Attachment009.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/attachments/Attachment010.tscn" type="PackedScene" id=20]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -224,30 +233,39 @@ part_scene = ExtResource( 11 )
 
 [node name="PartsBucket2" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, -0.675, -0.1, 0.32933 )
+part_scene = ExtResource( 12 )
 
 [node name="PartsBucket3" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, -0.1, 0.32933 )
+part_scene = ExtResource( 13 )
 
 [node name="PartsBucket4" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0.675, -0.1, 0.32933 )
+part_scene = ExtResource( 14 )
 
 [node name="PartsBucket5" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 1.35, -0.1, 0.32933 )
+part_scene = ExtResource( 15 )
 
 [node name="PartsBucket6" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 0.1, -0.1 )
+part_scene = ExtResource( 16 )
 
 [node name="PartsBucket7" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, 0.1, -0.1 )
+part_scene = ExtResource( 17 )
 
 [node name="PartsBucket8" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1 )
+part_scene = ExtResource( 18 )
 
 [node name="PartsBucket9" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0.1, -0.1 )
+part_scene = ExtResource( 19 )
 
 [node name="PartsBucket10" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.1, -0.1 )
+part_scene = ExtResource( 20 )
 
 [node name="ButtonPanel" type="MeshInstance" parent="Room/Conveyor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.1, 2.5 )

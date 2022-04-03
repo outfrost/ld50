@@ -1,10 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/Material.tres" type="Material" id=1]
 [ext_resource path="res://objects/Assembly.gd" type="Script" id=2]
 [ext_resource path="res://objects/blanks/Blank001.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/blanks/BlankingPlate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/extras/HoverVis.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/blanks/Blank007.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/blanks/Blank004.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/blanks/Blank008.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/blanks/Blank005.tscn" type="PackedScene" id=9]
+[ext_resource path="res://objects/blanks/Blank009.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/blanks/Blank002.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/blanks/Blank003.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/blanks/Blank006.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/blanks/Blank010.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CubeMesh" id=1]
 material = ExtResource( 1 )
@@ -12,7 +21,7 @@ size = Vector3( 0.8, 0.2, 0.8 )
 
 [node name="Assembly" type="Spatial"]
 script = ExtResource( 2 )
-blank_scenes = [ ExtResource( 3 ) ]
+blank_scenes = [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 14 ) ]
 blanking_plate_scene = ExtResource( 4 )
 hover_vis_scene = ExtResource( 5 )
 

@@ -5,4 +5,4 @@
 [node name="Attachment001" type="Spatial"]
 
 [node name="attachment001" parent="." instance=ExtResource( 1 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.1, 0 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/attachment003.gltf" type="PackedScene" id=1]
+
+[node name="Attachment003" type="Spatial"]
+
+[node name="attachment003" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )

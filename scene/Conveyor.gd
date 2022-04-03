@@ -82,7 +82,7 @@ func spawn_assembly() -> void:
 	tween.start()
 	belt.roll(conveyor_speed / 1.02)
 	add_child(current_assembly)
-	current_assembly.generate(5)
+	current_assembly.generate(9)
 	current_assembly.connect("clicked", self, "assembly_clicked")
 
 func send_assembly() -> void:
