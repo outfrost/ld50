@@ -15,7 +15,12 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "Attatchment008"
+            "name" : "Attatchment008",
+            "translation" : [
+                0,
+                0.05000000447034836,
+                0
+            ]
         }
     ],
     "meshes" : [
@@ -37,63 +42,63 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 290,
+            "count" : 1971,
             "max" : [
                 0.04999999329447746,
-                0.04999998211860657,
+                0.011999979615211487,
                 0.04999998211860657
             ],
             "min" : [
                 -0.04999998211860657,
                 -0.05000000074505806,
-                -0.04999999701976776
+                -0.04999999329447746
             ],
             "type" : "VEC3"
         },
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 290,
+            "count" : 1971,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 290,
+            "count" : 1971,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 582,
+            "count" : 3258,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 3480,
+            "byteLength" : 23652,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 3480,
-            "byteOffset" : 3480
+            "byteLength" : 23652,
+            "byteOffset" : 23652
         },
         {
             "buffer" : 0,
-            "byteLength" : 2320,
-            "byteOffset" : 6960
+            "byteLength" : 15768,
+            "byteOffset" : 47304
         },
         {
             "buffer" : 0,
-            "byteLength" : 1164,
-            "byteOffset" : 9280
+            "byteLength" : 6516,
+            "byteOffset" : 63072
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 10444,
+            "byteLength" : 69588,
             "uri" : "attachment008.bin"
         }
     ]
