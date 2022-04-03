@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://objects/attachments/Attachment008.tscn" type="PackedScene" id=18]
 [ext_resource path="res://objects/attachments/Attachment009.tscn" type="PackedScene" id=19]
 [ext_resource path="res://objects/attachments/Attachment010.tscn" type="PackedScene" id=20]
+[ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=21]
+[ext_resource path="res://scene/infoscreens/TimeScreen.tscn" type="PackedScene" id=22]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -62,6 +64,69 @@ albedo_color = Color( 0.168627, 0.764706, 0.4, 1 )
 [sub_resource type="CubeMesh" id=13]
 material = SubResource( 14 )
 size = Vector3( 0.2, 0.125, 0.03 )
+
+[sub_resource type="ViewportTexture" id=16]
+flags = 13
+viewport_path = NodePath("Room/Screens/InfoScreen/Viewport")
+
+[sub_resource type="SpatialMaterial" id=17]
+resource_local_to_scene = true
+albedo_texture = SubResource( 16 )
+metallic_specular = 0.25
+roughness = 0.75
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.5
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 16 )
+uv1_scale = Vector3( -1, 1, 1 )
+uv1_offset = Vector3( 1, 0, 0 )
+
+[sub_resource type="ViewportTexture" id=18]
+viewport_path = NodePath("Room/Screens/InfoScreen2/Viewport")
+
+[sub_resource type="SpatialMaterial" id=19]
+resource_local_to_scene = true
+albedo_texture = SubResource( 18 )
+metallic_specular = 0.25
+roughness = 0.75
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.5
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 18 )
+
+[sub_resource type="ViewportTexture" id=20]
+viewport_path = NodePath("Room/Screens/InfoScreen3/Viewport")
+
+[sub_resource type="SpatialMaterial" id=21]
+resource_local_to_scene = true
+albedo_texture = SubResource( 20 )
+metallic_specular = 0.25
+roughness = 0.75
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.5
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 20 )
+
+[sub_resource type="ViewportTexture" id=22]
+viewport_path = NodePath("Room/Screens/InfoScreen4/Viewport")
+
+[sub_resource type="SpatialMaterial" id=23]
+resource_local_to_scene = true
+albedo_texture = SubResource( 22 )
+metallic_specular = 0.25
+roughness = 0.75
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.5
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 22 )
 
 [node name="Level" type="Spatial"]
 
@@ -304,20 +369,59 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 1.9 )
 
 [node name="InfoScreen" parent="Room/Screens" instance=ExtResource( 7 )]
 transform = Transform( 0.866025, -0.0652631, 0.495722, 0, 0.991445, 0.130526, -0.5, -0.113039, 0.858616, -2.3, 2, 0.7 )
+display_material = SubResource( 17 )
 
-[node name="ColorRect" type="ColorRect" parent="Room/Screens/InfoScreen/Viewport" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.988235, 0.247059, 0.247059, 1 )
+[node name="Viewport" type="Viewport" parent="Room/Screens/InfoScreen"]
+size = Vector2( 1280, 720 )
+hdr = false
+usage = 0
+
+[node name="TimeScreen" parent="Room/Screens/InfoScreen/Viewport" instance=ExtResource( 22 )]
 
 [node name="InfoScreen2" parent="Room/Screens" instance=ExtResource( 7 )]
 transform = Transform( 0.866025, 0.0652631, 0.495722, 0, 0.991445, -0.130526, -0.5, 0.113039, 0.858616, -2.3, 2.9, 0.7 )
+display_material = SubResource( 19 )
+
+[node name="Viewport" type="Viewport" parent="Room/Screens/InfoScreen2"]
+size = Vector2( 1280, 720 )
+hdr = false
+usage = 0
+
+[node name="ColorRect" type="ColorRect" parent="Room/Screens/InfoScreen2/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 21 )
+color = Color( 0.113725, 0.0941176, 0.419608, 1 )
 
 [node name="InfoScreen3" parent="Room/Screens" instance=ExtResource( 7 )]
 transform = Transform( 0.793353, 0.0794593, -0.603553, 0, 0.991445, 0.130526, 0.608761, -0.103553, 0.786566, 2.3, 2, 0.7 )
+display_material = SubResource( 21 )
+
+[node name="Viewport" type="Viewport" parent="Room/Screens/InfoScreen3"]
+size = Vector2( 1280, 720 )
+hdr = false
+usage = 0
+
+[node name="ColorRect" type="ColorRect" parent="Room/Screens/InfoScreen3/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 21 )
+color = Color( 0.113725, 0.0941176, 0.419608, 1 )
 
 [node name="InfoScreen4" parent="Room/Screens" instance=ExtResource( 7 )]
 transform = Transform( 0.793353, -0.0794593, -0.603553, 0, 0.991445, -0.130526, 0.608761, 0.103553, 0.786566, 2.3, 2.9, 0.7 )
+display_material = SubResource( 23 )
+
+[node name="Viewport" type="Viewport" parent="Room/Screens/InfoScreen4"]
+size = Vector2( 1280, 720 )
+hdr = false
+usage = 0
+
+[node name="ColorRect" type="ColorRect" parent="Room/Screens/InfoScreen4/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 21 )
+color = Color( 0.113725, 0.0941176, 0.419608, 1 )
 
 [node name="MonitorSupportBeam" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.675, 0, 0.352 )
@@ -332,5 +436,3 @@ transform = Transform( 0.0444967, 0, 0.99992, 0, 1.00091, 0, -0.99992, 0, 0.0444
 transform = Transform( -0.153331, 0, -0.988175, 0, 1, 0, 0.988175, 0, -0.153331, -2.98023e-08, 0, 0 )
 
 [connection signal="pressed" from="Room/Conveyor/ButtonPanel/MeshInstance/SendButton" to="Room/Conveyor" method="send_assembly"]
-
-[editable path="Room/Screens/InfoScreen"]
