@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	DebugOverlay.display("fps %d" % Performance.get_monitor(Performance.TIME_FPS))
 
 	if Input.is_action_just_pressed("menu"):
-		back_to_menu()
+		on_return_to_menu()
 
 func loading_done() -> void:
 	loading_background.hide()
@@ -45,6 +45,9 @@ func on_start_game() -> void:
 	main_menu.hide()
 	load_level()
 	loop_controller.shifts_init()
+
+func on_return_to_menu() -> void:
+	loop_controller.return_to_menu()
 
 func back_to_menu() -> void:
 	unload_level()
