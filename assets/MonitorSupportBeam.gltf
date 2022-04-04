@@ -18,6 +18,22 @@
             "name" : "MonitorSupportBeam"
         }
     ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "SilverMetal",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.11927573382854462,
+                    0.11927573382854462,
+                    0.11927573382854462,
+                    1
+                ],
+                "metallicFactor" : 0.4912280738353729,
+                "roughnessFactor" : 0.6192982196807861
+            }
+        }
+    ],
     "meshes" : [
         {
             "name" : "Cube.039",
@@ -28,7 +44,8 @@
                         "NORMAL" : 1,
                         "TEXCOORD_0" : 2
                     },
-                    "indices" : 3
+                    "indices" : 3,
+                    "material" : 0
                 }
             ]
         }
