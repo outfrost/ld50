@@ -35,16 +35,11 @@ func on_start_game() -> void:
 	main_menu.hide()
 	level = level_scene.instance()
 	level_container.add_child(level)
-	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
-	loop_controller.connect("stop_production", level.get_node("Room/Conveyor"), "stop_production")
-	#moved loopcontroller's signal connection from here to loopcontroller
+	load_level()
 	loop_controller.shifts_init()
 
 func back_to_menu() -> void:
-	if level:
-		level_container.remove_child(level)
-		level.queue_free()
-		level = null
+	unload_level()
 	main_menu.show()
 
 func unload_level() -> void:
@@ -60,3 +55,6 @@ func load_level() -> void:
 	print ("adding new level as tree child...")
 	level_container.add_child(level)
 	print ("level loaded")
+	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
+	loop_controller.connect("stop_production", level.get_node("Room/Conveyor"), "stop_production")
+	#moved loopcontroller's signal connection from here to loopcontroller
