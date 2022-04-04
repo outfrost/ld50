@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://fonts/sans/small_reg.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/menu/CreditsPopup.gd" type="Script" id=2]
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=3]
 [ext_resource path="res://game/menu/MainMenu.gd" type="Script" id=4]
@@ -12,9 +13,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource( 3 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -36,6 +34,7 @@ margin_top = -64.0
 margin_right = 512.0
 margin_bottom = -8.0
 grow_vertical = 0
+custom_fonts/font = ExtResource( 1 )
 text = "v0.1.0"
 valign = 2
 __meta__ = {
@@ -55,39 +54,28 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.4
-anchor_top = 0.5
-anchor_right = 0.6
-anchor_bottom = 0.9
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -128.0
+margin_right = 128.0
 grow_horizontal = 2
 theme = ExtResource( 3 )
 custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 margin_right = 256.0
-margin_bottom = 22.0
+margin_bottom = 32.0
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChooseLevelButton" type="Button" parent="VBoxContainer"]
-margin_top = 32.0
-margin_right = 256.0
-margin_bottom = 54.0
-disabled = true
-text = "Choose level"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="OptionsButton" type="Button" parent="VBoxContainer"]
-margin_top = 64.0
+margin_top = 42.0
 margin_right = 256.0
-margin_bottom = 86.0
+margin_bottom = 74.0
 disabled = true
 text = "Options"
 __meta__ = {
@@ -95,18 +83,18 @@ __meta__ = {
 }
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
-margin_top = 96.0
+margin_top = 84.0
 margin_right = 256.0
-margin_bottom = 118.0
+margin_bottom = 116.0
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 128.0
+margin_top = 126.0
 margin_right = 256.0
-margin_bottom = 150.0
+margin_bottom = 158.0
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -118,18 +106,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="CreditsPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -430.0
+margin_left = -360.0
 margin_top = -286.0
-margin_right = 430.0
+margin_right = 360.0
 margin_bottom = 286.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -139,29 +124,13 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CreditsPopup/Panel"]
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
 margin_top = 16.0
-margin_right = -8.0
-margin_bottom = -54.0
-bbcode_enabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="CreditsPopup/Panel"]
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 16.0
 margin_right = -16.0
-margin_bottom = -54.0
+margin_bottom = -64.0
 bbcode_enabled = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CloseButton" type="Button" parent="CreditsPopup/Panel"]
 anchor_left = 1.0
@@ -169,7 +138,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -176.0
-margin_top = -38.0
+margin_top = -48.0
 margin_right = -16.0
 margin_bottom = -16.0
 text = "Close"

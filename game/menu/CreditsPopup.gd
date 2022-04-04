@@ -2,7 +2,6 @@ extends Popup
 
 func _ready() -> void:
 	$Panel/RichTextLabel.connect("meta_clicked", self, "on_meta_clicked")
-	$Panel/RichTextLabel2.connect("meta_clicked", self, "on_meta_clicked")
 	$Panel/CloseButton.connect("pressed", self, "hide")
 
 func _input(event: InputEvent) -> void:
