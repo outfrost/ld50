@@ -47,13 +47,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 520.0
-margin_top = 240.0
-margin_right = 720.0
-margin_bottom = 440.0
+margin_left = 252.0
+margin_top = 178.0
+margin_right = 985.0
+margin_bottom = 434.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color( 1, 0, 0, 1 )
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="Label" type="Label" parent="UI/InfoScreens/ShiftStats"]
+margin_left = 328.0
+margin_top = 263.0
+margin_right = 944.0
+margin_bottom = 378.0
 
 [node name="HelloRobot" type="Control" parent="UI/InfoScreens"]
 margin_right = 40.0
@@ -69,7 +75,7 @@ margin_bottom = 40.0
 script = ExtResource( 6 )
 robot_speed = 1.0
 median_assembly_time = 1.0
-shift_time_limit = 10
+shift_time_limit = 300
 shift_timer_path = NodePath("ShiftTimer")
 
 [node name="ShiftTimer" type="Timer" parent="GameLoopController"]

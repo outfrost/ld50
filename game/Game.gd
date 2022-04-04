@@ -33,8 +33,6 @@ func _process(delta: float) -> void:
 
 func on_start_game() -> void:
 	main_menu.hide()
-	level = level_scene.instance()
-	level_container.add_child(level)
 	load_level()
 	loop_controller.shifts_init()
 
