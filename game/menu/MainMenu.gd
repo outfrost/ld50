@@ -23,12 +23,11 @@ func start() -> void:
 
 func on_play_pressed() -> void:
 	emit_signal("start_game")
-	Sound.play("Drill GUI 2")
+	Sound.play("GUI Play")
 	music_menu.stop()
 
 func on_credits_pressed() -> void:
 	credits_popup.show()
-	#Fmod.pause_all_events(true) #Why is this not working?
 	Sound.play("Drill GUI 1")
 	Sound.play("Button")
 
