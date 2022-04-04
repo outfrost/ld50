@@ -79,7 +79,7 @@ func _shift_start():
 	transition_screen.fade_out()
 
 	# Delay first incoming assemblies
-	yield(get_tree().create_timer(5.0), "timeout")
+	yield(get_tree().create_timer(3.0), "timeout")
 	emit_signal("spawn_first_assembly")
 
 func _shift_end():

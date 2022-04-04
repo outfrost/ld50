@@ -124,7 +124,7 @@ func send_assembly() -> void:
 
 func tween_completed(object: Object, _key: NodePath) -> void:
 	if object == last_assembly:
-		belt.stop()
+#		belt.stop()
 		emit_signal(
 			"finished_assembly",
 			last_assembly.num_connectors,

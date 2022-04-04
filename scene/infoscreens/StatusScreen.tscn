@@ -5,7 +5,7 @@
 [ext_resource path="res://fonts/sans/verylarge_reg.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scene/infoscreens/StatusScreen.gd" type="Script" id=4]
 
-[node name="TimeScreen" type="ColorRect"]
+[node name="StatusScreen" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
