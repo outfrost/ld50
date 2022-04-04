@@ -98,7 +98,6 @@ func _shift_end():
 	else:
 		_unload_level()
 		_shift_stats_screen()
-		print("_shift_stats_screen finished")
 		_load_level()
 		_shift_start()
 
@@ -134,6 +133,11 @@ func _gameover():
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", player_money_total)
 	Sound.instance("YouLost").attach(self).start()
+
+func _input(event):
+	if event is InputEventKey and !assembly_line_works:
+		emit_signal("any_key_pressed")
+		print("'any_key_pressed' inside GameLoopController")
 
 func _process(delta):
 
@@ -210,7 +214,7 @@ func _load_level():
 func _shift_stats_screen():
 	transition_screen.fade_out()
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
-	node.shift_stats_screen()
+	yield(node,"any_key_pressed")
 	transition_screen.fade_in()
 	pass
 

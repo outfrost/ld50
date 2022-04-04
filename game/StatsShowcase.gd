@@ -6,7 +6,9 @@ onready var hellorobot:Control = $HelloRobot
 onready var gameover:Control = $GameOver
 onready var loopcontroller: Node = get_node("/root/Game/GameLoopController")
 
-var is_shown:bool = false
+signal any_key_pressed()
+
+var bar_is_shown:bool = false
 
 func _ready():
 	self.visible = false
@@ -16,19 +18,17 @@ func _ready():
 	gameover.visible = false
 
 func _input(event):
-	if event is InputEventKey and is_shown:
-		pass
-
-func _process(delta):
-	if is_shown:
-		pass
-
+	if event is InputEventKey and bar_is_shown:
+		emit_signal("any_key_pressed")
 
 func shift_stats_screen():
 	# asking loop controller for stats, shows them
-	get_node("ShiftStats/Label").text = "Hello there!"
+	print("shift_stats called")
+#	bar_is_shown = true
+#	get_node("ShiftStats/Label").text = "Hello there!"
 #	self.visible = true
 #	shiftstats.visible = true
+#	yield(self,"any_key_pressed")
 
 
 func gameover_screen():
