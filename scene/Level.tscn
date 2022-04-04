@@ -301,7 +301,7 @@ mesh = SubResource( 10 )
 material/0 = null
 
 [node name="PartsBuckets" type="Spatial" parent="Room/Conveyor"]
-transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 1.3, 0.85 )
+transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 1.3, 0.7 )
 
 [node name="PartsBucket1" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, -1.35, -0.1, 0.32933 )
