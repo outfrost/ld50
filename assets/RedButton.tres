@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "RedButton"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.499994, 0.225959, 0.219611, 1 )
+roughness = 0.5
+emission_enabled = true
+emission = Color( 0.353327, 0.0936038, 0.102608, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
