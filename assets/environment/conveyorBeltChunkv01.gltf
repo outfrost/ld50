@@ -42,7 +42,6 @@
     ],
     "materials" : [
         {
-            "doubleSided" : true,
             "name" : "conveyorBeltMat",
             "normalTexture" : {
                 "index" : 0
@@ -59,7 +58,6 @@
             }
         },
         {
-            "doubleSided" : true,
             "name" : "conveyorRollersMat",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
