@@ -23,7 +23,8 @@ func _gui_input(event):
 func on_meta_clicked(meta: String):
 	if meta.begins_with("http"):
 		OS.shell_open(meta)
+	Sound.play("GUI Click")
 
 func on_close_pressed() -> void:
 	hide()
-	#Sound.play("???")
+	Sound.play("GUI Click")
