@@ -51,7 +51,7 @@ func continue_startup() -> void:
 	$Content/LudumDare.hide()
 	$Content/FMOD.hide()
 	$Content/Godot.show()
-	Sound.play_file("res://sound/gohh.wav")
+	Sound.play_file("res://sound/gohh.wav", 0.5)
 	yield(get_tree().create_timer(2.0), "timeout")
 	emit_signal("loading_done")
 	fade_out()

@@ -1,8 +1,8 @@
 extends Control
 
-onready var intro:Control = $Intro
+onready var intro:Control = $IntroGame
 onready var shiftstats:Control = $ShiftStats
-onready var hellorobot:Control = $HelloRobot
+onready var hellorobot:Control = $IntroRobot
 onready var gameover:Control = $GameOver
 onready var loopcontroller: Node = get_node("/root/Game/GameLoopController")
 
@@ -73,8 +73,11 @@ func gameover_screen():
 	self.visible = true
 	gameover.visible = true
 
-func hellorobot():
-	pass
+func hellorobot_screen():
+	bar_is_shown = true
+	get_node("IntroRobot/AboutRobot").text = ("--- Hello Robot! ---")
+	self.visible = true
+	hellorobot.visible = true
 
 func intro():
 	pass

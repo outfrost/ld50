@@ -90,9 +90,10 @@ func play(event_name: String, emitter: Node = null) -> void:
 	else:
 		Fmod.play_one_shot("event:/" + event_name, null)
 
-func play_file(path: String) -> void:
+func play_file(path: String, volume: float = 1.0) -> void:
 	Fmod.load_file_as_sound(path)
 	var id: int = Fmod.create_sound_instance(path)
+	Fmod.set_sound_volume(id, volume)
 	Fmod.play_sound(id)
 
 func pause_all() -> void:
