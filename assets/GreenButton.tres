@@ -1,0 +1,13 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "GreenButton"
+vertex_color_use_as_albedo = true
+params_cull_mode = 2
+albedo_color = Color( 0.220916, 0.499956, 0.226583, 1 )
+roughness = 0.5
+emission_enabled = true
+emission = Color( 0.0932018, 0.352539, 0.101961, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
