@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://fonts/sans/verylarge_reg.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/sans/verylarge_bold.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scene/infoscreens/RobotStatsScreen.gd" type="Script" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.905882, 0.905882, 0.905882, 1 )
@@ -16,11 +17,12 @@ corner_detail = 1
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
-[node name="PlayerStatsScreen" type="ColorRect"]
+[node name="RobotStatsScreen" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 color = Color( 0.113725, 0.0941176, 0.419608, 1 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -56,6 +58,7 @@ text = "2"
 align = 2
 
 [node name="Label4" type="Label" parent="."]
+visible = false
 anchor_left = 0.52
 anchor_top = 0.19
 anchor_right = 0.52
@@ -66,6 +69,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Parts"
 
 [node name="PartsAttachedLabel" type="Label" parent="."]
+visible = false
 anchor_left = 0.95
 anchor_top = 0.19
 anchor_right = 0.95
