@@ -85,7 +85,10 @@ func instance(event_name: String) -> EvInstance:
 	return EvInstance.new(Fmod.create_event_instance("event:/" + event_name))
 
 func play(event_name: String, emitter: Node = null) -> void:
-	Fmod.play_one_shot_attached("event:/" + event_name, emitter)
+	if emitter:
+		Fmod.play_one_shot_attached("event:/" + event_name, emitter)
+	else:
+		Fmod.play_one_shot("event:/" + event_name, null)
 
 func play_file(path: String) -> void:
 	Fmod.load_file_as_sound(path)

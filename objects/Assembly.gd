@@ -53,7 +53,7 @@ func blank_hovered(blank: Spatial) -> void:
 	hovered_blank = blank
 	hover_vis.translation = hovered_blank.translation + Vector3(0.0, 0.1, 0.0)
 	hover_vis.show()
-	#Sound.instance("Hover").attach(self).start() Here will be a hover SFX
+	#Sound.play("Hover", self) Here will be a hover SFX
 
 func blank_unhovered(blank: Spatial) -> void:
 	if hovered_blank == blank:
@@ -103,7 +103,7 @@ func try_place_attachment(attachment_scene: PackedScene, rotation_deg: Vector3) 
 	hovered_blank.get_node("CollisionShape").disabled = true
 	hovered_blank = null
 	hover_vis.hide()
-	Sound.instance("Click").attach(self).start()
+	Sound.play("Click", self)
 
 	return true
 

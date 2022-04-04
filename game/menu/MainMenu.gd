@@ -20,15 +20,15 @@ func _ready() -> void:
 
 func on_play_pressed() -> void:
 	emit_signal("start_game")
-	Sound.instance("Drill GUI 2").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
+	Sound.play("Drill GUI 2")
 	music_menu.stop()
 
 
 func on_credits_pressed() -> void:
 	credits_popup.show()
 	#Fmod.pause_all_events(true) #Why is this not working?
-	Sound.instance("Drill GUI 1").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
-	Sound.instance("Button").attach(self).start()
+	Sound.play("Drill GUI 1")
+	Sound.play("Button")
 
 func on_quit_pressed() -> void:
 	get_tree().quit()

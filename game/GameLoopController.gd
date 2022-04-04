@@ -130,7 +130,7 @@ func _gameover():
 	print("SHIFTS SURVIVED: ", shift_number)
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", player_money_total)
-	Sound.instance("YouLost").attach(self).start()
+	Sound.play("YouLost")
 
 func _input(event):
 	if event is InputEventKey and !assembly_line_works:
@@ -231,6 +231,7 @@ func get_stats(what):
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
+	Sound.play("Announcer")
 
 	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
 	player_grade_current_shift = (
