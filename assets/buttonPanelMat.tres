@@ -1,0 +1,8 @@
+[gd_resource type="SpatialMaterial" format=2]
+
+[resource]
+resource_name = "conveyorRollersMat"
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.85098, 0.85098, 0.85098, 1 )
+metallic = 0.75
+roughness = 0.8

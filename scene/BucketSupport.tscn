@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/environment/bucketSupportv01.gltf" type="PackedScene" id=1]
+
+[node name="BucketSupport" type="Spatial"]
+
+[node name="bucketSupportv01" parent="." instance=ExtResource( 1 )]
