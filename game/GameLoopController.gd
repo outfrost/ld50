@@ -56,6 +56,9 @@ var robot_money_total:int = 0
 # Sound
 var shift_music: Sound.EvInstance
 
+# Notifications
+var said_halftime: bool = false
+
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
@@ -77,8 +80,33 @@ func _shift_start():
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
 	transition_screen.fade_out()
+
+	yield(get_tree().create_timer(2.0), "timeout")
+	if shift_number == 1:
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"This is your daily manufacturing process reminder.")
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"Identify connectors on assembly. Click to grab part from appropriate bucket.")
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"Rotate part using\n[Q] [W] [E] [A] [S] [D].")
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"Click matching slot on assembly to attach part. Repeat.")
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"When done, press green button to advance the conveyor belt.")
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"Right click to place part back in the bucket.")
+		Notification.push(
+			"Manufacturing Assistant [BOT]",
+			"Your performance will be evaluated at the end of your shift.")
+
 	# Delay first incoming assemblies
-	yield(get_tree().create_timer(3.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	emit_signal("spawn_first_assembly")
 
 func _shift_end():
@@ -127,6 +155,13 @@ func _process(delta):
 	# assembly line kicks in
 	if assembly_line_works:
 		_seconds_counter()
+
+		if !said_halftime && shift_timer.time_left < (shift_timer.wait_time * 0.5):
+			said_halftime = true
+			Notification.push(
+				"Shift Supervisor",
+				"Only halfway through the shift. Keep going!"
+			)
 
 func _seconds_counter():
 	time_left = floor(shift_timer.get_time_left())
@@ -183,6 +218,7 @@ func _zeroing_shift_variables():
 	robot_assembled_current_shift = 0
 	robot_money_current_shift = 0
 	assembly_line_works = false
+	said_halftime = false
 	emit_signal("stats_updated")
 
 func _unload_level():
