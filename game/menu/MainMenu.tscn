@@ -131,6 +131,20 @@ margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -64.0
 bbcode_enabled = true
+bbcode_text = "[center]credits credits credits
+
+Made with [b]FMOD Studio[/b] by Firelight Technologies Pty Ltd.
+
+[url=https://github.com/utopia-rise/fmod-gdnative][b]fmod-gdnative[/b][/url]
+Copyright © 2019 Utopia-Rise and Alex Fonseka
+Distributed on the MIT License[/center]"
+text = "credits credits credits
+
+Made with FMOD Studio by Firelight Technologies Pty Ltd.
+
+fmod-gdnative
+Copyright © 2019 Utopia-Rise and Alex Fonseka
+Distributed on the MIT License"
 
 [node name="CloseButton" type="Button" parent="CreditsPopup/Panel"]
 anchor_left = 1.0
