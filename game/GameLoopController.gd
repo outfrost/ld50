@@ -237,10 +237,10 @@ func _intermission():
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
 	node.shift_stats_screen()
 	transition_screen.fade_out()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(transition_screen, "animation_finished")
 	yield(node,"any_key_pressed")
 	transition_screen.fade_in()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(transition_screen, "animation_finished")
 	node.shiftstats.visible = false
 	node.bar_is_shown = false
 	node.hide()
@@ -256,10 +256,10 @@ func _hello_robot():
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
 	node.hellorobot_screen()
 	transition_screen.fade_out()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(transition_screen, "animation_finished")
 	yield(node,"any_key_pressed")
 	transition_screen.fade_in()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(transition_screen, "animation_finished")
 	node.hellorobot.visible = false
 	node.bar_is_shown = false
 	node.hide()
