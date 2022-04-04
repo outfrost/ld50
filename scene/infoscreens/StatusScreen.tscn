@@ -65,6 +65,7 @@ align = 2
 valign = 2
 
 [node name="NotificationPanel" type="Panel" parent="."]
+visible = false
 anchor_left = 0.05
 anchor_top = 0.06
 anchor_right = 0.95
@@ -90,3 +91,5 @@ bbcode_enabled = true
 bbcode_text = "Text"
 text = "Text"
 scroll_active = false
+
+[node name="Tween" type="Tween" parent="."]
