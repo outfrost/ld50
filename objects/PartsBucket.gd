@@ -10,3 +10,7 @@ func _input_event(camera: Object, event: InputEvent, position: Vector3, normal: 
 		&& event.is_pressed()
 	):
 		emit_signal("part_picked", part_scene)
+
+func enable(e: bool) -> void:
+	visible = e
+	$CollisionShape.disabled = !e
