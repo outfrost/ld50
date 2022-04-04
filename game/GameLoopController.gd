@@ -51,6 +51,7 @@ var shift_music: Sound.EvInstance
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
+	self.connect("finished_assembly", self, "finished_assembly")
 
 func shifts_init():
 	_zeroing_variables()
@@ -58,8 +59,10 @@ func shifts_init():
 	_shift_start()
 
 func _shift_start():
+	_zeroing_shift_variables()
 	transition_screen.fade_out()
 	shift_number += 1
+
 	print("\n-- start of ",shift_number," shift --")
 	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
 
@@ -82,6 +85,7 @@ func _shift_end():
 
 	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false
+
 	_stats_after_shift()
 #	_win_lose_check()
 
@@ -94,6 +98,13 @@ func _shift_end():
 	if is_lose:
 		_gameover()
 	else:
+		var game_node:Node = get_node("/root/Game")
+		game_node.unload_level()
+		yield(get_tree().create_timer(1.0), "timeout")
+		game_node.load_level()
+#		emit_signal("spawn_first_assembly")
+#		print ("emitted signal: 'spawn_first_assembly'")
+		print ("starting shift...")
 		_shift_start()
 
 func _win_lose_check():
@@ -124,6 +135,7 @@ func _gameover():
 	print("SHIFTS SURVIVED: ", shift_number)
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", money_total)
+	Sound.instance("YouLost").attach(self).start()
 
 func _process(delta):
 
@@ -146,11 +158,13 @@ func _on_ShiftTimer_timeout():
 func _stats_after_shift():
 
 	player_assembled_total += player_assembled_current_shift
+	player_attachments_total += player_attachments_current_shift
 	robot_assembled_total += robot_assembled_current_shift
+	money_total += money_current_shift
 
 	print("\nSHIFT RESULTS:")
-	print("Attached: ", player_assembled_current_shift," blanks.")
-	print("Assembled: ", player_attachments_current_shift," models")
+	print("Attached: ", player_attachments_current_shift," blanks.")
+	print("Assembled: ", player_assembled_current_shift," models")
 	print("Robot assembled: ", robot_assembled_current_shift," models.")
 
 	print("\nOVERALL RESULTS:")
@@ -158,14 +172,8 @@ func _stats_after_shift():
 	print("Attached: ", player_attachments_total," blanks total.")
 	print("Robot assembled: ", robot_assembled_total," models total.")
 
-	money_total += money_current_shift
 	print("\nYou earned ", money_current_shift, " today.")
 	print("Your total earnings: ", money_total)
-
-	player_assembled_current_shift = 0
-	player_attachments_current_shift = 0
-	robot_assembled_current_shift = 0
-	money_current_shift = 0
 
 func _zeroing_variables():
 	player_assembled_current_shift = 0
@@ -179,6 +187,21 @@ func _zeroing_variables():
 	shift_number = 0
 	is_lose = false
 	assembly_line_works = false
+
+func _zeroing_shift_variables():
+	player_assembled_current_shift = 0
+	player_attachments_current_shift = 0
+	robot_assembled_current_shift = 0
+	money_current_shift = 0
+	assembly_line_works = false
+
+func _load_next_shift():
+	var game_node:Node = get_node("/root/Game")
+	game_node.load_level()
+
+	emit_signal("spawn_first_assembly")
+	_shift_start()
+
 
 #############################################
 #     P U B L I C     F U N C T I O N S     #
