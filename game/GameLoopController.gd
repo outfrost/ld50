@@ -8,6 +8,7 @@ extends Node
 
 signal spawn_first_assembly()
 signal stop_production()
+signal stats_updated()
 
 onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
 
@@ -40,6 +41,10 @@ var player_attachments_current_shift:int = 0
 var player_assembled_current_shift:int = 0
 var robot_assembled_current_shift:int = 0
 var money_current_shift:int = 0
+var player_grade_last_assembly:float = 0.0
+var player_grade_current_shift:float = 0.0
+var robot_grade_last_assembly:float = 0.0
+var robot_grade_current_shift:float = 0.0
 
 var player_attachments_total:int = 0
 var player_assembled_total:int = 0
@@ -214,14 +219,15 @@ func get_stats(what):
 
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
-
-	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
+#	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
 
 	player_attachments_current_shift += num_attachments
 	add_money(num_attachments * money_for_one_blank)
 	if num_attachments == num_connectors:
 		add_money(num_connectors * money_for_one_blank * money_for_fully_assembled_base_multiplier)
 		add_assembly("player")
+
+	emit_signal("stats_updated")
 
 func add_assembly(recipient:String  = 'undefined'):
 	if assembly_line_works:
