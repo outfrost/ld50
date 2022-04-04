@@ -32,7 +32,7 @@ func generate(num_connectors: int) -> void:
 
 	for ix in range(0, 4):
 		for iz in range(0, 4):
-			var pos = Vector3(- 0.3 + (ix * 0.2), 0.2, - 0.3 + (iz * 0.2))
+			var pos = Vector3(- 0.3 + (ix * 0.2), 0.1, - 0.3 + (iz * 0.2))
 			var index = rng.randi_range(0, blanks.size() - 1)
 			blanks[index].translation = pos
 			blanks[index].rotate_y(rng.randi_range(0, 3) * TAU * 0.25)
@@ -51,7 +51,7 @@ func blank_hovered(blank: Spatial) -> void:
 	if !hoverable:
 		return
 	hovered_blank = blank
-	hover_vis.translation = hovered_blank.translation + Vector3(0.0, 0.2, 0.0)
+	hover_vis.translation = hovered_blank.translation + Vector3(0.0, 0.1, 0.0)
 	hover_vis.show()
 	#Sound.instance("Hover").attach(self).start() Here will be a hover SFX
 
