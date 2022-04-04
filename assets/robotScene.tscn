@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/environment/robotv01.gltf" type="PackedScene" id=1]
+[ext_resource path="res://assets/Robot.gd" type="Script" id=2]
 
 [sub_resource type="AnimationNodeAnimation" id=12]
 animation = "robotDab"
@@ -49,6 +50,7 @@ end_node = "robotDeactivate"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=11]
 
 [node name="robotv01" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" parent="." index="1"]
 next/robotImWatchingYou = "robotWorking"

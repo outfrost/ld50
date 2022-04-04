@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 	)
 
 	var rotation_proportion = Vector2(
-		(smoothstep(- aim_area_aspect_ratio, aim_area_aspect_ratio, aim.x) - 0.5) * 2.0 * aim_area_aspect_ratio,
+		(smoothstep(- aim_area_aspect_ratio, aim_area_aspect_ratio, aim.x) - 0.5) * 2.0 * 0.9,
 		(smoothstep(- 1.0, 1.0, aim.y) - 0.5) * 2.0
 	)
 
