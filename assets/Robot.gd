@@ -10,3 +10,6 @@ func start_working() -> void:
 
 func stop_working() -> void:
 	anim.travel("robotDeactivate")
+
+# Sound.instance("Robot").attach(self).start()
+# Every instance of the Robot event triggers one of the three drill sounds
