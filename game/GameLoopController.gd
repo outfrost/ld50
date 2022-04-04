@@ -59,7 +59,6 @@ var shift_music: Sound.EvInstance
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
-	self.connect("finished_assembly", self, "finished_assembly")
 
 func shifts_init():
 	_zeroing_main_variables()
@@ -80,7 +79,7 @@ func _shift_start():
 	transition_screen.fade_out()
 
 	# Delay first incoming assemblies
-	yield(get_tree().create_timer(5.0), "timeout")
+	yield(get_tree().create_timer(3.0), "timeout")
 	emit_signal("spawn_first_assembly")
 
 func _shift_end():
@@ -99,7 +98,6 @@ func _shift_end():
 	else:
 		_unload_level()
 		_shift_stats_screen()
-		print("_shift_stats_screen finished")
 		_load_level()
 		_shift_start()
 
@@ -135,6 +133,11 @@ func _gameover():
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", player_money_total)
 	Sound.instance("YouLost").attach(self).start()
+
+func _input(event):
+	if event is InputEventKey and !assembly_line_works:
+		emit_signal("any_key_pressed")
+		print("'any_key_pressed' inside GameLoopController")
 
 func _process(delta):
 
@@ -190,6 +193,7 @@ func _zeroing_main_variables():
 	robot_money_total = 0
 	shift_number = 0
 	is_lose = false
+	emit_signal("stats_updated")
 
 func _zeroing_shift_variables():
 	player_assembled_current_shift = 0
@@ -198,6 +202,7 @@ func _zeroing_shift_variables():
 	robot_assembled_current_shift = 0
 	robot_money_current_shift = 0
 	assembly_line_works = false
+	emit_signal("stats_updated")
 
 func _unload_level():
 	var game_node:Node = get_node("/root/Game")
@@ -209,11 +214,10 @@ func _load_level():
 	game_node.load_level()
 
 func _shift_stats_screen():
-#	transition_screen.fade_out()
-#	var node:Control = get_node("/root/Game/UI/InfoScreens")
-#	node.shift_stats_screen()
-#	yield(get_tree().create_timer(5.0), "timeout")
-#	transition_screen.fade_in()
+	transition_screen.fade_out()
+	var node:Control = get_node("/root/Game/UI/InfoScreens")
+	yield(node,"any_key_pressed")
+	transition_screen.fade_in()
 	pass
 
 
@@ -226,6 +230,12 @@ func get_stats(what):
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
+
+	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
+	player_grade_current_shift = (
+		(player_grade_current_shift * player_assembled_current_shift)
+		+ player_grade_last_assembly
+	) / (player_assembled_current_shift + 1)
 
 	player_attachments_current_shift += num_attachments
 	add_money("player",num_attachments * money_for_one_blank)

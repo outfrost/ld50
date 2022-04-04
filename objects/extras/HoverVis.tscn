@@ -5,7 +5,7 @@
 
 [sub_resource type="CubeMesh" id=1]
 material = ExtResource( 1 )
-size = Vector3( 0.2, 0.2, 0.2 )
+size = Vector3( 0.22, 0.22, 0.22 )
 
 [node name="HoverVis" type="Spatial"]
 script = ExtResource( 2 )
