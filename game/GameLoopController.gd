@@ -59,7 +59,6 @@ var shift_music: Sound.EvInstance
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
-	self.connect("finished_assembly", self, "finished_assembly")
 
 func shifts_init():
 	_zeroing_main_variables()

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=2]
+[gd_resource type="Theme" load_steps=13 format=2]
 
 [ext_resource path="res://fonts/sans/large_reg.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/ui-theme/button_style_pressed.tres" type="StyleBox" id=2]
@@ -12,8 +12,6 @@
 [ext_resource path="res://fonts/sans/small_reg.tres" type="DynamicFont" id=10]
 [ext_resource path="res://fonts/sans/small_bold.tres" type="DynamicFont" id=11]
 [ext_resource path="res://fonts/mono/small_reg.tres" type="DynamicFont" id=12]
-[ext_resource path="res://fonts/sans/small_reg_ita.tres" type="DynamicFont" id=13]
-[ext_resource path="res://fonts/sans/small_bold_ita.tres" type="DynamicFont" id=14]
 
 [resource]
 default_font = ExtResource( 10 )
@@ -266,8 +264,8 @@ RichTextLabel/constants/shadow_offset_y = 1
 RichTextLabel/constants/table_hseparation = 3
 RichTextLabel/constants/table_vseparation = 3
 RichTextLabel/fonts/bold_font = ExtResource( 11 )
-RichTextLabel/fonts/bold_italics_font = ExtResource( 14 )
-RichTextLabel/fonts/italics_font = ExtResource( 13 )
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
 RichTextLabel/fonts/mono_font = ExtResource( 12 )
 RichTextLabel/fonts/normal_font = ExtResource( 10 )
 RichTextLabel/styles/focus = null
