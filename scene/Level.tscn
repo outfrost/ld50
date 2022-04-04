@@ -171,7 +171,7 @@ rotation_extent_degrees = 10.0
 aim_area_aspect_ratio = 1.6
 
 [node name="AttachmentPreview" type="Position3D" parent="CameraReference/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.35, -0.6 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.25, -0.55 )
 script = ExtResource( 10 )
 static_rotation_degrees = Vector3( -20, 22.5, 12.5 )
 
