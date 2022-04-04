@@ -4,6 +4,6 @@
 resource_name = "SilverMetal"
 vertex_color_use_as_albedo = true
 params_cull_mode = 2
-albedo_color = Color( 0.380392, 0.380392, 0.380392, 1 )
-metallic = 0.491228
+albedo_color = Color( 0.6, 0.5342, 0.516, 1 )
+metallic = 0.5
 roughness = 0.619298
