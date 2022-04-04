@@ -46,7 +46,7 @@ anchor_right = 0.05
 anchor_bottom = 0.95
 grow_vertical = 0
 custom_fonts/font = ExtResource( 3 )
-text = "Payout"
+text = "Total payout"
 valign = 2
 
 [node name="PayoutLabel" type="Label" parent="."]

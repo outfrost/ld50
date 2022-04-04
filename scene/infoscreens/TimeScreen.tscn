@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://fonts/sans/superlarge_bold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=2]
 [ext_resource path="res://fonts/sans/verylarge_reg.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scene/infoscreens/TimeScreen.gd" type="Script" id=4]
 
 [node name="TimeScreen" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
 color = Color( 0.113725, 0.0941176, 0.419608, 1 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_lock_": true
 }
