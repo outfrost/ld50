@@ -52,5 +52,5 @@ func load_level() -> void:
 	level_container.add_child(level)
 	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
 	loop_controller.connect("stop_production", level.get_node("Room/Conveyor"), "stop_production")
+	level.get_node("Room/Conveyor").connect("finished_assembly", loop_controller, "finished_assembly")
 	print ("level loaded")
-	#moved loopcontroller's signal connection from here to loopcontroller
