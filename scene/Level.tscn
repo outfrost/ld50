@@ -265,7 +265,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
 [node name="dividerv03" parent="Room" instance=ExtResource( 35 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
 
-[node name="robotv01" parent="Room" instance=ExtResource( 37 )]
+[node name="Robot" parent="Room" instance=ExtResource( 37 )]
 transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, -3.6 )
 
 [node name="Conveyor" type="Spatial" parent="Room"]
