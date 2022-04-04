@@ -97,9 +97,7 @@ func _shift_end():
 		_gameover()
 	else:
 		_unload_level()
-		_shift_stats_screen()
-		_load_level()
-		_shift_start()
+		_intermission()
 
 func _win_lose_check():
 	if simplified_win_lose:
@@ -213,12 +211,15 @@ func _load_level():
 	var game_node:Node = get_node("/root/Game")
 	game_node.load_level()
 
-func _shift_stats_screen():
+func _intermission():
 	transition_screen.fade_out()
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
+	node.shift_stats_screen()
 	yield(node,"any_key_pressed")
+	node.hide()
 	transition_screen.fade_in()
-	pass
+	_load_level()
+	_shift_start()
 
 
 #############################################
