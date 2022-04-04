@@ -15,7 +15,7 @@
     "nodes" : [
         {
             "mesh" : 0,
-            "name" : "Attatchment003.001"
+            "name" : "Attatchment004"
         }
     ],
     "meshes" : [
@@ -37,11 +37,11 @@
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 254,
+            "count" : 3205,
             "max" : [
                 0.04999999329447746,
-                0.04999998211860657,
-                0.04999998211860657
+                0.033399999141693115,
+                0.05000005289912224
             ],
             "min" : [
                 -0.04999998211860657,
@@ -53,47 +53,47 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 254,
+            "count" : 3205,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 254,
+            "count" : 3205,
             "type" : "VEC2"
         },
         {
             "bufferView" : 3,
             "componentType" : 5123,
-            "count" : 528,
+            "count" : 5352,
             "type" : "SCALAR"
         }
     ],
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 3048,
+            "byteLength" : 38460,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 3048,
-            "byteOffset" : 3048
+            "byteLength" : 38460,
+            "byteOffset" : 38460
         },
         {
             "buffer" : 0,
-            "byteLength" : 2032,
-            "byteOffset" : 6096
+            "byteLength" : 25640,
+            "byteOffset" : 76920
         },
         {
             "buffer" : 0,
-            "byteLength" : 1056,
-            "byteOffset" : 8128
+            "byteLength" : 10704,
+            "byteOffset" : 102560
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 9184,
+            "byteLength" : 113264,
             "uri" : "attachment004.bin"
         }
     ]
