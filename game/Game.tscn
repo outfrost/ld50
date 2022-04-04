@@ -16,6 +16,21 @@ loop_controller_path = NodePath("GameLoopController")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="LevelContainer" type="Spatial" parent="."]
+
+[node name="GameLoopController" type="Node" parent="."]
+script = ExtResource( 6 )
+robot_speed = 1.0
+median_assembly_time = 1.0
+shift_time_limit = 3
+shift_timer_path = NodePath("ShiftTimer")
+
+[node name="ShiftTimer" type="Timer" parent="GameLoopController"]
+one_shot = true
+
+[node name="SecondsEmitter" type="Timer" parent="GameLoopController"]
+one_shot = true
+
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,6 +41,7 @@ theme = ExtResource( 1 )
 visible = false
 
 [node name="InfoScreens" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
@@ -64,7 +80,7 @@ margin_left = 502.0
 margin_top = 554.0
 margin_right = 781.0
 margin_bottom = 615.0
-text = "Start Next Shift"
+text = "NEXT SHIFT"
 
 [node name="HelloRobot" type="Control" parent="UI/InfoScreens"]
 margin_right = 40.0
@@ -73,6 +89,32 @@ margin_bottom = 40.0
 [node name="GameOver" type="Control" parent="UI/InfoScreens"]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/InfoScreens/GameOver"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 252.0
+margin_top = 91.0
+margin_right = 985.0
+margin_bottom = 626.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="GamoverMultiline" type="RichTextLabel" parent="UI/InfoScreens/GameOver"]
+margin_left = 310.0
+margin_top = 184.0
+margin_right = 964.0
+margin_bottom = 511.0
+
+[node name="ExitToMenu" type="Button" parent="UI/InfoScreens/GameOver"]
+margin_left = 502.0
+margin_top = 554.0
+margin_right = 781.0
+margin_bottom = 615.0
+text = "EXIT TO MENU"
 
 [node name="TransitionScreen" parent="UI" instance=ExtResource( 4 )]
 visible = false
@@ -84,20 +126,6 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="LoadingScreen" parent="UI" instance=ExtResource( 8 )]
 
-[node name="LevelContainer" type="Spatial" parent="."]
-
-[node name="GameLoopController" type="Node" parent="."]
-script = ExtResource( 6 )
-robot_speed = 1.0
-median_assembly_time = 1.0
-shift_time_limit = 3
-shift_timer_path = NodePath("ShiftTimer")
-
-[node name="ShiftTimer" type="Timer" parent="GameLoopController"]
-one_shot = true
-
-[node name="SecondsEmitter" type="Timer" parent="GameLoopController"]
-one_shot = true
-
-[connection signal="pressed" from="UI/InfoScreens/ShiftStats/NextShift" to="UI/InfoScreens" method="_on_NextShift_pressed"]
 [connection signal="timeout" from="GameLoopController/ShiftTimer" to="GameLoopController" method="_shift_end"]
+[connection signal="pressed" from="UI/InfoScreens/ShiftStats/NextShift" to="UI/InfoScreens" method="_on_Button_pressed"]
+[connection signal="pressed" from="UI/InfoScreens/GameOver/ExitToMenu" to="UI/InfoScreens" method="_on_Button_pressed"]

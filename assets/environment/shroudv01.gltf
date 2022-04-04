@@ -20,7 +20,6 @@
     ],
     "materials" : [
         {
-            "doubleSided" : true,
             "name" : "conveyorRollersMat",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
@@ -60,7 +59,7 @@
                 0.6199999451637268
             ],
             "min" : [
-                -1.059999942779541,
+                -3.059999942779541,
                 -0.2781081199645996,
                 -0.6199999451637268
             ],

@@ -40,6 +40,8 @@ func loading_done() -> void:
 	main_menu.start()
 
 func on_start_game() -> void:
+	transition_screen.fade_in()
+	yield(get_tree().create_timer(0.5), "timeout")
 	main_menu.hide()
 	load_level()
 	loop_controller.shifts_init()
