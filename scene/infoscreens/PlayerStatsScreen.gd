@@ -11,3 +11,5 @@ func _ready() -> void:
 func stats_updated() -> void:
 	$AssembliesFinishedLabel.text = str(ctl.player_assembled_current_shift)
 	$PartsAttachedLabel.text = str(ctl.player_attachments_current_shift)
+	$LastAssemblyQualityBar.value = (0.05 + 0.95 * ctl.player_grade_last_assembly) * 100.0
+	$OverallQualityBar.value = (0.05 + 0.95 * ctl.player_grade_current_shift) * 100.0

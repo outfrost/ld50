@@ -189,6 +189,7 @@ func _zeroing_main_variables():
 	robot_money_total = 0
 	shift_number = 0
 	is_lose = false
+	emit_signal("stats_updated")
 
 func _zeroing_shift_variables():
 	player_assembled_current_shift = 0
@@ -197,6 +198,7 @@ func _zeroing_shift_variables():
 	robot_assembled_current_shift = 0
 	robot_money_current_shift = 0
 	assembly_line_works = false
+	emit_signal("stats_updated")
 
 func _unload_level():
 	var game_node:Node = get_node("/root/Game")
@@ -225,6 +227,12 @@ func get_stats(what):
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
+
+	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
+	player_grade_current_shift = (
+		(player_grade_current_shift * player_assembled_current_shift)
+		+ player_grade_last_assembly
+	) / (player_assembled_current_shift + 1)
 
 	player_attachments_current_shift += num_attachments
 	add_money("player",num_attachments * money_for_one_blank)
