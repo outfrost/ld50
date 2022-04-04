@@ -23,7 +23,7 @@ export(float, 1, 4, 0.01) var robot_speed
 export(float, 1, 8, 0.01) var median_assembly_time
 var assembly_line_works:bool
 var shift_number:int
-export var points_treshold = 20
+export var points_treshold = 5000
 var is_lose:bool
 
 # ASSEMBLY LINE TIMING STUFF
@@ -39,8 +39,9 @@ onready var shift_timer: Node = get_node(shift_timer_path)
 # STATS
 var player_attachments_current_shift:int = 0
 var player_assembled_current_shift:int = 0
+var player_money_current_shift:int = 0
 var robot_assembled_current_shift:int = 0
-var money_current_shift:int = 0
+var robot_money_current_shift:int = 0
 var player_grade_last_assembly:float = 0.0
 var player_grade_current_shift:float = 0.0
 var robot_grade_last_assembly:float = 0.0
@@ -48,8 +49,9 @@ var robot_grade_current_shift:float = 0.0
 
 var player_attachments_total:int = 0
 var player_assembled_total:int = 0
+var player_money_total:int = 0
 var robot_assembled_total:int = 0
-var money_total:int = 0
+var robot_money_total:int = 0
 
 # Sound
 var shift_music: Sound.EvInstance
@@ -96,29 +98,25 @@ func _shift_end():
 		_gameover()
 	else:
 		_unload_level()
-		print("level unloaded")
 		_shift_stats_screen()
 		print("_shift_stats_screen finished")
 		_load_level()
-		print("level loaded")
 		_shift_start()
 
 func _win_lose_check():
 	if simplified_win_lose:
-		if money_current_shift < money_to_pass_shift:
+		if player_money_current_shift < money_to_pass_shift:
 			is_lose = true
-		print("is_lose: ", is_lose)
+		print("\nis_lose: ", is_lose, "\n")
 	else:
-		if robot_assembled_total > player_assembled_total:
-			if (robot_assembled_total-player_assembled_total) >= points_treshold:
-				print("You have assembled ",
-						robot_assembled_total - player_assembled_total,
-						" models less than the Robot. You are fired!")
+		if robot_money_total > player_money_total:
+			if (robot_money_total-player_money_total) >= points_treshold:
+				print("You have fired!")
 				is_lose = true
-		elif robot_assembled_total < player_assembled_total:
-			print("Congrats! You are ahead of robot for ",
-					robot_assembled_total - player_assembled_total,
-					" assembled models!")
+			else:
+				print ("Work faster, or you will be fired!")
+		elif robot_money_total < player_money_total:
+			print("Congrats! You are ahead of robot!")
 		else:
 			print("You are neck-and-neck with robot! Work faster!")
 
@@ -135,7 +133,7 @@ func _gameover():
 	print("\nGAME OVER!")
 	print("SHIFTS SURVIVED: ", shift_number)
 	print("FULLY ASSEMBLED: ", player_assembled_total)
-	print("MONEY EARNED: ", money_total)
+	print("MONEY EARNED: ", player_money_total)
 	Sound.instance("YouLost").attach(self).start()
 
 func _process(delta):
@@ -154,41 +152,51 @@ func _dummy_assembly_process():
 	pass
 
 func _on_ShiftTimer_timeout():
-	pass # Replace with function body.
+	pass # Not used because signal directly spawns _shift_end() function.
 
 func _calculate_shift_stats():
 
 	player_assembled_total += player_assembled_current_shift
 	player_attachments_total += player_attachments_current_shift
+	player_money_total += player_money_current_shift
 	robot_assembled_total += robot_assembled_current_shift
-	money_total += money_current_shift
+	robot_money_total += robot_money_current_shift
 
-	print("\nSHIFT RESULTS:")
+
+	print("\nPLAYER SHIFT RESULTS:")
 	print("Attached: ", player_attachments_current_shift," blanks.")
 	print("Assembled: ", player_assembled_current_shift," models")
+	print("Earned: ", player_money_current_shift, " scores.")
+
+	print("\nROBOT SHIFT RESULTS:")
 	print("Robot assembled: ", robot_assembled_current_shift," models.")
+	print("Robot earned: ", player_money_current_shift, " scores.")
 
-	print("\nOVERALL RESULTS:")
-	print("Assembled: ", player_assembled_total," models total.")
+	print("\nOVERALL PLAYER RESULTS:")
 	print("Attached: ", player_attachments_total," blanks total.")
-	print("Robot assembled: ", robot_assembled_total," models total.")
+	print("Assembled: ", player_assembled_total," models total.")
+	print("Earned: ", player_money_total, " scores total.")
 
-	print("\nYou earned ", money_current_shift, " today.")
-	print("Your total earnings: ", money_total)
+	print("\nOVERALL ROBOT RESULTS:")
+	print("Assembled: ", robot_assembled_total," models total.")
+	print("Earned: ", robot_money_total, " scores total.")
+
 
 func _zeroing_main_variables():
 	player_assembled_total = 0
 	robot_assembled_total = 0
 	player_attachments_total = 0
-	money_total = 0
+	player_money_total = 0
+	robot_money_total = 0
 	shift_number = 0
 	is_lose = false
 
 func _zeroing_shift_variables():
 	player_assembled_current_shift = 0
 	player_attachments_current_shift = 0
+	player_money_current_shift = 0
 	robot_assembled_current_shift = 0
-	money_current_shift = 0
+	robot_money_current_shift = 0
 	assembly_line_works = false
 
 func _unload_level():
@@ -215,16 +223,14 @@ func _shift_stats_screen():
 
 func get_stats(what):
 	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
-#	match what:
-
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
 
 	player_attachments_current_shift += num_attachments
-	add_money(num_attachments * money_for_one_blank)
+	add_money("player",num_attachments * money_for_one_blank)
 	if num_attachments == num_connectors:
-		add_money(num_connectors * money_for_one_blank * money_for_fully_assembled_base_multiplier)
+		add_money("player",num_connectors * money_for_one_blank * money_for_fully_assembled_base_multiplier)
 		add_assembly("player")
 
 	emit_signal("stats_updated")
@@ -240,8 +246,13 @@ func add_assembly(recipient:String  = 'undefined'):
 	else:
 		print("ERROR. Can not add assembled counter: line is not working!")
 
-func add_money(some_variable:int = 100):
+func add_money(recipient:String="undefined",money_amount:int = 100):
 	if assembly_line_works:
-		money_current_shift += some_variable
+		match recipient:
+			"player":
+				player_money_current_shift += money_amount
+			"robot":
+				robot_money_current_shift += money_amount
+			_: print("ERROR. Can not add money: Recipient is not defined!")
 	else:
 		print("ERROR. Can not add money: line is not working!")

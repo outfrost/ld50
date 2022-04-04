@@ -50,7 +50,7 @@ func unload_level() -> void:
 func load_level() -> void:
 	level = level_scene.instance()
 	level_container.add_child(level)
-	print ("level loaded")
 	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
 	loop_controller.connect("stop_production", level.get_node("Room/Conveyor"), "stop_production")
+	print ("level loaded")
 	#moved loopcontroller's signal connection from here to loopcontroller
