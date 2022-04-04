@@ -259,6 +259,12 @@ material/0 = null
 
 [node name="dividerv01" parent="Room" instance=ExtResource( 35 )]
 
+[node name="dividerv02" parent="Room" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
+
+[node name="dividerv03" parent="Room" instance=ExtResource( 35 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
+
 [node name="robotv01" parent="Room" instance=ExtResource( 37 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
