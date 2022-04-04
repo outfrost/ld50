@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://assets/attachment008.gltf" type="PackedScene" id=32]
 [ext_resource path="res://assets/attachment009.gltf" type="PackedScene" id=33]
 [ext_resource path="res://assets/attachment010.gltf" type="PackedScene" id=34]
+[ext_resource path="res://assets/dividerScene.tscn" type="PackedScene" id=35]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -50,13 +51,6 @@ size = Vector3( 0.2, 1, 0.2 )
 
 [sub_resource type="CubeMesh" id=6]
 size = Vector3( 0.1, 0.9, 0.1 )
-
-[sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 0.643137, 0.576471, 0.541176, 1 )
-
-[sub_resource type="CubeMesh" id=8]
-material = SubResource( 9 )
-size = Vector3( 16, 2, 0.2 )
 
 [sub_resource type="CubeMesh" id=10]
 size = Vector3( 3, 0.05, 0.9 )
@@ -261,10 +255,7 @@ transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0
 mesh = SubResource( 6 )
 material/0 = null
 
-[node name="DividerWall" type="MeshInstance" parent="Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 8 )
-material/0 = null
+[node name="dividerv01" parent="Room" instance=ExtResource( 35 )]
 
 [node name="Conveyor" type="Spatial" parent="Room"]
 script = ExtResource( 4 )
