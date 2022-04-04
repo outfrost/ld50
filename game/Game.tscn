@@ -27,7 +27,6 @@ theme = ExtResource( 1 )
 visible = false
 
 [node name="InfoScreens" type="Control" parent="UI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
@@ -48,18 +47,25 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 252.0
-margin_top = 178.0
+margin_top = 91.0
 margin_right = 985.0
-margin_bottom = 434.0
+margin_bottom = 626.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 
-[node name="Label" type="Label" parent="UI/InfoScreens/ShiftStats"]
-margin_left = 328.0
-margin_top = 263.0
-margin_right = 944.0
-margin_bottom = 378.0
+[node name="StatsMultiline" type="RichTextLabel" parent="UI/InfoScreens/ShiftStats"]
+margin_left = 310.0
+margin_top = 184.0
+margin_right = 964.0
+margin_bottom = 511.0
+
+[node name="NextShift" type="Button" parent="UI/InfoScreens/ShiftStats"]
+margin_left = 502.0
+margin_top = 554.0
+margin_right = 781.0
+margin_bottom = 615.0
+text = "Start Next Shift"
 
 [node name="HelloRobot" type="Control" parent="UI/InfoScreens"]
 margin_right = 40.0
@@ -84,4 +90,5 @@ one_shot = true
 [node name="SecondsEmitter" type="Timer" parent="GameLoopController"]
 one_shot = true
 
+[connection signal="pressed" from="UI/InfoScreens/ShiftStats/NextShift" to="UI/InfoScreens" method="_on_NextShift_pressed"]
 [connection signal="timeout" from="GameLoopController/ShiftTimer" to="GameLoopController" method="_shift_end"]

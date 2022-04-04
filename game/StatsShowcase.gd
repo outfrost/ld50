@@ -24,11 +24,37 @@ func _input(event):
 func shift_stats_screen():
 	# asking loop controller for stats, shows them
 	print("shift_stats called")
-#	bar_is_shown = true
-#	get_node("ShiftStats/Label").text = "Hello there!"
-#	self.visible = true
-#	shiftstats.visible = true
-#	yield(self,"any_key_pressed")
+	bar_is_shown = true
+	get_node("ShiftStats/StatsMultiline").text = (
+		"Shifts count: " + str(loopcontroller.shift_number) +
+		"\n\nSHIFT STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_current_shift) +
+		"\nAttached details: " + str(loopcontroller.player_attachments_current_shift) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
+		"\n\nTOTAL STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_total) +
+		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
+		)
+	self.visible = true
+	shiftstats.visible = true
+
+
+#player_attachments_current_shift
+#player_assembled_current_shift
+#player_money_current_shift
+#robot_assembled_current_shift
+#robot_money_current_shift
+#player_grade_last_assembly
+#player_grade_current_shift
+#robot_grade_last_assembly
+#robot_grade_current_shift
+#
+#player_attachments_total
+#player_assembled_total
+#player_money_total
+#robot_assembled_total
+#robot_money_total
 
 
 func gameover_screen():
@@ -39,3 +65,7 @@ func hellorobot():
 
 func intro():
 	pass
+
+
+func _on_NextShift_pressed():
+	emit_signal("any_key_pressed")
