@@ -50,9 +50,7 @@ func unload_level() -> void:
 		print("level unloaded")
 
 func load_level() -> void:
-	print ("loading new level...")
 	level = level_scene.instance()
-	print ("adding new level as tree child...")
 	level_container.add_child(level)
 	print ("level loaded")
 	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
