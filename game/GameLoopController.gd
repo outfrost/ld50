@@ -16,7 +16,7 @@ onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/Transi
 var simplified_win_lose:bool = true
 var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
-var money_to_pass_shift = money_for_one_blank * 0
+var money_to_pass_shift = money_for_one_blank * 1
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -77,7 +77,6 @@ func _shift_start():
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
 	transition_screen.fade_out()
-
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(3.0), "timeout")
 	emit_signal("spawn_first_assembly")
@@ -91,6 +90,7 @@ func _shift_end():
 	_calculate_shift_stats()
 	_win_lose_check()
 	transition_screen.fade_in()
+	yield(get_tree().create_timer(0.5), "timeout")
 
 	if is_lose:
 		_unload_level()
@@ -124,13 +124,6 @@ func _introduction():
 			"- HOW ROBOTS OUTPLAY HUMANS.\n",
 			"- HOW WE CAN COMPETE WITH ROBOT TO STAY EMPLOYED.\n",
 			"- ABOUT CONTROLS. GOOD LUCK!\n")
-
-func _gameover():
-	print("\nGAME OVER!")
-	print("SHIFTS SURVIVED: ", shift_number)
-	print("FULLY ASSEMBLED: ", player_assembled_total)
-	print("MONEY EARNED: ", player_money_total)
-	Sound.play("YouLost")
 
 func _input(event):
 	if event is InputEventKey and !assembly_line_works:
@@ -212,14 +205,30 @@ func _load_level():
 	game_node.load_level()
 
 func _intermission():
-	transition_screen.fade_out()
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
 	node.shift_stats_screen()
+	transition_screen.fade_out()
+	yield(get_tree().create_timer(0.5), "timeout")
 	yield(node,"any_key_pressed")
 	node.hide()
 	transition_screen.fade_in()
+	node.bar_is_shown = false
 	_load_level()
 	_shift_start()
+
+func _gameover():
+	print("\n--- GAME OVER! ---\n")
+	Sound.play("YouLost")
+	transition_screen.fade_out()
+	var node:Control = get_node("/root/Game/UI/InfoScreens")
+	node.gameover_screen()
+	yield(node,"any_key_pressed")
+
+	transition_screen.fade_in()
+	yield(get_tree().create_timer(0.5), "timeout")
+	node.hide()
+	get_node("/root/Game").main_menu.show()
+	transition_screen.fade_out()
 
 
 #############################################

@@ -32,6 +32,8 @@ func _process(delta: float) -> void:
 		back_to_menu()
 
 func on_start_game() -> void:
+	transition_screen.fade_in()
+	yield(get_tree().create_timer(0.5), "timeout")
 	main_menu.hide()
 	load_level()
 	loop_controller.shifts_init()
