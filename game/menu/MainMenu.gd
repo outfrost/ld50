@@ -13,16 +13,18 @@ func _ready() -> void:
 	play_button.connect("pressed", self, "on_play_pressed")
 	credits_button.connect("pressed", self, "on_credits_pressed")
 	quit_button.connect("pressed", self, "on_quit_pressed")
-	Sound.instance("Drill").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
 	music_menu = Sound.instance("Music Menu").attach(self)
+
+func start() -> void:
+	show()
 	music_menu.start()
-		# This is a singular drill sound, placed to serve as a test dummy
+	# This is a singular drill sound, placed to serve as a test dummy
+	Sound.instance("Drill").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
 
 func on_play_pressed() -> void:
 	emit_signal("start_game")
 	Sound.play("Drill GUI 2")
 	music_menu.stop()
-
 
 func on_credits_pressed() -> void:
 	credits_popup.show()

@@ -46,6 +46,8 @@ _global_script_class_icons={
 
 config/name="LD50"
 run/main_scene="res://game/Game.tscn"
+boot_splash/image="res://game/loading/empty.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]

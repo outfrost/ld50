@@ -7,6 +7,8 @@ export(NodePath) var loop_controller_path
 onready var loop_controller: Node = get_node(loop_controller_path)
 
 onready var main_menu: Control = $UI/MainMenu
+onready var loading_screen: TransitionScreen = $UI/LoadingScreen
+onready var loading_background: Control = $UI/LoadingBackground
 onready var transition_screen: TransitionScreen = $UI/TransitionScreen
 onready var level_container: Spatial = $LevelContainer
 
@@ -24,12 +26,18 @@ func _ready() -> void:
 			debug.startup()
 
 	main_menu.connect("start_game", self, "on_start_game")
+	loading_screen.connect("loading_done", self, "loading_done")
 
 func _process(delta: float) -> void:
 	DebugOverlay.display("fps %d" % Performance.get_monitor(Performance.TIME_FPS))
 
 	if Input.is_action_just_pressed("menu"):
 		back_to_menu()
+
+func loading_done() -> void:
+	loading_background.hide()
+	DebugOverlay.label.show()
+	main_menu.start()
 
 func on_start_game() -> void:
 	main_menu.hide()
