@@ -12,7 +12,7 @@ signal stop_production()
 onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
 
 # TESTING / PROTOTYPING VARIABLES
-var money_for_one_blank:int = 0
+var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
 var money_to_pass_shift = money_for_one_blank * 1
 
@@ -135,6 +135,7 @@ func _gameover():
 	print("SHIFTS SURVIVED: ", shift_number)
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", money_total)
+	Sound.instance("YouLost").attach(self).start()
 
 func _process(delta):
 
@@ -157,8 +158,9 @@ func _on_ShiftTimer_timeout():
 func _stats_after_shift():
 
 	player_assembled_total += player_assembled_current_shift
-	robot_assembled_total += robot_assembled_current_shift
 	player_attachments_total += player_attachments_current_shift
+	robot_assembled_total += robot_assembled_current_shift
+	money_total += money_current_shift
 
 	print("\nSHIFT RESULTS:")
 	print("Attached: ", player_attachments_current_shift," blanks.")
@@ -170,7 +172,6 @@ func _stats_after_shift():
 	print("Attached: ", player_attachments_total," blanks total.")
 	print("Robot assembled: ", robot_assembled_total," models total.")
 
-	money_total += money_current_shift
 	print("\nYou earned ", money_current_shift, " today.")
 	print("Your total earnings: ", money_total)
 
