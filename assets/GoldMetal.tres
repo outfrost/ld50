@@ -3,6 +3,7 @@
 [resource]
 resource_name = "GoldMetal"
 vertex_color_use_as_albedo = true
+params_cull_mode = 2
 albedo_color = Color( 0.605882, 0.443264, 0, 1 )
 metallic = 1.0
 roughness = 0.419298
