@@ -16,7 +16,7 @@ onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/Transi
 var simplified_win_lose:bool = true
 var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
-var money_to_pass_shift = money_for_one_blank * 1
+var attaches_to_pass_shift = 0 # set 0 if need to pass all shifts
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -101,7 +101,7 @@ func _shift_end():
 
 func _win_lose_check():
 	if simplified_win_lose:
-		if player_money_current_shift < money_to_pass_shift:
+		if player_attachments_current_shift < attaches_to_pass_shift:
 			is_lose = true
 		print("\nis_lose: ", is_lose, "\n")
 	else:
@@ -116,14 +116,6 @@ func _win_lose_check():
 		else:
 			print("You are neck-and-neck with robot! Work faster!")
 
-func _shift_running():
-	pass
-
-func _introduction():
-	print("\nWE READ THE INTRO:\n",
-			"- HOW ROBOTS OUTPLAY HUMANS.\n",
-			"- HOW WE CAN COMPETE WITH ROBOT TO STAY EMPLOYED.\n",
-			"- ABOUT CONTROLS. GOOD LUCK!\n")
 
 func _input(event):
 	if event is InputEventKey and !assembly_line_works:
@@ -139,11 +131,9 @@ func _process(delta):
 func _seconds_counter():
 	time_left = floor(shift_timer.get_time_left())
 	if time_left != time_left_prev:
-		print(time_left," seconds left")
+#		print(time_left," seconds left")
+		pass
 	time_left_prev = time_left
-
-func _dummy_assembly_process():
-	pass
 
 func _on_ShiftTimer_timeout():
 	pass # Not used because signal directly spawns _shift_end() function.
@@ -204,15 +194,39 @@ func _load_level():
 	var game_node:Node = get_node("/root/Game")
 	game_node.load_level()
 
+func _introduction():
+	print("Dummy INTRODUCTION")
+
 func _intermission():
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
 	node.shift_stats_screen()
 	transition_screen.fade_out()
 	yield(get_tree().create_timer(0.5), "timeout")
 	yield(node,"any_key_pressed")
-	node.hide()
 	transition_screen.fade_in()
+	yield(get_tree().create_timer(0.5), "timeout")
+	node.shiftstats.visible = false
 	node.bar_is_shown = false
+	node.hide()
+
+	if shift_number == 1:
+		_hello_robot()
+	else:
+		_load_level()
+		_shift_start()
+
+func _hello_robot():
+	print("spawning of robot welcome screen")
+	var node:Control = get_node("/root/Game/UI/InfoScreens")
+	node.hellorobot_screen()
+	transition_screen.fade_out()
+	yield(get_tree().create_timer(0.5), "timeout")
+	yield(node,"any_key_pressed")
+	transition_screen.fade_in()
+	yield(get_tree().create_timer(0.5), "timeout")
+	node.hellorobot.visible = false
+	node.bar_is_shown = false
+	node.hide()
 	_load_level()
 	_shift_start()
 
@@ -226,6 +240,8 @@ func _gameover():
 
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
+	node.gameover.visible = false
+	node.bar_is_shown = false
 	node.hide()
 	get_node("/root/Game").back_to_menu()
 	transition_screen.fade_out()
