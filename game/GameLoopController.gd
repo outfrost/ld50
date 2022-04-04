@@ -135,6 +135,7 @@ func _gameover():
 	print("SHIFTS SURVIVED: ", shift_number)
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", money_total)
+	Sound.instance("YouLost").attach(self).start()
 
 func _process(delta):
 
