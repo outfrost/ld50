@@ -3,6 +3,7 @@ extends Spatial
 onready var anim: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 
 func _ready() -> void:
+#	Sound.play("Robot", self)
 	pass
 
 func start_working() -> void:
