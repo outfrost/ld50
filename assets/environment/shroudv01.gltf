@@ -1,0 +1,116 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.8.19",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "shroud"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "conveyorRollersMat",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.5,
+                    0.4000000059604645,
+                    0.4111764430999756,
+                    1
+                ],
+                "roughnessFactor" : 0.800000011920929
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube.029",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 668,
+            "max" : [
+                1.059999942779541,
+                0.7818918824195862,
+                0.6199999451637268
+            ],
+            "min" : [
+                -1.059999942779541,
+                -0.2781081199645996,
+                -0.6199999451637268
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 668,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 668,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 1680,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 8016,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 8016,
+            "byteOffset" : 8016
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 5344,
+            "byteOffset" : 16032
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 3360,
+            "byteOffset" : 21376
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 24736,
+            "uri" : "shroudv01.bin"
+        }
+    ]
+}

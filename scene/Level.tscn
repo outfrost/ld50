@@ -34,6 +34,8 @@
 [ext_resource path="res://assets/attachment008.gltf" type="PackedScene" id=32]
 [ext_resource path="res://assets/attachment009.gltf" type="PackedScene" id=33]
 [ext_resource path="res://assets/attachment010.gltf" type="PackedScene" id=34]
+[ext_resource path="res://assets/dividerScene.tscn" type="PackedScene" id=35]
+[ext_resource path="res://assets/environment/shroudv01.gltf" type="PackedScene" id=36]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -43,20 +45,13 @@ material = SubResource( 2 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="CubeMesh" id=4]
-size = Vector3( 10, 0.15, 1.05 )
+size = Vector3( 10, 0.15, 1.188 )
 
 [sub_resource type="CubeMesh" id=5]
 size = Vector3( 0.2, 1, 0.2 )
 
 [sub_resource type="CubeMesh" id=6]
 size = Vector3( 0.1, 0.9, 0.1 )
-
-[sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 0.643137, 0.576471, 0.541176, 1 )
-
-[sub_resource type="CubeMesh" id=8]
-material = SubResource( 9 )
-size = Vector3( 16, 2, 0.2 )
 
 [sub_resource type="CubeMesh" id=10]
 size = Vector3( 3, 0.05, 0.9 )
@@ -167,7 +162,7 @@ __meta__ = {
 "_edit_lock_": true,
 "_editor_description_": "Maybe don't move this."
 }
-rotation_extent_degrees = 10.0
+rotation_extent_degrees = 6.0
 aim_area_aspect_ratio = 1.6
 
 [node name="AttachmentPreview" type="Position3D" parent="CameraReference/Camera"]
@@ -261,10 +256,7 @@ transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0
 mesh = SubResource( 6 )
 material/0 = null
 
-[node name="DividerWall" type="MeshInstance" parent="Room"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-mesh = SubResource( 8 )
-material/0 = null
+[node name="dividerv01" parent="Room" instance=ExtResource( 35 )]
 
 [node name="Conveyor" type="Spatial" parent="Room"]
 script = ExtResource( 4 )
@@ -280,36 +272,48 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 1.9 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Room/Conveyor/ConveyorHood"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.8, 0 )
+visible = false
 mesh = SubResource( 10 )
 material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="Room/Conveyor/ConveyorHood"]
 transform = Transform( 1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, -1, 0.384, 0.543 )
+visible = false
 mesh = SubResource( 10 )
 material/0 = null
 
 [node name="MeshInstance3" type="MeshInstance" parent="Room/Conveyor/ConveyorHood"]
 transform = Transform( -1, -8.44439e-08, -2.26267e-08, 0, 0.258819, -0.965926, 8.74228e-08, -0.965926, -0.258819, -1, 0.384, -0.543 )
+visible = false
 mesh = SubResource( 10 )
 material/0 = null
+
+[node name="shroudv01" parent="Room/Conveyor/ConveyorHood" instance=ExtResource( 36 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0 )
 
 [node name="ConveyorHood2" type="Spatial" parent="Room/Conveyor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 1.9 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Room/Conveyor/ConveyorHood2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.8, 0 )
+visible = false
 mesh = SubResource( 10 )
 material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="Room/Conveyor/ConveyorHood2"]
 transform = Transform( 1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, -1, 0.384, 0.543 )
+visible = false
 mesh = SubResource( 10 )
 material/0 = null
 
 [node name="MeshInstance3" type="MeshInstance" parent="Room/Conveyor/ConveyorHood2"]
 transform = Transform( -1, -8.44439e-08, -2.26267e-08, 0, 0.258819, -0.965926, 8.74228e-08, -0.965926, -0.258819, -1, 0.384, -0.543 )
+visible = false
 mesh = SubResource( 10 )
 material/0 = null
+
+[node name="shroudv01" parent="Room/Conveyor/ConveyorHood2" instance=ExtResource( 36 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 0, 0 )
 
 [node name="PartsBuckets" type="Spatial" parent="Room/Conveyor"]
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 1.3, 0.7 )
@@ -966,7 +970,7 @@ transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.7948
 [node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial11" instance=ExtResource( 34 )]
 
 [node name="ButtonPanel" type="MeshInstance" parent="Room/Conveyor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.1, 2.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.1, 2.518 )
 mesh = SubResource( 11 )
 material/0 = null
 
