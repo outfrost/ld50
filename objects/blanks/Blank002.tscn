@@ -10,6 +10,7 @@ extents = Vector3( 0.1, 0.1, 0.1 )
 [node name="Blank002" type="Area"]
 script = ExtResource( 2 )
 attachment_scene = ExtResource( 3 )
+attaches_at = 15
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
