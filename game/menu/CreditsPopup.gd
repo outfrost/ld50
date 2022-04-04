@@ -2,7 +2,7 @@ extends Popup
 
 func _ready() -> void:
 	$Panel/RichTextLabel.connect("meta_clicked", self, "on_meta_clicked")
-	$Panel/CloseButton.connect("pressed", self, "hide")
+	$Panel/CloseButton.connect("pressed", self, "on_close_pressed")
 
 func _input(event: InputEvent) -> void:
 	if !visible:
@@ -23,3 +23,7 @@ func _gui_input(event):
 func on_meta_clicked(meta: String):
 	if meta.begins_with("http"):
 		OS.shell_open(meta)
+
+func on_close_pressed() -> void:
+	hide()
+	#Sound.play("???")
