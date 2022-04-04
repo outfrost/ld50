@@ -29,7 +29,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready() -> void:
 	rng.seed = randi()
 	tween.connect("tween_completed", self, "tween_completed")
-	for bucket in $PartsBuckets.get_children():
+	for bucket in $BucketSupport/PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
 	gameloopcontroller.get_stats("hello")
 

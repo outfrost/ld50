@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -37,6 +37,7 @@
 [ext_resource path="res://assets/dividerScene.tscn" type="PackedScene" id=35]
 [ext_resource path="res://assets/environment/shroudv01.gltf" type="PackedScene" id=36]
 [ext_resource path="res://assets/robotScene.tscn" type="PackedScene" id=37]
+[ext_resource path="res://scene/BucketSupport.tscn" type="PackedScene" id=38]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -325,659 +326,662 @@ material/0 = null
 [node name="shroudv01" parent="Room/Conveyor/ConveyorHood2" instance=ExtResource( 36 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.5, 0, 0 )
 
-[node name="PartsBuckets" type="Spatial" parent="Room/Conveyor"]
-transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 1.3, 0.7 )
+[node name="BucketSupport" parent="Room/Conveyor" instance=ExtResource( 38 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1 )
 
-[node name="PartsBucket1" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, -1.35, -0.1, 0.32933 )
+[node name="PartsBuckets" type="Spatial" parent="Room/Conveyor/BucketSupport"]
+transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0.3, -0.3 )
+
+[node name="PartsBucket1" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -1.04308e-07, 0, 1.04308e-07, 1, -1.3004, -0.034224, 0.317732 )
 part_scene = ExtResource( 11 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial" instance=ExtResource( 25 )]
 transform = Transform( 1, -1.49012e-08, -5.96046e-08, 0, 1, -1.49012e-08, 0, 0, 1, 0, -5.96046e-08, 5.96046e-08 )
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial2" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial2" instance=ExtResource( 25 )]
 transform = Transform( 1, -1.49012e-08, -5.96046e-08, 0, 1, -1.49012e-08, 0, 0, 1, 0, -5.96046e-08, 5.96046e-08 )
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial5" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial5" instance=ExtResource( 25 )]
 transform = Transform( 1, 2.98023e-08, 7.45058e-09, 2.98023e-08, 1, -2.98023e-08, 0, 0, 1, 0, -2.98023e-08, -5.96046e-08 )
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial6" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial6" instance=ExtResource( 25 )]
 transform = Transform( 1, 2.98023e-08, 7.45058e-09, 2.98023e-08, 1, -2.98023e-08, 0, 0, 1, 0, -2.98023e-08, -5.96046e-08 )
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial7" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial7" instance=ExtResource( 25 )]
 transform = Transform( 1, 2.98023e-08, 7.45058e-09, 2.98023e-08, 1, -2.98023e-08, 0, 0, 1, 0, -2.98023e-08, -5.96046e-08 )
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial8" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial8" instance=ExtResource( 25 )]
 transform = Transform( 1, 2.98023e-08, 7.45058e-09, 2.98023e-08, 1, -2.98023e-08, 0, 0, 1, 0, -2.98023e-08, -5.96046e-08 )
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial3" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial3" instance=ExtResource( 25 )]
 transform = Transform( 1, -5.96046e-08, 5.58794e-09, -5.96046e-08, 1, 1.11759e-08, 1.86265e-09, 7.45058e-09, 1, 0, 0, 0 )
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial4" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial4" instance=ExtResource( 25 )]
 transform = Transform( 1, -5.96046e-08, 5.58794e-09, -5.96046e-08, 1, 1.11759e-08, 1.86265e-09, 7.45058e-09, 1, 0, 0, 0 )
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial9" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial9" instance=ExtResource( 25 )]
 transform = Transform( 1, -5.96046e-08, 5.58794e-09, -5.96046e-08, 1, 1.11759e-08, 1.86265e-09, 7.45058e-09, 1, 0, 0, 0 )
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial10" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial10" instance=ExtResource( 25 )]
 transform = Transform( 1, -5.96046e-08, 5.58794e-09, -5.96046e-08, 1, 1.11759e-08, 1.86265e-09, 7.45058e-09, 1, 0, 0, 0 )
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial12" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial12" instance=ExtResource( 25 )]
 transform = Transform( 1, -5.96046e-08, 5.58794e-09, -5.96046e-08, 1, 1.11759e-08, 1.86265e-09, 7.45058e-09, 1, 0, 0, 0 )
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket1"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment001" parent="Room/Conveyor/PartsBuckets/PartsBucket1/Spatial11" instance=ExtResource( 25 )]
+[node name="attachment001" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket1/Spatial11" instance=ExtResource( 25 )]
 
-[node name="PartsBucket2" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, -0.675, -0.1, 0.32933 )
+[node name="PartsBucket2" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.999999, -1.63913e-07, 0, 1.63913e-07, 0.999999, -0.649837, -0.034224, 0.317732 )
 part_scene = ExtResource( 12 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial" instance=ExtResource( 26 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial2" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial2" instance=ExtResource( 26 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial5" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial5" instance=ExtResource( 26 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial6" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial6" instance=ExtResource( 26 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial7" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial7" instance=ExtResource( 26 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial8" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial8" instance=ExtResource( 26 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial3" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial3" instance=ExtResource( 26 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial4" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial4" instance=ExtResource( 26 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial9" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial9" instance=ExtResource( 26 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial10" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial10" instance=ExtResource( 26 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial11" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial11" instance=ExtResource( 26 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket2"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment002" parent="Room/Conveyor/PartsBuckets/PartsBucket2/Spatial12" instance=ExtResource( 26 )]
+[node name="attachment002" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket2/Spatial12" instance=ExtResource( 26 )]
 
-[node name="PartsBucket3" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, -0.1, 0.32933 )
+[node name="PartsBucket3" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -7.45058e-08, 0, 7.45058e-08, 1, 0, -0.034224, 0.317732 )
 part_scene = ExtResource( 13 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial" instance=ExtResource( 27 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial2" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial2" instance=ExtResource( 27 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial5" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial5" instance=ExtResource( 27 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial6" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial6" instance=ExtResource( 27 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial7" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial7" instance=ExtResource( 27 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial8" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial8" instance=ExtResource( 27 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial3" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial3" instance=ExtResource( 27 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial4" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial4" instance=ExtResource( 27 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial9" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial9" instance=ExtResource( 27 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial10" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial10" instance=ExtResource( 27 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial12" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial12" instance=ExtResource( 27 )]
 
-[node name="Spatial13" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket3"]
+[node name="Spatial13" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment003" parent="Room/Conveyor/PartsBuckets/PartsBucket3/Spatial13" instance=ExtResource( 27 )]
+[node name="attachment003" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket3/Spatial13" instance=ExtResource( 27 )]
 
-[node name="PartsBucket4" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0.675, -0.1, 0.32933 )
+[node name="PartsBucket4" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -1.04308e-07, 0, 1.04308e-07, 1, 0.650486, -0.034224, 0.317732 )
 part_scene = ExtResource( 14 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial" instance=ExtResource( 28 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial2" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial2" instance=ExtResource( 28 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial5" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial5" instance=ExtResource( 28 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial6" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial6" instance=ExtResource( 28 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial7" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial7" instance=ExtResource( 28 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial8" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial8" instance=ExtResource( 28 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial3" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial3" instance=ExtResource( 28 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial4" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial4" instance=ExtResource( 28 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial9" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial9" instance=ExtResource( 28 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial10" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial10" instance=ExtResource( 28 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial12" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial12" instance=ExtResource( 28 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket4"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment004" parent="Room/Conveyor/PartsBuckets/PartsBucket4/Spatial11" instance=ExtResource( 28 )]
+[node name="attachment004" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket4/Spatial11" instance=ExtResource( 28 )]
 
-[node name="PartsBucket5" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 1.35, -0.1, 0.32933 )
+[node name="PartsBucket5" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -1.04308e-07, 0, 1.04308e-07, 1, 1.29973, -0.034224, 0.317732 )
 part_scene = ExtResource( 15 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial" instance=ExtResource( 29 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial2" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial2" instance=ExtResource( 29 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial5" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial5" instance=ExtResource( 29 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial6" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial6" instance=ExtResource( 29 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial7" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial7" instance=ExtResource( 29 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial8" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial8" instance=ExtResource( 29 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial3" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial3" instance=ExtResource( 29 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial4" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial4" instance=ExtResource( 29 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial9" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial9" instance=ExtResource( 29 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial10" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial10" instance=ExtResource( 29 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial12" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial12" instance=ExtResource( 29 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket5"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment005" parent="Room/Conveyor/PartsBuckets/PartsBucket5/Spatial11" instance=ExtResource( 29 )]
+[node name="attachment005" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket5/Spatial11" instance=ExtResource( 29 )]
 
-[node name="PartsBucket6" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 0.1, -0.1 )
+[node name="PartsBucket6" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, -1.3004, 0.165776, -0.111598 )
 part_scene = ExtResource( 16 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial" instance=ExtResource( 30 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial2" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial2" instance=ExtResource( 30 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial5" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial5" instance=ExtResource( 30 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial6" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial6" instance=ExtResource( 30 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial7" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial7" instance=ExtResource( 30 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial8" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial8" instance=ExtResource( 30 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial3" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial3" instance=ExtResource( 30 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial4" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial4" instance=ExtResource( 30 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial9" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial9" instance=ExtResource( 30 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial10" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial10" instance=ExtResource( 30 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial12" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial12" instance=ExtResource( 30 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket6"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment006" parent="Room/Conveyor/PartsBuckets/PartsBucket6/Spatial11" instance=ExtResource( 30 )]
+[node name="attachment006" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket6/Spatial11" instance=ExtResource( 30 )]
 
-[node name="PartsBucket7" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.675, 0.1, -0.1 )
+[node name="PartsBucket7" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.999999, -1.49012e-07, 0, 1.49012e-07, 0.999999, -0.649837, 0.165776, -0.111598 )
 part_scene = ExtResource( 17 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial" instance=ExtResource( 31 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial2" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial2" instance=ExtResource( 31 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial5" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial5" instance=ExtResource( 31 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial6" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial6" instance=ExtResource( 31 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial7" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial7" instance=ExtResource( 31 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial8" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial8" instance=ExtResource( 31 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial3" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial3" instance=ExtResource( 31 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial4" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial4" instance=ExtResource( 31 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial9" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial9" instance=ExtResource( 31 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial10" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial10" instance=ExtResource( 31 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial12" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial12" instance=ExtResource( 31 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket7"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment007" parent="Room/Conveyor/PartsBuckets/PartsBucket7/Spatial11" instance=ExtResource( 31 )]
+[node name="attachment007" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket7/Spatial11" instance=ExtResource( 31 )]
 
-[node name="PartsBucket8" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -0.1 )
+[node name="PartsBucket8" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0.165776, -0.111598 )
 part_scene = ExtResource( 18 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial" instance=ExtResource( 32 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial2" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial2" instance=ExtResource( 32 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial5" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial5" instance=ExtResource( 32 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial6" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial6" instance=ExtResource( 32 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial7" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial7" instance=ExtResource( 32 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial8" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial8" instance=ExtResource( 32 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial3" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial3" instance=ExtResource( 32 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial4" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial4" instance=ExtResource( 32 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial9" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial9" instance=ExtResource( 32 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial10" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial10" instance=ExtResource( 32 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial12" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial12" instance=ExtResource( 32 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket8"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment008" parent="Room/Conveyor/PartsBuckets/PartsBucket8/Spatial11" instance=ExtResource( 32 )]
+[node name="attachment008" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket8/Spatial11" instance=ExtResource( 32 )]
 
-[node name="PartsBucket9" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.675, 0.1, -0.1 )
+[node name="PartsBucket9" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 0.650486, 0.165776, -0.111598 )
 part_scene = ExtResource( 19 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial" instance=ExtResource( 33 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial2" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial2" instance=ExtResource( 33 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial5" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial5" instance=ExtResource( 33 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial6" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial6" instance=ExtResource( 33 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial7" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial7" instance=ExtResource( 33 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial8" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial8" instance=ExtResource( 33 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial3" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial3" instance=ExtResource( 33 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial4" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial4" instance=ExtResource( 33 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial9" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial9" instance=ExtResource( 33 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial10" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial10" instance=ExtResource( 33 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial12" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial12" instance=ExtResource( 33 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket9"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment009" parent="Room/Conveyor/PartsBuckets/PartsBucket9/Spatial11" instance=ExtResource( 33 )]
+[node name="attachment009" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket9/Spatial11" instance=ExtResource( 33 )]
 
-[node name="PartsBucket10" parent="Room/Conveyor/PartsBuckets" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.1, -0.1 )
+[node name="PartsBucket10" parent="Room/Conveyor/BucketSupport/PartsBuckets" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, -8.9407e-08, 0, 8.9407e-08, 1, 1.29973, 0.165776, -0.111598 )
 part_scene = ExtResource( 20 )
 
-[node name="Spatial" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( 1.69715, 0.0643529, -1.05618, -0.0462104, 1.9989, 0.0475384, 1.05713, -0.0159371, 1.69771, -0.146021, -0.149338, -0.232566 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial" instance=ExtResource( 34 )]
 
-[node name="Spatial2" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial2" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( 0.0093199, 0.195452, -1.99041, -1.69411, 1.05866, 0.0960243, 1.06296, 1.68554, 0.170492, 0.185535, -0.1986, -0.212819 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial2" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial2" instance=ExtResource( 34 )]
 
-[node name="Spatial5" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial5" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( -1.85296, 0.749887, 0.06496, 0.39653, 0.825812, 1.77786, 0.639774, 1.66003, -0.913773, 0.0322065, -0.117471, -0.0433593 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial5" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial5" instance=ExtResource( 34 )]
 
-[node name="Spatial6" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial6" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( -0.0992123, 0.0531828, 1.99683, 1.61724, 1.17563, 0.0490414, -1.17247, 1.61711, -0.101324, 0.187367, 0.0156305, 0.150455 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial6" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial6" instance=ExtResource( 34 )]
 
-[node name="Spatial7" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial7" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( 1.99825, -0.0834027, -0.00572801, 0.0365709, 0.995349, -1.73434, 0.0751735, 1.73272, 0.996003, -0.173423, -0.0431038, 0.0589259 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial7" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial7" instance=ExtResource( 34 )]
 
-[node name="Spatial8" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial8" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( -1.54371, 1.20189, 0.415241, -1.24736, -1.55817, -0.127249, 0.247037, -0.357197, 1.95228, -0.0125099, 0.0359442, 0.16322 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial8" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial8" instance=ExtResource( 34 )]
 
-[node name="Spatial3" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial3" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( 0.148003, 0.17359, 1.98695, 1.40191, 1.40816, -0.227448, -1.41871, 1.4096, -0.0174729, -0.18444, 0.17588, 0.154934 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial3" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial3" instance=ExtResource( 34 )]
 
-[node name="Spatial4" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial4" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( -1.66243, -0.69643, -0.866769, -0.565469, 1.87196, -0.419531, 0.957364, -0.103659, -1.75291, 0.157355, 0.235319, 0.18842 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial4" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial4" instance=ExtResource( 34 )]
 
-[node name="Spatial9" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial9" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( -1.99786, 0.0544558, -0.0747061, 0.0387651, 1.96074, 0.392443, 0.0839234, 0.390575, -1.9597, 0.0114708, 0.124404, -0.00503314 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial9" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial9" instance=ExtResource( 34 )]
 
-[node name="Spatial10" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial10" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( -1.97323, -0.309965, 0.101366, 0.278615, -1.27919, 1.51197, -0.169497, 1.50586, 1.30525, 0.174657, 0.00917673, -0.120893 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial10" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial10" instance=ExtResource( 34 )]
 
-[node name="Spatial12" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial12" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( 1.95478, 0.402851, -0.128654, -0.333337, 1.09333, -1.64119, -0.26025, 1.62553, 1.13575, 0.0429355, -0.0466858, -0.269059 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial12" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial12" instance=ExtResource( 34 )]
 
-[node name="Spatial11" type="Spatial" parent="Room/Conveyor/PartsBuckets/PartsBucket10"]
+[node name="Spatial11" type="Spatial" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10"]
 transform = Transform( 0.163125, 1.98674, 0.162019, -0.855374, 0.216602, -1.79483, -1.80048, 0.0771025, 0.867371, -0.160765, 0.0754812, -0.0584452 )
 
-[node name="attachment010" parent="Room/Conveyor/PartsBuckets/PartsBucket10/Spatial11" instance=ExtResource( 34 )]
+[node name="attachment010" parent="Room/Conveyor/BucketSupport/PartsBuckets/PartsBucket10/Spatial11" instance=ExtResource( 34 )]
 
 [node name="ButtonPanel" type="MeshInstance" parent="Room/Conveyor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.1, 2.518 )
