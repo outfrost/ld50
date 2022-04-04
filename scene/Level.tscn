@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -38,6 +38,8 @@
 [ext_resource path="res://assets/environment/shroudv01.gltf" type="PackedScene" id=36]
 [ext_resource path="res://assets/robotScene.tscn" type="PackedScene" id=37]
 [ext_resource path="res://scene/BucketSupport.tscn" type="PackedScene" id=38]
+[ext_resource path="res://assets/environment/conveyorRollersMat.tres" type="Material" id=39]
+[ext_resource path="res://assets/buttonPanelMat.tres" type="Material" id=40]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -47,28 +49,40 @@ material = SubResource( 2 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="CubeMesh" id=4]
+material = ExtResource( 39 )
 size = Vector3( 10, 0.15, 1.188 )
 
 [sub_resource type="CubeMesh" id=5]
+material = ExtResource( 39 )
 size = Vector3( 0.2, 1, 0.2 )
 
 [sub_resource type="CubeMesh" id=6]
+material = ExtResource( 39 )
 size = Vector3( 0.1, 0.9, 0.1 )
 
 [sub_resource type="CubeMesh" id=10]
 size = Vector3( 3, 0.05, 0.9 )
 
 [sub_resource type="CubeMesh" id=11]
+material = ExtResource( 40 )
 size = Vector3( 0.15, 1.055, 0.05 )
 
 [sub_resource type="CubeMesh" id=12]
+material = ExtResource( 40 )
 size = Vector3( 0.35, 0.2, 0.05 )
 
 [sub_resource type="BoxShape" id=15]
 extents = Vector3( 0.1, 0.063, 0.015 )
 
 [sub_resource type="SpatialMaterial" id=14]
-albedo_color = Color( 0.168627, 0.764706, 0.4, 1 )
+albedo_color = Color( 0.168627, 0.839216, 0.427451, 1 )
+metallic = 0.1
+roughness = 0.5
+emission_enabled = true
+emission = Color( 0.168627, 0.839216, 0.427451, 1 )
+emission_energy = 0.25
+emission_operator = 0
+emission_on_uv2 = false
 
 [sub_resource type="CubeMesh" id=13]
 material = SubResource( 14 )
