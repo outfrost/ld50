@@ -27,8 +27,8 @@ func _process(delta):
 func shift_stats_screen():
 	# asking loop controller for stats, shows them
 	get_node("ShiftStats/Label").text = "Hello there!"
-	self.visible = true
-	shiftstats.visible = true
+#	self.visible = true
+#	shiftstats.visible = true
 
 
 func gameover_screen():
