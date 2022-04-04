@@ -1076,7 +1076,7 @@ size = Vector2( 1280, 720 )
 hdr = false
 usage = 0
 
-[node name="PlayerStatsScreen" parent="Room/Screens/InfoScreen4/Viewport" instance=ExtResource( 24 )]
+[node name="RobotStatsScreen" parent="Room/Screens/InfoScreen4/Viewport" instance=ExtResource( 24 )]
 
 [node name="MonitorSupportBeam" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.675, 0, 0.352 )
