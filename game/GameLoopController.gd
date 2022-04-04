@@ -97,9 +97,7 @@ func _shift_end():
 		_gameover()
 	else:
 		_unload_level()
-		_shift_stats_screen()
-		_load_level()
-		_shift_start()
+		_intermission()
 
 func _win_lose_check():
 	if simplified_win_lose:
@@ -132,7 +130,7 @@ func _gameover():
 	print("SHIFTS SURVIVED: ", shift_number)
 	print("FULLY ASSEMBLED: ", player_assembled_total)
 	print("MONEY EARNED: ", player_money_total)
-	Sound.instance("YouLost").attach(self).start()
+	Sound.play("YouLost")
 
 func _input(event):
 	if event is InputEventKey and !assembly_line_works:
@@ -213,12 +211,15 @@ func _load_level():
 	var game_node:Node = get_node("/root/Game")
 	game_node.load_level()
 
-func _shift_stats_screen():
+func _intermission():
 	transition_screen.fade_out()
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
+	node.shift_stats_screen()
 	yield(node,"any_key_pressed")
+	node.hide()
 	transition_screen.fade_in()
-	pass
+	_load_level()
+	_shift_start()
 
 
 #############################################
@@ -230,6 +231,7 @@ func get_stats(what):
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
+	Sound.play("Announcer")
 
 	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
 	player_grade_current_shift = (
