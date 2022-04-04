@@ -20,13 +20,14 @@ func _ready() -> void:
 	hover_vis.hide()
 	add_child(hover_vis)
 
-func generate(num_connectors: int) -> void:
+func generate(num_connectors: int, max_index: int) -> void:
 	if num_connectors > 16:
 		num_connectors = 16
 	self.num_connectors = num_connectors
 	var blanks = []
+	max_index = min(max_index, blank_scenes.size() - 1)
 	for i in range(0, num_connectors):
-		blanks.append(blank_scenes[rng.randi_range(0, blank_scenes.size() - 1)].instance())
+		blanks.append(blank_scenes[rng.randi_range(0, max_index)].instance())
 	while blanks.size() < 16:
 		blanks.append(blanking_plate_scene.instance())
 

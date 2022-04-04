@@ -20,6 +20,10 @@ var last_assembly: Spatial
 var sendable: bool = false
 var production_running: bool = true
 
+var min_connectors: int = 3
+var max_connectors: int = 5
+var max_part_index: int = 2
+
 var picked_attachment_scene: PackedScene = null
 var picked_attachment: Spatial
 var target_attachment_rotation: Basis
@@ -90,7 +94,9 @@ func spawn_assembly() -> void:
 	tween.start()
 	belt.roll(conveyor_speed / 1.02)
 	add_child(current_assembly)
-	current_assembly.generate(9)
+	current_assembly.generate(
+		rng.randi_range(min_connectors, max_connectors),
+		max_part_index)
 	current_assembly.connect("clicked", self, "assembly_clicked")
 
 func send_assembly() -> void:
