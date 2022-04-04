@@ -12,9 +12,10 @@ signal stop_production()
 onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
 
 # TESTING / PROTOTYPING VARIABLES
+var simplified_win_lose:bool = true
 var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
-var money_to_pass_shift = money_for_one_blank * 1
+var money_to_pass_shift = money_for_one_blank * 0
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -54,72 +55,67 @@ func _ready():
 	self.connect("finished_assembly", self, "finished_assembly")
 
 func shifts_init():
-	_zeroing_variables()
+	_zeroing_main_variables()
 	_introduction()
 	_shift_start()
 
 func _shift_start():
 	_zeroing_shift_variables()
-	transition_screen.fade_out()
 	shift_number += 1
+	assembly_line_works = true
+	shift_timer.start()
+	time_left = 0
 
 	print("\n-- start of ",shift_number," shift --")
 	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
 
-	assembly_line_works = true
-
-	shift_timer.start()
-	time_left = 0
-
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+	transition_screen.fade_out()
 
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(5.0), "timeout")
-
 	emit_signal("spawn_first_assembly")
 
 func _shift_end():
+	print("-- end of ",shift_number," shift --")
 	shift_music.stop()
 	emit_signal("stop_production")
-	transition_screen.fade_in()
-
-	print("-- end of ",shift_number," shift --")
 	assembly_line_works = false
 
-	_stats_after_shift()
-#	_win_lose_check()
-
-	# temp.overwriting is_lose for prototyping purposes
-	if money_current_shift < money_to_pass_shift:
-		is_lose = true
-	print("is_lose: ", is_lose)
-	# this snippet above might be deleted after improving other part
+	_calculate_shift_stats()
+	_win_lose_check()
+	transition_screen.fade_in()
 
 	if is_lose:
+		_unload_level()
 		_gameover()
 	else:
-		var game_node:Node = get_node("/root/Game")
-		game_node.unload_level()
-		yield(get_tree().create_timer(1.0), "timeout")
-		game_node.load_level()
-#		emit_signal("spawn_first_assembly")
-#		print ("emitted signal: 'spawn_first_assembly'")
-		print ("starting shift...")
+		_unload_level()
+		print("level unloaded")
+		_shift_stats_screen()
+		print("_shift_stats_screen finished")
+		_load_level()
+		print("level loaded")
 		_shift_start()
 
 func _win_lose_check():
-	if robot_assembled_total > player_assembled_total:
-		if (robot_assembled_total-player_assembled_total) >= points_treshold:
-			print("You have assembled ",
-					robot_assembled_total - player_assembled_total,
-					" models less than the Robot. You are fired!")
+	if simplified_win_lose:
+		if money_current_shift < money_to_pass_shift:
 			is_lose = true
-	elif robot_assembled_total < player_assembled_total:
-		print("Congrats! You are ahead of robot for ",
-				robot_assembled_total - player_assembled_total,
-				" assembled models!")
+		print("is_lose: ", is_lose)
 	else:
-		print("You are neck-and-neck with robot! Work faster!")
+		if robot_assembled_total > player_assembled_total:
+			if (robot_assembled_total-player_assembled_total) >= points_treshold:
+				print("You have assembled ",
+						robot_assembled_total - player_assembled_total,
+						" models less than the Robot. You are fired!")
+				is_lose = true
+		elif robot_assembled_total < player_assembled_total:
+			print("Congrats! You are ahead of robot for ",
+					robot_assembled_total - player_assembled_total,
+					" assembled models!")
+		else:
+			print("You are neck-and-neck with robot! Work faster!")
 
 func _shift_running():
 	pass
@@ -155,7 +151,7 @@ func _dummy_assembly_process():
 func _on_ShiftTimer_timeout():
 	pass # Replace with function body.
 
-func _stats_after_shift():
+func _calculate_shift_stats():
 
 	player_assembled_total += player_assembled_current_shift
 	player_attachments_total += player_attachments_current_shift
@@ -175,18 +171,13 @@ func _stats_after_shift():
 	print("\nYou earned ", money_current_shift, " today.")
 	print("Your total earnings: ", money_total)
 
-func _zeroing_variables():
-	player_assembled_current_shift = 0
-	robot_assembled_current_shift = 0
+func _zeroing_main_variables():
 	player_assembled_total = 0
 	robot_assembled_total = 0
-	player_attachments_current_shift = 0
 	player_attachments_total = 0
-	money_current_shift = 0
 	money_total = 0
 	shift_number = 0
 	is_lose = false
-	assembly_line_works = false
 
 func _zeroing_shift_variables():
 	player_assembled_current_shift = 0
@@ -195,12 +186,22 @@ func _zeroing_shift_variables():
 	money_current_shift = 0
 	assembly_line_works = false
 
-func _load_next_shift():
+func _unload_level():
+	var game_node:Node = get_node("/root/Game")
+	game_node.unload_level()
+	yield(get_tree().create_timer(1.0), "timeout")
+
+func _load_level():
 	var game_node:Node = get_node("/root/Game")
 	game_node.load_level()
 
-	emit_signal("spawn_first_assembly")
-	_shift_start()
+func _shift_stats_screen():
+#	transition_screen.fade_out()
+#	var node:Control = get_node("/root/Game/UI/InfoScreens")
+#	node.shift_stats_screen()
+#	yield(get_tree().create_timer(5.0), "timeout")
+#	transition_screen.fade_in()
+	pass
 
 
 #############################################
