@@ -239,16 +239,26 @@ func _gameover():
 	yield(node,"any_key_pressed")
 
 	transition_screen.fade_in()
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(transition_screen, "animation_finished")
 	node.gameover.visible = false
 	node.bar_is_shown = false
 	node.hide()
-	get_node("/root/Game").main_menu.show()
+	get_node("/root/Game").back_to_menu()
 	transition_screen.fade_out()
 
 #############################################
 #     P U B L I C     F U N C T I O N S     #
 #############################################
+
+func return_to_menu() -> void:
+	shift_timer.stop()
+	shift_music.stop()
+	emit_signal("stop_production")
+	assembly_line_works = false
+	transition_screen.fade_in()
+	yield(transition_screen, "animation_finished")
+	get_node("/root/Game").back_to_menu()
+	transition_screen.fade_out()
 
 func get_stats(what):
 	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
