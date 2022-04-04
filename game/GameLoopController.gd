@@ -17,6 +17,7 @@ var simplified_win_lose:bool = true
 var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
 var attaches_to_pass_shift = 0 # set 0 if need to pass all shifts
+var robot_initial_skill_bonus:int = 20 # zero means no bonus
 
 # GAMEPLAY
 export(float, 1, 4, 0.01) var robot_speed
@@ -79,7 +80,7 @@ func _shift_start():
 	shift_number += 1
 
 	if shift_number >= 2:
-		robot_skill = shift_number - 1
+		robot_skill = shift_number - 1 + robot_initial_skill_bonus
 		robot_timer.wait_time = 60 / robot_skill
 		robot_timer.start()
 
@@ -312,11 +313,13 @@ func _on_RobotTimer_timeout():
 			how_many_attachments = base_model_size
 
 		robot_attachments_current_shift += how_many_attachments
+		print("~~~ Robot: I just attached ",how_many_attachments," details!")
 		add_money("robot",how_many_attachments * money_for_one_blank)
 
 		if how_many_attachments == base_model_size:
 				add_assembly("robot")
 				add_money("robot",base_model_size * money_for_one_blank * money_for_fully_assembled_base_multiplier)
+				print("~~~ Robot: I have fully assembled base!")
 		robot_timer.start()
 
 		emit_signal("robot_assembly_done")
