@@ -1,0 +1,116 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://game/loading/splash.png" type="Texture" id=2]
+[ext_resource path="res://game/loading/ludumdare.svg" type="Texture" id=3]
+[ext_resource path="res://game/loading/FMOD Logo White - Black Background.png" type="Texture" id=4]
+[ext_resource path="res://game/loading/LoadingScreen.gd" type="Script" id=5]
+[ext_resource path="res://objects/extras/HoverVis.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/environment/bucketv01.gltf" type="PackedScene" id=7]
+[ext_resource path="res://assets/attachment007.gltf" type="PackedScene" id=8]
+[ext_resource path="res://assets/environment/conveyorBeltChunkv01.gltf" type="PackedScene" id=9]
+[ext_resource path="res://assets/attachment004.gltf" type="PackedScene" id=10]
+[ext_resource path="res://assets/attachment001.gltf" type="PackedScene" id=11]
+[ext_resource path="res://assets/environment/robotv01.gltf" type="PackedScene" id=12]
+[ext_resource path="res://assets/blank001.gltf" type="PackedScene" id=13]
+[ext_resource path="res://assets/blank007.gltf" type="PackedScene" id=14]
+[ext_resource path="res://assets/blank004.gltf" type="PackedScene" id=15]
+[ext_resource path="res://assets/attachment008.gltf" type="PackedScene" id=16]
+[ext_resource path="res://assets/blank008.gltf" type="PackedScene" id=17]
+[ext_resource path="res://assets/blank005.gltf" type="PackedScene" id=18]
+[ext_resource path="res://assets/attachment005.gltf" type="PackedScene" id=19]
+[ext_resource path="res://assets/blank009.gltf" type="PackedScene" id=20]
+[ext_resource path="res://assets/attachment009.gltf" type="PackedScene" id=21]
+[ext_resource path="res://assets/blank002.gltf" type="PackedScene" id=22]
+[ext_resource path="res://assets/blank003.gltf" type="PackedScene" id=23]
+[ext_resource path="res://assets/attachment002.gltf" type="PackedScene" id=24]
+[ext_resource path="res://assets/attachment003.gltf" type="PackedScene" id=25]
+[ext_resource path="res://assets/blank006.gltf" type="PackedScene" id=26]
+[ext_resource path="res://assets/blank010.gltf" type="PackedScene" id=27]
+[ext_resource path="res://assets/attachment006.gltf" type="PackedScene" id=28]
+[ext_resource path="res://assets/InfoScreen.gltf" type="PackedScene" id=29]
+[ext_resource path="res://assets/attachment010.gltf" type="PackedScene" id=30]
+[ext_resource path="res://assets/MonitorSupportBeam.gltf" type="PackedScene" id=31]
+[ext_resource path="res://assets/MonitorCables.gltf" type="PackedScene" id=32]
+[ext_resource path="res://assets/environment/dividerv01.gltf" type="PackedScene" id=33]
+[ext_resource path="res://assets/environment/shroudv01.gltf" type="PackedScene" id=34]
+
+[node name="LoadingScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+items_to_load = [ ExtResource( 6 ), ExtResource( 11 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 10 ), ExtResource( 19 ), ExtResource( 28 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 30 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 26 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 27 ), ExtResource( 29 ), ExtResource( 32 ), ExtResource( 31 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 33 ), ExtResource( 12 ), ExtResource( 34 ) ]
+
+[node name="Camera" type="Camera" parent="."]
+current = true
+
+[node name="LoadingSpot" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Content" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Content"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 480.0
+margin_top = 360.0
+margin_right = -480.0
+margin_bottom = -360.0
+theme = ExtResource( 1 )
+text = "Loading ..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LudumDare" type="TextureRect" parent="Content"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -108.0
+margin_right = 384.0
+margin_bottom = -64.0
+grow_vertical = 0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="FMOD" type="TextureRect" parent="Content"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -224.0
+margin_top = -108.0
+margin_right = -64.0
+margin_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Godot" type="TextureRect" parent="Content"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

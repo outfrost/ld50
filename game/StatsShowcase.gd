@@ -21,25 +21,6 @@ func _input(event):
 	if event is InputEventKey and bar_is_shown:
 		emit_signal("any_key_pressed")
 
-func shift_stats_screen():
-	# asking loop controller for stats, shows them
-	print("shift_stats called")
-	bar_is_shown = true
-	get_node("ShiftStats/StatsMultiline").text = (
-		"Shifts count: " + str(loopcontroller.shift_number) +
-		"\n\nSHIFT STATS:" +
-		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_current_shift) +
-		"\nAttached details: " + str(loopcontroller.player_attachments_current_shift) +
-		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
-		"\n\nTOTAL STATS:" +
-		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_total) +
-		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
-		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
-		)
-	self.visible = true
-	shiftstats.visible = true
-
-
 #player_attachments_current_shift
 #player_assembled_current_shift
 #player_money_current_shift
@@ -56,9 +37,41 @@ func shift_stats_screen():
 #robot_assembled_total
 #robot_money_total
 
+func shift_stats_screen():
+	print("shift_stats_screen() called")
+	bar_is_shown = true
+	get_node("ShiftStats/StatsMultiline").text = (
+		"Shifts count: " + str(loopcontroller.shift_number) +
+		"\n\nSHIFT STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_current_shift) +
+		"\nAttached details: " + str(loopcontroller.player_attachments_current_shift) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
+		"\n\nTOTAL STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_total) +
+		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
+		)
+	self.visible = true
+	shiftstats.visible = true
+
 
 func gameover_screen():
-	pass
+	print("gameover_screen() called")
+	bar_is_shown = true
+	get_node("GameOver/GamoverMultiline").text = (
+		"--- GAME OVER! ---\n\n" +
+		"Shifts count: " + str(loopcontroller.shift_number) +
+		"\n\nSHIFT STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_current_shift) +
+		"\nAttached details: " + str(loopcontroller.player_attachments_current_shift) +
+		"\nTotal Earnings: " + str(loopcontroller.player_money_current_shift) +
+		"\n\nTOTAL STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_total) +
+		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
+		)
+	self.visible = true
+	gameover.visible = true
 
 func hellorobot():
 	pass
@@ -66,6 +79,5 @@ func hellorobot():
 func intro():
 	pass
 
-
-func _on_NextShift_pressed():
+func _on_Button_pressed():
 	emit_signal("any_key_pressed")
