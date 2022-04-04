@@ -210,11 +210,10 @@ func _load_level():
 	game_node.load_level()
 
 func _shift_stats_screen():
-#	transition_screen.fade_out()
-#	var node:Control = get_node("/root/Game/UI/InfoScreens")
-#	node.shift_stats_screen()
-#	yield(get_tree().create_timer(5.0), "timeout")
-#	transition_screen.fade_in()
+	transition_screen.fade_out()
+	var node:Control = get_node("/root/Game/UI/InfoScreens")
+	node.shift_stats_screen()
+	transition_screen.fade_in()
 	pass
 
 
