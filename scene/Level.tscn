@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://objects/attachments/Attachment010.tscn" type="PackedScene" id=20]
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=21]
 [ext_resource path="res://scene/infoscreens/TimeScreen.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scene/infoscreens/PlayerStatsScreen.tscn" type="PackedScene" id=23]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -97,6 +98,8 @@ emission_energy = 0.5
 emission_operator = 0
 emission_on_uv2 = false
 emission_texture = SubResource( 18 )
+uv1_scale = Vector3( -1, 1, 1 )
+uv1_offset = Vector3( 1, 0, 0 )
 
 [sub_resource type="ViewportTexture" id=20]
 viewport_path = NodePath("Room/Screens/InfoScreen3/Viewport")
@@ -387,11 +390,7 @@ size = Vector2( 1280, 720 )
 hdr = false
 usage = 0
 
-[node name="ColorRect" type="ColorRect" parent="Room/Screens/InfoScreen2/Viewport"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 21 )
-color = Color( 0.113725, 0.0941176, 0.419608, 1 )
+[node name="PlayerStatsScreen" parent="Room/Screens/InfoScreen2/Viewport" instance=ExtResource( 23 )]
 
 [node name="InfoScreen3" parent="Room/Screens" instance=ExtResource( 7 )]
 transform = Transform( 0.793353, 0.0794593, -0.603553, 0, 0.991445, 0.130526, 0.608761, -0.103553, 0.786566, 2.3, 2, 0.7 )
