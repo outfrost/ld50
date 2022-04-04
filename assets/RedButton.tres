@@ -3,7 +3,6 @@
 [resource]
 resource_name = "RedButton"
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
 albedo_color = Color( 0.499994, 0.225959, 0.219611, 1 )
 roughness = 0.5
 emission_enabled = true

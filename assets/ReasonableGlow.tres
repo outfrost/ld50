@@ -3,7 +3,6 @@
 [resource]
 resource_name = "ReasonableGlow"
 vertex_color_use_as_albedo = true
-params_cull_mode = 2
 albedo_color = Color( 0.636116, 0.786693, 0.906332, 1 )
 roughness = 0.5
 emission_enabled = true
