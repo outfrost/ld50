@@ -98,18 +98,16 @@ func _shift_end():
 		_gameover()
 	else:
 		_unload_level()
-		print("level unloaded")
 		_shift_stats_screen()
 		print("_shift_stats_screen finished")
 		_load_level()
-		print("level loaded")
 		_shift_start()
 
 func _win_lose_check():
 	if simplified_win_lose:
 		if player_money_current_shift < money_to_pass_shift:
 			is_lose = true
-		print("is_lose: ", is_lose)
+		print("\nis_lose: ", is_lose, "\n")
 	else:
 		if robot_money_total > player_money_total:
 			if (robot_money_total-player_money_total) >= points_treshold:
@@ -154,7 +152,7 @@ func _dummy_assembly_process():
 	pass
 
 func _on_ShiftTimer_timeout():
-	pass # Replace with function body.
+	pass # Not used because signal directly spawns _shift_end() function.
 
 func _calculate_shift_stats():
 
@@ -225,8 +223,6 @@ func _shift_stats_screen():
 
 func get_stats(what):
 	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
-#	match what:
-
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
