@@ -15,7 +15,7 @@ func _ready() -> void:
 func start_working() -> void:
 	anim.travel("robotWorking")
 	robotworking_sound.start()
-	
+
 
 func stop_working() -> void:
 	anim.travel("robotDeactivate")

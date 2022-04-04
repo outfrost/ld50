@@ -41,4 +41,4 @@ func next_message() -> void:
 	var msg = queue.pop_front()
 	if msg:
 		emit_signal("show_notif", msg)
-	timer.start()
+		timer.start()
