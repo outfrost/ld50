@@ -22,7 +22,7 @@ var production_running: bool = true
 
 var min_connectors: int = 3
 var max_connectors: int = 5
-var max_part_index: int = 2
+var max_part_index: int = 2 setget set_max_part_index
 
 var picked_attachment_scene: PackedScene = null
 var picked_attachment: Spatial
@@ -36,6 +36,7 @@ func _ready() -> void:
 	for bucket in $BucketSupport/PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
 	gameloopcontroller.get_stats("hello")
+	set_max_part_index(max_part_index)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton
@@ -185,3 +186,12 @@ func stop_production() -> void:
 	tween.stop_all()
 	tween.remove_all()
 	belt.stop()
+
+func set_max_part_index(index: int) -> void:
+	max_part_index = index
+	$BucketSupport/PartsBuckets.set_max_part_index(index)
+
+func set_difficulty_params(min_connectors: int, max_connectors: int, max_part_index: int) -> void:
+	self.min_connectors = min_connectors
+	self.max_connectors = max_connectors
+	set_max_part_index(max_part_index)
