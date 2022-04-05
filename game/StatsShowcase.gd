@@ -84,4 +84,4 @@ func intro():
 
 func _on_Button_pressed():
 	emit_signal("any_key_pressed")
-	Sound.instance("Drill GUI 2").attach(self).start()
+	Sound.instance("GUI Proceed").attach(self).start()
