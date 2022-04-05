@@ -136,14 +136,54 @@ margin_top = 16.0
 margin_right = -16.0
 margin_bottom = -64.0
 bbcode_enabled = true
-bbcode_text = "[center]credits credits credits
+bbcode_text = "[center][b][url=https://666savior.itch.io/]666Savior[/url][/b]
+3D art
 
-Made with [b]FMOD Studio[/b] by Firelight Technologies Pty Ltd.
+[b][url=https://hz13.itch.io/]Alex Tengu[/url][/b]
+Programming
+
+[b][url=https://cjgladback.itch.io/]CJGladback[/url][/b]
+3D art and animation
+
+[b][url=https://marekdomagala-composer.itch.io/]Marek Domagała[/url][/b]
+Music, sound design and voice acting
+
+[b][url=https://outfrost.itch.io/]Outfrost[/url][/b]
+Programming and production
+
+[b][url=https://honestdan.itch.io/]HonestDan[/url][/b]
+[url=https://clips.twitch.tv/NeighborlyToughCakeDoritosChip]Sound effect[/url]
+
+A [url=https://ldjam.com/events/ludum-dare/50/$276542]Ludum Dare 50[/url] game
+
+Made with [url=https://godotengine.org/]Godot Engine[/url]
+
+Made with [b][url=https://fmod.com/]FMOD Studio[/url][/b] by Firelight Technologies Pty Ltd.
 
 [url=https://github.com/utopia-rise/fmod-gdnative][b]fmod-gdnative[/b][/url]
 Copyright © 2019 Utopia-Rise and Alex Fonseka
 Distributed on the MIT License[/center]"
-text = "credits credits credits
+text = "666Savior
+3D art
+
+Alex Tengu
+Programming
+
+CJGladback
+3D art and animation
+
+Marek Domagała
+Music, sound design and voice acting
+
+Outfrost
+Programming and production
+
+HonestDan
+Sound effect
+
+A Ludum Dare 50 game
+
+Made with Godot Engine
 
 Made with FMOD Studio by Firelight Technologies Pty Ltd.
 
