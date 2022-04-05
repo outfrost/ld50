@@ -12,8 +12,25 @@ onready var exit_point: Spatial = $AssemblyExitPoint
 onready var tween: Tween = $Tween
 onready var belt = $conveyorBeltChunkv01
 onready var attachment_preview: Spatial = get_node(attachment_preview_path)
+onready var random_message_timer: Timer = find_parent("Level").get_node("RandomMessageTimer")
 
 onready var gameloopcontroller: Node = get_node("/root/Game/GameLoopController")
+
+var player_message_array: Array = [
+	Notification.Message.new("Shift Supervisor", "Between you and me, I'd rather have 3 robots instead of you. Less questions asked"),
+	Notification.Message.new("HR", "All your paperwork is in order, when you're let go, just leave."),
+	Notification.Message.new("Steve from Accounting", "Wow, do you know how much a robot costs?! It's insane!"),
+	Notification.Message.new("Robot", "Beep boop bloop doop bweep"),
+	Notification.Message.new("Daily Haiku Bot", "A new working friend, an enemy in disguise, happiness unwise"),
+	Notification.Message.new("Shift Supervisor", "I'm supposed to keep your spirits up or something. Inspirational Quote here"),
+	Notification.Message.new("Shidt Supervisor", "You might actually give the robot a run for it's money. For now"),
+	Notification.Message.new("Shift Supervisor", "Wow, I'm surprised how slow you are compared to modern automation"),
+	Notification.Message.new("Shift Supervisor", "Keep up the work, and you might have a job for another day"),
+	Notification.Message.new("HR", "You compensation package has been delayed due to poor performance"),
+	Notification.Message.new("Shift Supervisor", "Hurry up and fall behind already, I want to be able to sleep at my desk"),
+	Notification.Message.new("Shift Supervisor", "When I get my desk pillow, should it be a shark or an octopus?"),
+	Notification.Message.new("Shift Supervisor", "Up top wants reasons to not fire you already. Any ideas?")
+]
 
 var current_assembly: Spatial
 var last_assembly: Spatial
@@ -28,6 +45,9 @@ var picked_attachment_scene: PackedScene = null
 var picked_attachment: Spatial
 var target_attachment_rotation: Basis
 
+var message_id: int = -1
+var last_message_id: int = -1
+
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
@@ -37,6 +57,8 @@ func _ready() -> void:
 		bucket.connect("part_picked", self, "part_picked")
 	gameloopcontroller.get_stats("hello")
 	set_max_part_index(max_part_index)
+
+	random_message_timer.connect("timeout", self, "timer_timeout")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton
@@ -69,6 +91,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_attachment_rotation = target_attachment_rotation.rotated(Vector3.FORWARD, - 0.25 * TAU)
 		tween_attachment_rotation()
 		get_tree().set_input_as_handled()
+
+
+func _process(delta):
+
+	if production_running and random_message_timer.is_stopped():
+		random_message_timer.start()
 
 func tween_attachment_rotation() -> void:
 	if picked_attachment:
@@ -195,3 +223,18 @@ func set_difficulty_params(min_connectors: int, max_connectors: int, max_part_in
 	self.min_connectors = min_connectors
 	self.max_connectors = max_connectors
 	set_max_part_index(max_part_index)
+
+func timer_timeout():
+
+	while message_id == last_message_id:
+		message_id = rng.randi_range(0, player_message_array.size()-1)
+
+	var message = player_message_array[message_id]
+
+	Notification.push(
+		message.from,
+		message.body
+	)
+
+	random_message_timer.start(rng.randi_range(30, 60))
+	last_message_id = message_id
