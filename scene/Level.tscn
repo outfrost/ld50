@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -37,6 +37,8 @@
 [ext_resource path="res://assets/dividerScene.tscn" type="PackedScene" id=35]
 [ext_resource path="res://assets/environment/shroudv01.gltf" type="PackedScene" id=36]
 [ext_resource path="res://assets/robotScene.tscn" type="PackedScene" id=37]
+[ext_resource path="res://assets/wallScene.tscn" type="PackedScene" id=38]
+[ext_resource path="res://assets/floorScene.tscn" type="PackedScene" id=39]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.443137, 0.423529, 0.423529, 1 )
@@ -198,6 +200,7 @@ spot_attenuation = 0.757858
 
 [node name="MeshInstance" type="MeshInstance" parent="Room"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+visible = false
 mesh = SubResource( 3 )
 material/0 = null
 
@@ -266,7 +269,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
 
 [node name="Robot" parent="Room" instance=ExtResource( 37 )]
-transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, -3.6 )
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.5, -0.25, -3.6 )
 
 [node name="Conveyor" type="Spatial" parent="Room"]
 script = ExtResource( 4 )
@@ -1058,6 +1061,9 @@ usage = 0
 
 [node name="PlayerStatsScreen" parent="Room/Screens/InfoScreen4/Viewport" instance=ExtResource( 24 )]
 
+[node name="wallv01" parent="Room" instance=ExtResource( 38 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -10 )
+
 [node name="MonitorSupportBeam" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.675, 0, 0.352 )
 
@@ -1069,5 +1075,7 @@ transform = Transform( 0.0444967, 0, 0.99992, 0, 1.00091, 0, -0.99992, 0, 0.0444
 
 [node name="MonitorCables" parent="MonitorSupportBeam2" instance=ExtResource( 9 )]
 transform = Transform( -0.153331, 0, -0.988175, 0, 1, 0, 0.988175, 0, -0.153331, -2.98023e-08, 0, 0 )
+
+[node name="floorv01" parent="." instance=ExtResource( 39 )]
 
 [connection signal="pressed" from="Room/Conveyor/ButtonPanel/MeshInstance/SendButton" to="Room/Conveyor" method="send_assembly"]
