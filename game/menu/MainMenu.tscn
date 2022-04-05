@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://fonts/sans/small_reg.tres" type="DynamicFont" id=1]
 [ext_resource path="res://game/menu/CreditsPopup.gd" type="Script" id=2]
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=3]
 [ext_resource path="res://game/menu/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://game/ui-theme/panel_style_popup.tres" type="StyleBox" id=5]
-[ext_resource path="res://assets/ld50-cover-v2.jpg" type="Texture" id=6]
+[ext_resource path="res://assets/ld50-cover.jpg" type="Texture" id=6]
+[ext_resource path="res://fonts/sans/verylarge_reg.tres" type="DynamicFont" id=7]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -49,8 +50,10 @@ anchor_top = 0.1
 anchor_right = 0.95
 anchor_bottom = 0.5
 theme = ExtResource( 3 )
+custom_fonts/normal_font = ExtResource( 7 )
 bbcode_enabled = true
-bbcode_text = "[center][/center]"
+bbcode_text = "[center]Re:Placement[/center]"
+text = "Re:Placement"
 __meta__ = {
 "_edit_use_anchors_": false
 }
