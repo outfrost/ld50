@@ -58,7 +58,6 @@ text = "2"
 align = 2
 
 [node name="Label4" type="Label" parent="."]
-visible = false
 anchor_left = 0.52
 anchor_top = 0.19
 anchor_right = 0.52
@@ -69,7 +68,6 @@ custom_fonts/font = ExtResource( 2 )
 text = "Parts"
 
 [node name="PartsAttachedLabel" type="Label" parent="."]
-visible = false
 anchor_left = 0.95
 anchor_top = 0.19
 anchor_right = 0.95

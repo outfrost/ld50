@@ -237,6 +237,10 @@ func _zeroing_shift_variables():
 	robot_assembled_current_shift = 0
 	robot_money_current_shift = 0
 	assembly_line_works = false
+	player_grade_last_assembly = 0.0
+	player_grade_current_shift = 0.0
+	robot_grade_last_assembly = 0.0
+	robot_grade_current_shift = 0.0
 	said_halftime = false
 	emit_signal("stats_updated")
 
@@ -316,14 +320,20 @@ func _on_RobotTimer_timeout():
 		print("~~~ Robot: I just attached ",how_many_attachments," details!")
 		add_money("robot",how_many_attachments * money_for_one_blank)
 
+		robot_grade_last_assembly = float(how_many_attachments) / float(base_model_size)
+		robot_grade_current_shift = (
+			(robot_grade_current_shift * robot_assembled_current_shift)
+			+ robot_grade_last_assembly
+		) / (robot_assembled_current_shift + 1)
+
+		add_assembly("robot")
 		if how_many_attachments == base_model_size:
-				add_assembly("robot")
-				add_money("robot",base_model_size * money_for_one_blank * money_for_fully_assembled_base_multiplier)
-				print("~~~ Robot: I have fully assembled base!")
+			add_money("robot",base_model_size * money_for_one_blank * money_for_fully_assembled_base_multiplier)
+			print("~~~ Robot: I have fully assembled base!")
 		robot_timer.start()
 
 		emit_signal("robot_assembly_done")
-
+		emit_signal("stats_updated")
 
 #############################################
 #     P U B L I C     F U N C T I O N S     #
@@ -356,7 +366,7 @@ func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 	add_money("player",num_attachments * money_for_one_blank)
 	if num_attachments == num_connectors:
 		add_money("player",num_connectors * money_for_one_blank * money_for_fully_assembled_base_multiplier)
-		add_assembly("player")
+	add_assembly("player")
 
 	emit_signal("stats_updated")
 
