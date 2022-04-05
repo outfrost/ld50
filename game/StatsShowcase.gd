@@ -60,8 +60,8 @@ func shift_stats_screen():
 		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
 		"\n\nTOTAL STATS:" +
 		"\nCompleted assemblies: " + str(loopcontroller.robot_assembled_total) +
-		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
-		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
+		"\nAttached details: " + str(loopcontroller.robot_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_total)
 		)
 	self.visible = true
 	shiftstats.visible = true
@@ -89,8 +89,8 @@ func gameover_screen():
 		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
 		"\n\nTOTAL STATS:" +
 		"\nCompleted assemblies: " + str(loopcontroller.robot_assembled_total) +
-		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
-		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
+		"\nAttached details: " + str(loopcontroller.robot_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_total)
 		)
 	self.visible = true
 	gameover.visible = true
