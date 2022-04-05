@@ -22,13 +22,18 @@ loop_controller_path = NodePath("GameLoopController")
 script = ExtResource( 6 )
 robot_speed = 1.0
 median_assembly_time = 1.0
-shift_time_limit = 5
+shift_time_limit = 20
 shift_timer_path = NodePath("ShiftTimer")
+robot_timer_path = NodePath("RobotTimer")
 
 [node name="ShiftTimer" type="Timer" parent="GameLoopController"]
 one_shot = true
 
 [node name="SecondsEmitter" type="Timer" parent="GameLoopController"]
+one_shot = true
+
+[node name="RobotTimer" type="Timer" parent="GameLoopController"]
+wait_time = 60.0
 one_shot = true
 
 [node name="UI" type="Control" parent="."]
@@ -153,6 +158,7 @@ color = Color( 0, 0, 0, 1 )
 visible = false
 
 [connection signal="timeout" from="GameLoopController/ShiftTimer" to="GameLoopController" method="_shift_end"]
+[connection signal="timeout" from="GameLoopController/RobotTimer" to="GameLoopController" method="_on_RobotTimer_timeout"]
 [connection signal="pressed" from="UI/InfoScreens/ShiftStats/NextShift" to="UI/InfoScreens" method="_on_Button_pressed"]
 [connection signal="pressed" from="UI/InfoScreens/IntroRobot/Proceed" to="UI/InfoScreens" method="_on_Button_pressed"]
 [connection signal="pressed" from="UI/InfoScreens/GameOver/ExitToMenu" to="UI/InfoScreens" method="_on_Button_pressed"]
