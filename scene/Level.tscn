@@ -1088,4 +1088,8 @@ transform = Transform( 0.0444967, 0, 0.99992, 0, 1.00091, 0, -0.99992, 0, 0.0444
 [node name="MonitorCables" parent="MonitorSupportBeam2" instance=ExtResource( 9 )]
 transform = Transform( -0.153331, 0, -0.988175, 0, 1, 0, 0.988175, 0, -0.153331, -2.98023e-08, 0, 0 )
 
+[node name="RandomMessageTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
 [connection signal="pressed" from="Room/Conveyor/ButtonPanel/MeshInstance/SendButton" to="Room/Conveyor" method="send_assembly"]
