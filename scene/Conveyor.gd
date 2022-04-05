@@ -29,7 +29,8 @@ var player_message_array: Array = [
 	Notification.Message.new("HR", "You compensation package has been delayed due to poor performance"),
 	Notification.Message.new("Shift Supervisor", "Hurry up and fall behind already, I want to be able to sleep at my desk"),
 	Notification.Message.new("Shift Supervisor", "When I get my desk pillow, should it be a shark or an octopus?"),
-	Notification.Message.new("Shift Supervisor", "Up top wants reasons to not fire you already. Any ideas?")
+	Notification.Message.new("Shift Supervisor", "Up top wants reasons to not fire you now. Any ideas?"),
+	Notification.Message.new("HR", "Will you accept your severence in botcoin?")
 ]
 
 var current_assembly: Spatial
