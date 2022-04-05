@@ -49,9 +49,9 @@ func shift_stats_screen():
 		"\n\nRobot finished [b]" + str(loopcontroller.robot_assembled_current_shift) + "[/b] assemblies" +
 		"\nRobot attached [b]" + str(loopcontroller.robot_attachments_current_shift) + "[/b] parts" +
 		"\nRobot would have earned: [b]" + str(loopcontroller.robot_money_current_shift) +"¢[/b]" +
-		"\n\nTotal assemblies: [b]" + str(loopcontroller.player_assembled_total) + "[/b]" +
-		"\nTotal attached parts: [b]" + str(loopcontroller.player_attachments_total) + "[/b]" +
-		"\nTotal earnings: [b]" + str(loopcontroller.player_money_total) +"[/b]¢"
+		"\n\nTotal assemblies: [b]" + str(loopcontroller.player_assembled_total) + "[/b], compared to the robot's [b]" + str(loopcontroller.robot_assembled_total) + "[/b]" +
+		"\nTotal attached parts: [b]" + str(loopcontroller.player_attachments_total) + "[/b], compared to the robot's [b]" + str(loopcontroller.robot_attachments_total) + "[/b]" +
+		"\nTotal earnings: [b]" + str(loopcontroller.player_money_total) + "¢[/b] / Robot: [b]" + str(loopcontroller.robot_money_total) + "¢[/b]"
 		)
 	self.visible = true
 	shiftstats.visible = true
@@ -68,9 +68,9 @@ func gameover_screen():
 		"\n\nRobot finished [b]" + str(loopcontroller.robot_assembled_current_shift) + "[/b] assemblies" +
 		"\nRobot attached [b]" + str(loopcontroller.robot_attachments_current_shift) + "[/b] parts" +
 		"\nRobot would have earned: [b]" + str(loopcontroller.robot_money_current_shift) +"¢[/b]" +
-		"\n\nTotal assemblies: [b]" + str(loopcontroller.player_assembled_total) + "[/b]" +
-		"\nTotal attached parts: [b]" + str(loopcontroller.player_attachments_total) + "[/b]" +
-		"\nTotal earnings: [b]" + str(loopcontroller.player_money_total) +"[/b]¢"
+		"\n\nTotal assemblies: [b]" + str(loopcontroller.player_assembled_total) + "[/b], compared to the robot's [b]" + str(loopcontroller.robot_assembled_total) + "[/b]" +
+		"\nTotal attached parts: [b]" + str(loopcontroller.player_attachments_total) + "[/b], compared to the robot's [b]" + str(loopcontroller.robot_attachments_total) + "[/b]" +
+		"\nTotal earnings: [b]" + str(loopcontroller.player_money_total) + "¢[/b] / Robot: [b]" + str(loopcontroller.robot_money_total) + "¢[/b]"
 		)
 	self.visible = true
 	gameover.visible = true

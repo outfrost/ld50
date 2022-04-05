@@ -374,11 +374,11 @@ func get_stats(what):
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
-	if !said_announcment:
-		Sound.play("Announcer")
-		said_announcment = true
-	else:
-		said_announcment = false
+#	if !said_announcment:
+	Sound.play("Announcer")
+#		said_announcment = true
+#	else:
+#		said_announcment = false
 
 	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
 	player_grade_current_shift = (

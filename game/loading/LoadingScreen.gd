@@ -47,9 +47,9 @@ func _process(delta: float) -> void:
 			return
 
 func continue_startup() -> void:
-	yield(get_tree().create_timer(2.0), "timeout")
-	$Content/LudumDare.hide()
-	$Content/FMOD.hide()
+	yield(get_tree().create_timer(1.0), "timeout")
+#	$Content/LudumDare.hide()
+#	$Content/FMOD.hide()
 	$Content/Godot.show()
 	Sound.play_file("res://sound/gohh.wav", 0.5)
 	yield(get_tree().create_timer(2.0), "timeout")
