@@ -96,7 +96,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta):
 
-	if production_running and random_message_timer.is_stopped():
+	if production_running and random_message_timer.is_stopped() and gameloopcontroller.shift_number > 1:
 		random_message_timer.start()
 
 func tween_attachment_rotation() -> void:
@@ -226,6 +226,8 @@ func set_difficulty_params(min_connectors: int, max_connectors: int, max_part_in
 	set_max_part_index(max_part_index)
 
 func timer_timeout():
+
+
 
 	while message_id == last_message_id:
 		message_id = rng.randi_range(0, player_message_array.size()-1)
