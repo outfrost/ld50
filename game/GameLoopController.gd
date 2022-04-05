@@ -16,7 +16,7 @@ onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/Transi
 var simplified_win_lose:bool = false
 var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
-var robot_initial_skill_bonus:int = 3 # zero means no bonus
+var robot_initial_skill_bonus:int = 0 # zero means no bonus
 export var points_treshold = 10000
 
 var attaches_to_pass_shift = 0 # simplified: set 0 if need to pass all shifts
@@ -28,6 +28,8 @@ var assembly_line_works:bool
 var shift_number:int
 var is_lose:bool
 var robot_skill:int = 0
+
+var max_part_index: int = 9
 
 # ASSEMBLY LINE TIMING STUFF
 export var shift_time_limit:int = 60 #seconds
@@ -81,11 +83,22 @@ func _shift_start():
 	_zeroing_shift_variables()
 	shift_number += 1
 
+	var conveyor = find_parent("Game").get_node("LevelContainer/Level/Room/Conveyor")
+
 	if shift_number >= 2:
 		robot_skill = shift_number - 1 + robot_initial_skill_bonus
 		robot_timer.wait_time = 60 / robot_skill
 		robot_timer.start()
 
+	if shift_number == 1:
+		max_part_index = 2
+	elif shift_number == 2:
+		max_part_index = 3
+	elif shift_number == 3:
+		max_part_index = 4
+	else:
+		max_part_index = 9
+	conveyor.set_difficulty_params(min(2 + shift_number, 16), 5 + shift_number, max_part_index)
 
 	print("current Robot Skill: ",robot_skill)
 	assembly_line_works = true
@@ -125,6 +138,8 @@ func _shift_start():
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(1.0), "timeout")
 	emit_signal("spawn_first_assembly")
+	if shift_number >= 2:
+		conveyor.start_robot()
 
 func _shift_end():
 	print("-- end of ",shift_number," shift --")
@@ -312,7 +327,8 @@ func _gameover():
 func _on_RobotTimer_timeout():
 	if assembly_line_works:
 		#roll base model size
-		var base_model_size = randi()%10+1
+#		var base_model_size = randi() % (max_part_index + 1) + 1
+		var base_model_size = randi()%16+1
 		#how many robot will attach?
 		var how_many_attachments:int
 		if robot_skill < base_model_size:

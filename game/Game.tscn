@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://scene/Level.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://game/GameLoopController.gd" type="Script" id=6]
 [ext_resource path="res://game/StatsShowcase.gd" type="Script" id=7]
 [ext_resource path="res://game/loading/LoadingScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/sans/large_reg.tres" type="DynamicFont" id=9]
+[ext_resource path="res://fonts/sans/large_bold.tres" type="DynamicFont" id=10]
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
@@ -20,7 +22,7 @@ loop_controller_path = NodePath("GameLoopController")
 
 [node name="GameLoopController" type="Node" parent="."]
 script = ExtResource( 6 )
-shift_time_limit = 40
+shift_time_limit = 180
 shift_timer_path = NodePath("ShiftTimer")
 robot_timer_path = NodePath("RobotTimer")
 
@@ -56,93 +58,122 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="ShiftStats" type="Control" parent="UI/InfoScreens"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="UI/InfoScreens/ShiftStats"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 252.0
-margin_top = 91.0
-margin_right = 985.0
-margin_bottom = 626.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 
 [node name="StatsMultiline" type="RichTextLabel" parent="UI/InfoScreens/ShiftStats"]
-margin_left = 310.0
-margin_top = 184.0
-margin_right = 964.0
-margin_bottom = 511.0
-
-[node name="NextShift" type="Button" parent="UI/InfoScreens/ShiftStats"]
-margin_left = 502.0
-margin_top = 554.0
-margin_right = 781.0
-margin_bottom = 615.0
-text = "NEXT SHIFT"
-
-[node name="IntroRobot" type="Control" parent="UI/InfoScreens"]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="UI/InfoScreens/IntroRobot"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 252.0
-margin_top = 91.0
-margin_right = 985.0
-margin_bottom = 626.0
+margin_left = -349.0
+margin_top = -250.0
+margin_right = 346.0
+margin_bottom = 222.0
+custom_fonts/bold_font = ExtResource( 10 )
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
+bbcode_text = "akdaskljdaskldjaskldj as
+da d
+ad
+asd 
+ad
+asa
+"
+text = "akdaskljdaskldjaskldj as
+da d
+ad
+asd 
+ad
+asa
+"
+
+[node name="NextShift" type="Button" parent="UI/InfoScreens/ShiftStats"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = 243.0
+margin_right = 141.0
+margin_bottom = 304.0
+text = "NEXT SHIFT"
+
+[node name="IntroRobot" type="Control" parent="UI/InfoScreens"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/InfoScreens/IntroRobot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 
 [node name="AboutRobot" type="RichTextLabel" parent="UI/InfoScreens/IntroRobot"]
-margin_left = 310.0
-margin_top = 184.0
-margin_right = 964.0
-margin_bottom = 511.0
+anchor_left = 0.498
+anchor_top = 0.483
+anchor_right = 0.498
+anchor_bottom = 0.483
+margin_left = -327.44
+margin_top = -163.76
+margin_right = 326.56
+margin_bottom = 163.24
+custom_fonts/bold_font = ExtResource( 10 )
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
 
 [node name="Proceed" type="Button" parent="UI/InfoScreens/IntroRobot"]
-margin_left = 502.0
-margin_top = 554.0
-margin_right = 781.0
-margin_bottom = 615.0
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+margin_left = -139.28
+margin_top = 194.0
+margin_right = 139.72
+margin_bottom = 255.0
 text = "PROCEED"
 
 [node name="GameOver" type="Control" parent="UI/InfoScreens"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="UI/InfoScreens/GameOver"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 252.0
-margin_top = 91.0
-margin_right = 985.0
-margin_bottom = 626.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 
 [node name="GamoverMultiline" type="RichTextLabel" parent="UI/InfoScreens/GameOver"]
-margin_left = 310.0
-margin_top = 184.0
-margin_right = 964.0
-margin_bottom = 511.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -351.0
+margin_top = -256.0
+margin_right = 348.0
+margin_bottom = 216.0
+custom_fonts/bold_font = ExtResource( 10 )
+custom_fonts/normal_font = ExtResource( 9 )
+bbcode_enabled = true
 
 [node name="ExitToMenu" type="Button" parent="UI/InfoScreens/GameOver"]
-margin_left = 502.0
-margin_top = 554.0
-margin_right = 781.0
-margin_bottom = 615.0
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+margin_left = -139.28
+margin_top = 228.0
+margin_right = 139.72
+margin_bottom = 289.0
 text = "EXIT TO MENU"
 
 [node name="LoadingBackground" type="ColorRect" parent="UI"]

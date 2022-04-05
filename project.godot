@@ -44,7 +44,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LD50"
+config/name="Re:Placement"
 run/main_scene="res://game/Game.tscn"
 boot_splash/image="res://game/loading/empty.png"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )

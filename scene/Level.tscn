@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://scene/Camera.gd" type="Script" id=1]
 [ext_resource path="res://assets/conveyorBeltChunk.tscn" type="PackedScene" id=2]
@@ -36,7 +36,6 @@
 [ext_resource path="res://assets/attachment010.gltf" type="PackedScene" id=34]
 [ext_resource path="res://assets/dividerScene.tscn" type="PackedScene" id=35]
 [ext_resource path="res://assets/environment/shroudv01.gltf" type="PackedScene" id=36]
-[ext_resource path="res://assets/robotScene.tscn" type="PackedScene" id=37]
 [ext_resource path="res://scene/BucketSupport.tscn" type="PackedScene" id=38]
 [ext_resource path="res://assets/environment/conveyorRollersMat.tres" type="Material" id=39]
 [ext_resource path="res://assets/buttonPanelMat.tres" type="Material" id=40]
@@ -283,9 +282,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 0 )
 
 [node name="dividerv03" parent="Room" instance=ExtResource( 35 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0 )
-
-[node name="Robot" parent="Room" instance=ExtResource( 37 )]
-transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.25, -3.6 )
 
 [node name="Conveyor" type="Spatial" parent="Room"]
 script = ExtResource( 4 )
@@ -1034,6 +1030,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 1.9 )
 
 [node name="Tween" type="Tween" parent="Room/Conveyor"]
+
+[node name="Robotspawn" type="Position3D" parent="Room/Conveyor"]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, -0.25, -3.6 )
 
 [node name="Screens" type="Spatial" parent="Room"]
 
