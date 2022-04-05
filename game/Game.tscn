@@ -20,9 +20,7 @@ loop_controller_path = NodePath("GameLoopController")
 
 [node name="GameLoopController" type="Node" parent="."]
 script = ExtResource( 6 )
-robot_speed = 1.0
-median_assembly_time = 1.0
-shift_time_limit = 20
+shift_time_limit = 40
 shift_timer_path = NodePath("ShiftTimer")
 robot_timer_path = NodePath("RobotTimer")
 

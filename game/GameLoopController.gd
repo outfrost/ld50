@@ -12,19 +12,20 @@ signal stats_updated()
 
 onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
 
-# TESTING / PROTOTYPING VARIABLES
-var simplified_win_lose:bool = true
+# CORE STATS
+var simplified_win_lose:bool = false
 var money_for_one_blank:int = 100
 var money_for_fully_assembled_base_multiplier:int = 3
-var attaches_to_pass_shift = 0 # set 0 if need to pass all shifts
-var robot_initial_skill_bonus:int = 20 # zero means no bonus
+var robot_initial_skill_bonus:int = 3 # zero means no bonus
+export var points_treshold = 10000
+
+var attaches_to_pass_shift = 0 # simplified: set 0 if need to pass all shifts
 
 # GAMEPLAY
-export(float, 1, 4, 0.01) var robot_speed
-export(float, 1, 8, 0.01) var median_assembly_time
+#export(float, 1, 4, 0.01) var robot_speed
+#export(float, 1, 8, 0.01) var median_assembly_time
 var assembly_line_works:bool
 var shift_number:int
-export var points_treshold = 5000
 var is_lose:bool
 var robot_skill:int = 0
 
@@ -194,7 +195,7 @@ func _calculate_shift_stats():
 	player_assembled_total += player_assembled_current_shift
 	player_attachments_total += player_attachments_current_shift
 	player_money_total += player_money_current_shift
-	player_attachments_total += robot_attachments_current_shift
+	robot_attachments_total += robot_attachments_current_shift
 	robot_assembled_total += robot_assembled_current_shift
 	robot_money_total += robot_money_current_shift
 
@@ -205,8 +206,9 @@ func _calculate_shift_stats():
 	print("Earned: ", player_money_current_shift, " scores.")
 
 	print("\nROBOT SHIFT RESULTS:")
+	print("Robot attached: ", robot_attachments_current_shift," models.")
 	print("Robot assembled: ", robot_assembled_current_shift," models.")
-	print("Robot earned: ", player_money_current_shift, " scores.")
+	print("Robot earned: ", robot_money_current_shift, " scores.")
 
 	print("\nOVERALL PLAYER RESULTS:")
 	print("Attached: ", player_attachments_total," blanks total.")
@@ -214,6 +216,7 @@ func _calculate_shift_stats():
 	print("Earned: ", player_money_total, " scores total.")
 
 	print("\nOVERALL ROBOT RESULTS:")
+	print("Attached: ", robot_attachments_total," blanks total.")
 	print("Assembled: ", robot_assembled_total," models total.")
 	print("Earned: ", robot_money_total, " scores total.")
 
