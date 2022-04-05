@@ -24,6 +24,7 @@ func _input(event):
 #player_attachments_current_shift
 #player_assembled_current_shift
 #player_money_current_shift
+#robot_attachments_current_shift
 #robot_assembled_current_shift
 #robot_money_current_shift
 #player_grade_last_assembly
@@ -45,11 +46,22 @@ func shift_stats_screen():
 		"\n\nSHIFT STATS:" +
 		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_current_shift) +
 		"\nAttached details: " + str(loopcontroller.player_attachments_current_shift) +
-		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
+		"\nEarnings: " + str(loopcontroller.player_money_current_shift) +
 		"\n\nTOTAL STATS:" +
 		"\nCompleted assemblies: " + str(loopcontroller.player_assembled_total) +
 		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
 		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
+		)
+
+	get_node("ShiftStats/StatsMultiline").text += (
+		"\n\nROBOT STATS (shift)\n" +
+		"\nCompleted assemblies: " + str(loopcontroller.robot_assembled_current_shift) +
+		"\nAttached details: " + str(loopcontroller.robot_attachments_current_shift) +
+		"\nEarnings: " + str(loopcontroller.robot_money_current_shift) +
+		"\n\nTOTAL STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.robot_assembled_total) +
+		"\nAttached details: " + str(loopcontroller.robot_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_total)
 		)
 	self.visible = true
 	shiftstats.visible = true
@@ -70,6 +82,16 @@ func gameover_screen():
 		"\nAttached details: " + str(loopcontroller.player_attachments_total) +
 		"\nTotal Earnings: " + str(loopcontroller.player_money_total)
 		)
+	get_node("GameOver/GamoverMultiline").text += (
+		"\n\nROBOT STATS (shift)\n" +
+		"\nCompleted assemblies: " + str(loopcontroller.robot_assembled_current_shift) +
+		"\nAttached details: " + str(loopcontroller.robot_attachments_current_shift) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_current_shift) +
+		"\n\nTOTAL STATS:" +
+		"\nCompleted assemblies: " + str(loopcontroller.robot_assembled_total) +
+		"\nAttached details: " + str(loopcontroller.robot_attachments_total) +
+		"\nTotal Earnings: " + str(loopcontroller.robot_money_total)
+		)
 	self.visible = true
 	gameover.visible = true
 
@@ -84,3 +106,4 @@ func intro():
 
 func _on_Button_pressed():
 	emit_signal("any_key_pressed")
+	Sound.instance("GUI Proceed").attach(self).start()
