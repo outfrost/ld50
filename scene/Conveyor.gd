@@ -29,7 +29,8 @@ var player_message_array: Array = [
 	Notification.Message.new("HR", "You compensation package has been delayed due to poor performance"),
 	Notification.Message.new("Shift Supervisor", "Hurry up and fall behind already, I want to be able to sleep at my desk"),
 	Notification.Message.new("Shift Supervisor", "When I get my desk pillow, should it be a shark or an octopus?"),
-	Notification.Message.new("Shift Supervisor", "Up top wants reasons to not fire you already. Any ideas?")
+	Notification.Message.new("Shift Supervisor", "Up top wants reasons to not fire you now. Any ideas?"),
+	Notification.Message.new("HR", "Will you accept your severence in botcoin?")
 ]
 
 var current_assembly: Spatial
@@ -47,6 +48,7 @@ var target_attachment_rotation: Basis
 
 var message_id: int = -1
 var last_message_id: int = -1
+var last_last_message_id: int = -2
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -100,7 +102,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta):
 
-	if production_running and random_message_timer.is_stopped():
+	if production_running and random_message_timer.is_stopped() and gameloopcontroller.shift_number > 1:
 		random_message_timer.start()
 
 func tween_attachment_rotation() -> void:
@@ -237,7 +239,7 @@ func set_difficulty_params(min_connectors: int, max_connectors: int, max_part_in
 
 func timer_timeout():
 
-	while message_id == last_message_id:
+	while message_id == last_message_id or message_id == last_last_message_id:
 		message_id = rng.randi_range(0, player_message_array.size()-1)
 
 	var message = player_message_array[message_id]
@@ -247,5 +249,6 @@ func timer_timeout():
 		message.body
 	)
 
-	random_message_timer.start(rng.randi_range(30, 60))
+	random_message_timer.start(rng.randi_range(45, 75))
+	last_last_message_id = last_message_id
 	last_message_id = message_id

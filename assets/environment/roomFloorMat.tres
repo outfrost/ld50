@@ -10,5 +10,5 @@ params_cull_mode = 2
 albedo_texture = ExtResource( 2 )
 roughness = 0.4
 normal_enabled = true
-normal_scale = 1.0
+normal_scale = 0.1
 normal_texture = ExtResource( 1 )
