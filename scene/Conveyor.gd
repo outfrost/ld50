@@ -228,7 +228,7 @@ func set_difficulty_params(min_connectors: int, max_connectors: int, max_part_in
 
 func timer_timeout():
 
-	while message_id == last_message_id and message_id == last_last_message_id:
+	while message_id == last_message_id or message_id == last_last_message_id:
 		message_id = rng.randi_range(0, player_message_array.size()-1)
 
 	var message = player_message_array[message_id]
