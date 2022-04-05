@@ -66,6 +66,7 @@ var shift_music: Sound.EvInstance
 
 # Notifications
 var said_halftime: bool = false
+var said_announcment: bool = false
 
 func _ready():
 	shift_timer.wait_time = shift_time_limit
@@ -357,7 +358,11 @@ func get_stats(what):
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
-	Sound.play("Announcer")
+	if !said_announcment:
+		Sound.play("Announcer")
+		said_announcment = true
+	else:
+		said_announcment = false
 
 	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
 	player_grade_current_shift = (

@@ -48,6 +48,7 @@ var target_attachment_rotation: Basis
 
 var message_id: int = -1
 var last_message_id: int = -1
+var last_last_message_id: int = -2
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -227,9 +228,7 @@ func set_difficulty_params(min_connectors: int, max_connectors: int, max_part_in
 
 func timer_timeout():
 
-
-
-	while message_id == last_message_id:
+	while message_id == last_message_id and message_id == last_last_message_id:
 		message_id = rng.randi_range(0, player_message_array.size()-1)
 
 	var message = player_message_array[message_id]
@@ -240,4 +239,5 @@ func timer_timeout():
 	)
 
 	random_message_timer.start(rng.randi_range(30, 60))
+	last_last_message_id = last_message_id
 	last_message_id = message_id
