@@ -50,12 +50,17 @@ var last_message_id: int = -1
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+var robot
+
 func _ready() -> void:
 	rng.seed = randi()
 	tween.connect("tween_completed", self, "tween_completed")
 	for bucket in $BucketSupport/PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
 	gameloopcontroller.get_stats("hello")
+	if gameloopcontroller.shift_number >= 1:
+		robot = preload("res://assets/robotScene.tscn").instance()
+		$Robotspawn.add_child(robot)
 	set_max_part_index(max_part_index)
 
 	random_message_timer.connect("timeout", self, "timer_timeout")
@@ -127,6 +132,10 @@ func spawn_assembly() -> void:
 		rng.randi_range(min_connectors, max_connectors),
 		max_part_index)
 	current_assembly.connect("clicked", self, "assembly_clicked")
+
+func start_robot() -> void:
+	if robot:
+		robot.start_working()
 
 func send_assembly() -> void:
 	if !sendable:
@@ -211,6 +220,8 @@ func stop_production() -> void:
 	sendable = false
 	production_running = false
 	unpick_part()
+	if robot:
+		robot.stop_working()
 	tween.stop_all()
 	tween.remove_all()
 	belt.stop()
