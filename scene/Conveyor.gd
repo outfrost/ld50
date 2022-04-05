@@ -238,6 +238,6 @@ func timer_timeout():
 		message.body
 	)
 
-	random_message_timer.start(rng.randi_range(30, 60))
+	random_message_timer.start(rng.randi_range(45, 75))
 	last_last_message_id = last_message_id
 	last_message_id = message_id
