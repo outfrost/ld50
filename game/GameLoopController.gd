@@ -194,7 +194,7 @@ func _calculate_shift_stats():
 	player_assembled_total += player_assembled_current_shift
 	player_attachments_total += player_attachments_current_shift
 	player_money_total += player_money_current_shift
-	player_attachments_total += robot_attachments_current_shift
+	robot_attachments_total += robot_attachments_current_shift
 	robot_assembled_total += robot_assembled_current_shift
 	robot_money_total += robot_money_current_shift
 
@@ -205,8 +205,9 @@ func _calculate_shift_stats():
 	print("Earned: ", player_money_current_shift, " scores.")
 
 	print("\nROBOT SHIFT RESULTS:")
+	print("Robot attached: ", robot_attachments_current_shift," models.")
 	print("Robot assembled: ", robot_assembled_current_shift," models.")
-	print("Robot earned: ", player_money_current_shift, " scores.")
+	print("Robot earned: ", robot_money_current_shift, " scores.")
 
 	print("\nOVERALL PLAYER RESULTS:")
 	print("Attached: ", player_attachments_total," blanks total.")
@@ -214,6 +215,7 @@ func _calculate_shift_stats():
 	print("Earned: ", player_money_total, " scores total.")
 
 	print("\nOVERALL ROBOT RESULTS:")
+	print("Attached: ", robot_attachments_total," blanks total.")
 	print("Assembled: ", robot_assembled_total," models total.")
 	print("Earned: ", robot_money_total, " scores total.")
 
