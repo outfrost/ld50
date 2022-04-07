@@ -52,6 +52,7 @@ func on_return_to_menu() -> void:
 func back_to_menu() -> void:
 	unload_level()
 	main_menu.show()
+	main_menu.music_menu.start()
 
 func unload_level() -> void:
 	if level:

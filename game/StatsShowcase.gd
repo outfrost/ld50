@@ -61,7 +61,7 @@ func gameover_screen():
 	print("gameover_screen() called")
 	bar_is_shown = true
 	get_node("GameOver/GamoverMultiline").bbcode_text = (
-		"You're officially too slow! You're fired!" +
+		"[color=#ff6020]You're officially too slow! After [b]" + str(loopcontroller.shift_number) + "[/b] shifts, you're fired![/color]" +
 		"\n\nYou finished [b]" + str(loopcontroller.player_assembled_current_shift) + "[/b] assemblies" +
 		"\nYou attached [b]" + str(loopcontroller.player_attachments_current_shift) + "[/b] parts" +
 		"\nToday's earnings: [b]" + str(loopcontroller.player_money_current_shift) + "¢[/b]" +
