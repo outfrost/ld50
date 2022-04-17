@@ -46,9 +46,9 @@
         {
             "doubleSided" : true,
             "emissiveFactor" : [
-                0.024252286180853844,
-                0.05424712970852852,
-                0.14730896055698395
+                1,
+                1,
+                1
             ],
             "name" : "ReasonableGlow",
             "pbrMetallicRoughness" : {
