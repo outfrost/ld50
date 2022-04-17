@@ -39,7 +39,7 @@ func _input(event):
 #robot_money_total
 
 func shift_stats_screen():
-	print("shift_stats_screen() called")
+#	print("shift_stats_screen() called")
 	bar_is_shown = true
 	get_node("ShiftStats/StatsMultiline").bbcode_text = (
 		"End of shift [b]" + str(loopcontroller.shift_number) + "[/b]" +
@@ -58,7 +58,7 @@ func shift_stats_screen():
 
 
 func gameover_screen():
-	print("gameover_screen() called")
+#	print("gameover_screen() called")
 	bar_is_shown = true
 	get_node("GameOver/GamoverMultiline").bbcode_text = (
 		"[color=#ff6020]You're officially too slow! After [b]" + str(loopcontroller.shift_number) + "[/b] shifts, you're fired![/color]" +

@@ -105,8 +105,8 @@ func _shift_start():
 	shift_timer.start()
 	time_left = 0
 
-	print("\n-- start of ",shift_number," shift --")
-	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
+#	print("\n-- start of ",shift_number," shift --")
+#	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
 	transition_screen.fade_out()
@@ -142,7 +142,7 @@ func _shift_start():
 		conveyor.start_robot()
 
 func _shift_end():
-	print("-- end of ",shift_number," shift --")
+#	print("-- end of ",shift_number," shift --")
 	shift_music.stop()
 	emit_signal("stop_production")
 	assembly_line_works = false
@@ -168,20 +168,20 @@ func _win_lose_check():
 	else:
 		if robot_money_total > player_money_total:
 			if (robot_money_total-player_money_total) >= points_treshold:
-				print("You have fired!")
+				pass#print("You have fired!")
 				is_lose = true
 			else:
-				print ("Work faster, or you will be fired!")
+				pass#print ("Work faster, or you will be fired!")
 		elif robot_money_total < player_money_total:
-			print("Congrats! You are ahead of robot!")
+			pass#print("Congrats! You are ahead of robot!")
 		else:
-			print("You are neck-and-neck with robot! Work faster!")
+			pass#print("You are neck-and-neck with robot! Work faster!")
 
 
 func _input(event):
 	if event is InputEventKey and !assembly_line_works:
 		emit_signal("any_key_pressed")
-		print("'any_key_pressed' inside GameLoopController")
+#		print("'any_key_pressed' inside GameLoopController")
 
 func _process(delta):
 
@@ -216,25 +216,25 @@ func _calculate_shift_stats():
 	robot_money_total += robot_money_current_shift
 
 
-	print("\nPLAYER SHIFT RESULTS:")
-	print("Attached: ", player_attachments_current_shift," blanks.")
-	print("Assembled: ", player_assembled_current_shift," models")
-	print("Earned: ", player_money_current_shift, " scores.")
-
-	print("\nROBOT SHIFT RESULTS:")
-	print("Robot attached: ", robot_attachments_current_shift," models.")
-	print("Robot assembled: ", robot_assembled_current_shift," models.")
-	print("Robot earned: ", robot_money_current_shift, " scores.")
-
-	print("\nOVERALL PLAYER RESULTS:")
-	print("Attached: ", player_attachments_total," blanks total.")
-	print("Assembled: ", player_assembled_total," models total.")
-	print("Earned: ", player_money_total, " scores total.")
-
-	print("\nOVERALL ROBOT RESULTS:")
-	print("Attached: ", robot_attachments_total," blanks total.")
-	print("Assembled: ", robot_assembled_total," models total.")
-	print("Earned: ", robot_money_total, " scores total.")
+#	print("\nPLAYER SHIFT RESULTS:")
+#	print("Attached: ", player_attachments_current_shift," blanks.")
+#	print("Assembled: ", player_assembled_current_shift," models")
+#	print("Earned: ", player_money_current_shift, " scores.")
+#
+#	print("\nROBOT SHIFT RESULTS:")
+#	print("Robot attached: ", robot_attachments_current_shift," models.")
+#	print("Robot assembled: ", robot_assembled_current_shift," models.")
+#	print("Robot earned: ", robot_money_current_shift, " scores.")
+#
+#	print("\nOVERALL PLAYER RESULTS:")
+#	print("Attached: ", player_attachments_total," blanks total.")
+#	print("Assembled: ", player_assembled_total," models total.")
+#	print("Earned: ", player_money_total, " scores total.")
+#
+#	print("\nOVERALL ROBOT RESULTS:")
+#	print("Attached: ", robot_attachments_total," blanks total.")
+#	print("Assembled: ", robot_assembled_total," models total.")
+#	print("Earned: ", robot_money_total, " scores total.")
 
 
 func _zeroing_main_variables():
@@ -273,7 +273,7 @@ func _load_level():
 	game_node.load_level()
 
 func _introduction():
-	print("Dummy INTRODUCTION")
+	pass#print("Dummy INTRODUCTION")
 
 func _intermission():
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
@@ -294,7 +294,7 @@ func _intermission():
 		_shift_start()
 
 func _hello_robot():
-	print("spawning of robot welcome screen")
+#	print("spawning of robot welcome screen")
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
 	node.hellorobot_screen()
 	transition_screen.fade_out()
@@ -309,7 +309,7 @@ func _hello_robot():
 	_shift_start()
 
 func _gameover():
-	print("\n--- GAME OVER! ---\n")
+#	print("\n--- GAME OVER! ---\n")
 	Sound.play("YouLost")
 	transition_screen.fade_out()
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
@@ -337,7 +337,7 @@ func _on_RobotTimer_timeout():
 			how_many_attachments = base_model_size
 
 		robot_attachments_current_shift += how_many_attachments
-		print("~~~ Robot: I just attached ",how_many_attachments," details!")
+#		print("~~~ Robot: I just attached ",how_many_attachments," details!")
 		add_money("robot",how_many_attachments * money_for_one_blank)
 
 		robot_grade_last_assembly = float(how_many_attachments) / float(base_model_size)
@@ -349,7 +349,7 @@ func _on_RobotTimer_timeout():
 		add_assembly("robot")
 		if how_many_attachments == base_model_size:
 			add_money("robot",base_model_size * money_for_one_blank * money_for_fully_assembled_base_multiplier)
-			print("~~~ Robot: I have fully assembled base!")
+#			print("~~~ Robot: I have fully assembled base!")
 		robot_timer.start()
 
 		emit_signal("robot_assembly_done")
@@ -371,7 +371,7 @@ func return_to_menu() -> void:
 	transition_screen.fade_out()
 
 func get_stats(what):
-	print("SUCCESFULLY CALLED get_stats() from GameLoopController")
+	pass#print("SUCCESFULLY CALLED get_stats() from GameLoopController")
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 #	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
@@ -402,9 +402,9 @@ func add_assembly(recipient:String  = 'undefined'):
 		if recipient == "robot":
 			robot_assembled_current_shift += 1
 		if recipient != "player" and recipient != "robot":
-			print("ERROR: undefined recipient in the 'add_assembly' func.")
+			pass#("ERROR: undefined recipient in the 'add_assembly' func.")
 	else:
-		print("ERROR. Can not add assembled counter: line is not working!")
+		pass#("ERROR. Can not add assembled counter: line is not working!")
 
 func add_money(recipient:String="undefined",money_amount:int = 100):
 	if assembly_line_works:
@@ -413,9 +413,9 @@ func add_money(recipient:String="undefined",money_amount:int = 100):
 				player_money_current_shift += money_amount
 			"robot":
 				robot_money_current_shift += money_amount
-			_: print("ERROR. Can not add money: Recipient is not defined!")
+			_: pass#("ERROR. Can not add money: Recipient is not defined!")
 	else:
-		print("ERROR. Can not add money: line is not working!")
+		pass#("ERROR. Can not add money: line is not working!")
 
 
 
