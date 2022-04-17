@@ -110,29 +110,26 @@
                 "KHR_materials_clearcoat" : {
                     "clearcoatFactor" : 0.4285714030265808,
                     "clearcoatRoughnessFactor" : 0.27551019191741943
-                },
-                "KHR_materials_transmission" : {
-                    "transmissionFactor" : 0.051020409911870956
                 }
             },
             "name" : "BlackMetal",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0.021979352459311485,
-                    0.021979352459311485,
-                    0.021979352459311485,
+                    0.02197943441569805,
+                    0.02197943441569805,
+                    0.02197943441569805,
                     1
                 ],
                 "metallicFactor" : 0.875,
-                "roughnessFactor" : 0.4659864008426666
+                "roughnessFactor" : 0.4659860134124756
             }
         },
         {
             "doubleSided" : true,
             "emissiveFactor" : [
-                0.1024739220738411,
-                0.009058698080480099,
-                0.010432382114231586
+                0.10224173218011856,
+                0.00913403183221817,
+                0.01032982300966978
             ],
             "extensions" : {
                 "KHR_materials_transmission" : {
@@ -142,9 +139,9 @@
             "name" : "RedButton",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0.21403515338897705,
-                    0.04177707061171532,
-                    0.03954731673002243,
+                    0.14240041375160217,
+                    0.028775807470083237,
+                    0.027244899421930313,
                     1
                 ],
                 "metallicFactor" : 0,

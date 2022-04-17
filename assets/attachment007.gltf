@@ -43,21 +43,18 @@
                 "KHR_materials_clearcoat" : {
                     "clearcoatFactor" : 0.4285714030265808,
                     "clearcoatRoughnessFactor" : 0.27551019191741943
-                },
-                "KHR_materials_transmission" : {
-                    "transmissionFactor" : 0.051020409911870956
                 }
             },
             "name" : "BlackMetal",
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
-                    0.021979352459311485,
-                    0.021979352459311485,
-                    0.021979352459311485,
+                    0.02197943441569805,
+                    0.02197943441569805,
+                    0.02197943441569805,
                     1
                 ],
                 "metallicFactor" : 0.875,
-                "roughnessFactor" : 0.4659864008426666
+                "roughnessFactor" : 0.4659860134124756
             }
         },
         {
