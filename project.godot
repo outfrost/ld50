@@ -9,12 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Reference",
 "class": "FmodEventEmitter",
 "language": "GDScript",
 "path": "res://addons/fmod/nodes/FmodEventEmitter.gd"
 }, {
-"base": "Node",
+"base": "",
 "class": "FmodNative",
 "language": "NativeScript",
 "path": "res://addons/fmod/Fmod.gdns"
@@ -35,7 +35,7 @@ _global_script_classes=[ {
 "path": "res://game/loading/TransitionScreen.gd"
 } ]
 _global_script_class_icons={
-"FmodEventEmitter": "res://addons/fmod/nodes/fmod.svg",
+"FmodEventEmitter": "",
 "FmodNative": "",
 "Game": "",
 "GroupMessenger": "",
