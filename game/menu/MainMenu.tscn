@@ -38,11 +38,8 @@ margin_right = 512.0
 margin_bottom = -8.0
 grow_vertical = 0
 custom_fonts/font = ExtResource( 1 )
-text = "v0.2.1"
+text = "v0.3.0"
 valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TitleLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.05
