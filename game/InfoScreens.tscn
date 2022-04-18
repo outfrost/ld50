@@ -88,41 +88,54 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -349.0
-margin_top = -250.0
-margin_right = 346.0
-margin_bottom = 222.0
+margin_left = -420.0
+margin_top = -280.0
+margin_right = 420.0
+margin_bottom = 220.0
 custom_fonts/bold_font = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "akdaskljdaskldjaskldj as
-da d
-ad
-asd 
-ad
-asa
-"
-text = "akdaskljdaskldjaskldj as
-da d
-ad
-asd 
-ad
-asa
-"
+bbcode_text = "1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14"
+text = "1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14"
 
 [node name="NextShift" type="Button" parent="ShiftStats"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -138.0
-margin_top = 243.0
-margin_right = 141.0
-margin_bottom = 304.0
+margin_left = -140.0
+margin_top = 240.0
+margin_right = 140.0
+margin_bottom = 290.0
 text = "NEXT SHIFT"
 
 [node name="IntroRobot" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -134,31 +147,30 @@ grow_vertical = 2
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 
 [node name="AboutRobot" type="RichTextLabel" parent="IntroRobot"]
-anchor_left = 0.498
-anchor_top = 0.483
-anchor_right = 0.498
-anchor_bottom = 0.483
-margin_left = -327.44
-margin_top = -163.76
-margin_right = 326.56
-margin_bottom = 163.24
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 140.0
 custom_fonts/bold_font = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 
 [node name="Proceed" type="Button" parent="IntroRobot"]
-anchor_left = 0.501
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.501
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -139.28
-margin_top = 194.0
-margin_right = 139.72
-margin_bottom = 255.0
+margin_left = -140.0
+margin_top = 160.0
+margin_right = 140.0
+margin_bottom = 210.0
 text = "PROCEED"
 
 [node name="GameOver" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -174,23 +186,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -351.0
-margin_top = -256.0
-margin_right = 348.0
-margin_bottom = 216.0
+margin_left = -420.0
+margin_top = -280.0
+margin_right = 420.0
+margin_bottom = 220.0
 custom_fonts/bold_font = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
 
 [node name="ExitToMenu" type="Button" parent="GameOver"]
-anchor_left = 0.501
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.501
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -139.28
-margin_top = 228.0
-margin_right = 139.72
-margin_bottom = 289.0
+margin_left = -140.0
+margin_top = 240.0
+margin_right = 140.0
+margin_bottom = 290.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
