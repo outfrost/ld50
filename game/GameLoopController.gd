@@ -203,9 +203,6 @@ func _seconds_counter():
 		pass
 	time_left_prev = time_left
 
-func _on_ShiftTimer_timeout():
-	pass # Not used because signal directly spawns _shift_end() function.
-
 func _calculate_shift_stats():
 
 	player_assembled_total += player_assembled_current_shift
