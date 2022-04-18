@@ -17,9 +17,8 @@ func _ready() -> void:
 
 func start() -> void:
 	show()
+	play_button.grab_focus()
 	music_menu.start()
-	# This is a singular drill sound, placed to serve as a test dummy
-	Sound.instance("Drill").reverb(0, 0.5).param("Dampness", 0.2).attach(self).start()
 
 func on_play_pressed() -> void:
 	emit_signal("start_game")

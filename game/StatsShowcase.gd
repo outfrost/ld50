@@ -1,12 +1,12 @@
 extends Control
 
+signal dismissed()
+
 onready var intro:Control = $IntroGame
 onready var shiftstats:Control = $ShiftStats
 onready var hellorobot:Control = $IntroRobot
 onready var gameover:Control = $GameOver
 onready var loopcontroller: Node = get_node("/root/Game/GameLoopController")
-
-signal any_key_pressed()
 
 var bar_is_shown:bool = false
 
@@ -16,10 +16,6 @@ func _ready():
 	intro.visible = false
 	hellorobot.visible = false
 	gameover.visible = false
-
-func _input(event):
-	if event is InputEventKey and bar_is_shown:
-		emit_signal("any_key_pressed")
 
 #player_attachments_current_shift
 #player_assembled_current_shift
@@ -55,7 +51,7 @@ func shift_stats_screen():
 		)
 	self.visible = true
 	shiftstats.visible = true
-
+	$ShiftStats/NextShift.grab_focus()
 
 func gameover_screen():
 #	print("gameover_screen() called")
@@ -74,6 +70,7 @@ func gameover_screen():
 		)
 	self.visible = true
 	gameover.visible = true
+	$GameOver/ExitToMenu.grab_focus()
 
 func hellorobot_screen():
 	bar_is_shown = true
@@ -84,10 +81,11 @@ func hellorobot_screen():
 	)
 	self.visible = true
 	hellorobot.visible = true
+	$IntroRobot/Proceed.grab_focus()
 
 func intro():
 	pass
 
 func _on_Button_pressed():
-	emit_signal("any_key_pressed")
-	Sound.instance("GUI Proceed").attach(self).start()
+	Sound.play("GUI Proceed")
+	emit_signal("dismissed")

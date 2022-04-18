@@ -177,14 +177,7 @@ func _win_lose_check():
 		else:
 			pass#print("You are neck-and-neck with robot! Work faster!")
 
-
-func _input(event):
-	if event is InputEventKey and !assembly_line_works:
-		emit_signal("any_key_pressed")
-#		print("'any_key_pressed' inside GameLoopController")
-
 func _process(delta):
-
 	# assembly line kicks in
 	if assembly_line_works:
 		_seconds_counter()
@@ -277,7 +270,9 @@ func _intermission():
 	node.shift_stats_screen()
 	transition_screen.fade_out()
 	yield(transition_screen, "animation_finished")
-	yield(node,"any_key_pressed")
+
+	yield(node, "dismissed")
+
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
 	node.shiftstats.visible = false
@@ -296,7 +291,9 @@ func _hello_robot():
 	node.hellorobot_screen()
 	transition_screen.fade_out()
 	yield(transition_screen, "animation_finished")
-	yield(node,"any_key_pressed")
+
+	yield(node, "dismissed")
+
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
 	node.hellorobot.visible = false
@@ -311,7 +308,8 @@ func _gameover():
 	transition_screen.fade_out()
 	var node:Control = get_node("/root/Game/UI/InfoScreens")
 	node.gameover_screen()
-	yield(node,"any_key_pressed")
+
+	yield(node, "dismissed")
 
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")

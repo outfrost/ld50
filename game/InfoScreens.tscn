@@ -1,0 +1,202 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://fonts/sans/large_reg.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/sans/large_bold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://game/StatsShowcase.gd" type="Script" id=3]
+[ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 1, 0.376471, 0.12549, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 1, 0.713333, 0.6, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 1, 0.376471, 0.12549, 1 )
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 1, 0.376471, 0.12549, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="InfoScreens" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource( 4 )
+script = ExtResource( 3 )
+
+[node name="IntroGame" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ShiftStats" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="ShiftStats"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="StatsMultiline" type="RichTextLabel" parent="ShiftStats"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -349.0
+margin_top = -250.0
+margin_right = 346.0
+margin_bottom = 222.0
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "akdaskljdaskldjaskldj as
+da d
+ad
+asd 
+ad
+asa
+"
+text = "akdaskljdaskldjaskldj as
+da d
+ad
+asd 
+ad
+asa
+"
+
+[node name="NextShift" type="Button" parent="ShiftStats"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -138.0
+margin_top = 243.0
+margin_right = 141.0
+margin_bottom = 304.0
+text = "NEXT SHIFT"
+
+[node name="IntroRobot" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="IntroRobot"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="AboutRobot" type="RichTextLabel" parent="IntroRobot"]
+anchor_left = 0.498
+anchor_top = 0.483
+anchor_right = 0.498
+anchor_bottom = 0.483
+margin_left = -327.44
+margin_top = -163.76
+margin_right = 326.56
+margin_bottom = 163.24
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+
+[node name="Proceed" type="Button" parent="IntroRobot"]
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+margin_left = -139.28
+margin_top = 194.0
+margin_right = 139.72
+margin_bottom = 255.0
+text = "PROCEED"
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+
+[node name="GamoverMultiline" type="RichTextLabel" parent="GameOver"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -351.0
+margin_top = -256.0
+margin_right = 348.0
+margin_bottom = 216.0
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+
+[node name="ExitToMenu" type="Button" parent="GameOver"]
+anchor_left = 0.501
+anchor_top = 0.5
+anchor_right = 0.501
+anchor_bottom = 0.5
+margin_left = -139.28
+margin_top = 228.0
+margin_right = 139.72
+margin_bottom = 289.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "EXIT TO MENU"
+
+[connection signal="pressed" from="ShiftStats/NextShift" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="IntroRobot/Proceed" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="GameOver/ExitToMenu" to="." method="_on_Button_pressed"]
