@@ -27,9 +27,6 @@ robot_timer_path = NodePath("RobotTimer")
 [node name="ShiftTimer" type="Timer" parent="GameLoopController"]
 one_shot = true
 
-[node name="SecondsEmitter" type="Timer" parent="GameLoopController"]
-one_shot = true
-
 [node name="RobotTimer" type="Timer" parent="GameLoopController"]
 wait_time = 60.0
 one_shot = true

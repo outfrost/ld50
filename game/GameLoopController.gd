@@ -347,7 +347,6 @@ func _on_RobotTimer_timeout():
 #			print("~~~ Robot: I have fully assembled base!")
 		robot_timer.start()
 
-		emit_signal("robot_assembly_done")
 		emit_signal("stats_updated")
 
 #############################################
