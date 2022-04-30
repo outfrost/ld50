@@ -65,6 +65,7 @@ var robot_money_total:int = 0
 
 # Sound
 var shift_music: Sound.EvInstance
+var shift_ambience: Sound.EvInstance
 
 # Notifications
 var said_halftime: bool = false
@@ -73,6 +74,7 @@ var said_announcment: bool = false
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
+	shift_ambience = Sound.instance("Ambience")
 
 func shifts_init():
 	_zeroing_main_variables()
@@ -109,6 +111,7 @@ func _shift_start():
 #	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
+	shift_ambience.start()
 	transition_screen.fade_out()
 
 	yield(get_tree().create_timer(2.0), "timeout")
@@ -144,6 +147,7 @@ func _shift_start():
 func _shift_end():
 #	print("-- end of ",shift_number," shift --")
 	shift_music.stop()
+	shift_ambience.stop()
 	emit_signal("stop_production")
 	assembly_line_works = false
 	robot_timer.stop()
