@@ -14,8 +14,6 @@ script = ExtResource( 5 )
 level_scene = ExtResource( 2 )
 loop_controller_path = NodePath("GameLoopController")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="LevelContainer" type="Spatial" parent="."]
 
 [node name="GameLoopController" type="Node" parent="."]
