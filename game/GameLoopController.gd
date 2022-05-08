@@ -1,42 +1,25 @@
 extends Node
 
-# TODO
-# - add signals for essential events
-# - improve the timer stuff
-# - refactor some mess between _process and procedural stages (it works actually)
-# - public func to adjust robot's speed maybe.
-
 signal spawn_first_assembly()
 signal stop_production()
 signal stats_updated()
 
 onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
+onready var intermission_ui: Control = get_node("/root/Game/UI/IntermissionUi")
 
 # CORE STATS
-var simplified_win_lose:bool = false
-var money_for_one_blank:int = 100
-var money_for_fully_assembled_base_multiplier:int = 3
-var robot_initial_skill_bonus:int = 0 # zero means no bonus
-export var points_treshold = 10000
-
-var attaches_to_pass_shift = 0 # simplified: set 0 if need to pass all shifts
+const money_for_one_blank: int = 100
+const money_for_fully_assembled_base_multiplier: int = 3
+const robot_initial_skill_bonus: int = 0 # zero means no bonus
+# If robot gets this far ahead in total, player loses
+const points_treshold = 10000
 
 # GAMEPLAY
-#export(float, 1, 4, 0.01) var robot_speed
-#export(float, 1, 8, 0.01) var median_assembly_time
-var assembly_line_works:bool
-var shift_number:int
-var is_lose:bool
+var shift_number: int
 var robot_skill:int = 0
 
-var max_part_index: int = 9
-
 # ASSEMBLY LINE TIMING STUFF
-export var shift_time_limit:int = 60 #seconds
-var time_left:int #must be in seconds
-var time_left_prev:int #must be in seconds
-var time_shift_started:int = 0
-var time_shift_passed:int = 0
+export var shift_time_limit: int = 60 # seconds
 
 export(NodePath) var shift_timer_path
 onready var shift_timer: Node = get_node(shift_timer_path)
@@ -45,23 +28,23 @@ export(NodePath) var robot_timer_path
 onready var robot_timer: Timer = get_node(robot_timer_path)
 
 # STATS
-var player_attachments_current_shift:int = 0
-var player_assembled_current_shift:int = 0
-var player_money_current_shift:int = 0
-var robot_attachments_current_shift:int = 0
-var robot_assembled_current_shift:int = 0
-var robot_money_current_shift:int = 0
-var player_grade_last_assembly:float = 0.0
-var player_grade_current_shift:float = 0.0
-var robot_grade_last_assembly:float = 0.0
-var robot_grade_current_shift:float = 0.0
+var player_attachments_current_shift: int = 0
+var player_assembled_current_shift: int = 0
+var player_money_current_shift: int = 0
+var robot_attachments_current_shift: int = 0
+var robot_assembled_current_shift: int = 0
+var robot_money_current_shift: int = 0
+var player_grade_last_assembly: float = 0.0
+var player_grade_current_shift: float = 0.0
+var robot_grade_last_assembly: float = 0.0
+var robot_grade_current_shift: float = 0.0
 
-var player_attachments_total:int = 0
-var player_assembled_total:int = 0
-var player_money_total:int = 0
-var robot_attachments_total:int = 0
-var robot_assembled_total:int = 0
-var robot_money_total:int = 0
+var player_attachments_total: int = 0
+var player_assembled_total: int = 0
+var player_money_total: int = 0
+var robot_attachments_total: int = 0
+var robot_assembled_total: int = 0
+var robot_money_total: int = 0
 
 # Sound
 var shift_music: Sound.EvInstance
@@ -69,20 +52,26 @@ var shift_ambience: Sound.EvInstance
 
 # Notifications
 var said_halftime: bool = false
-var said_announcment: bool = false
 
 func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
 	shift_ambience = Sound.instance("Ambience")
 
+func _process(delta):
+	if !said_halftime && !shift_timer.is_stopped() && shift_timer.time_left < (shift_timer.wait_time * 0.5):
+		said_halftime = true
+		Notification.push(
+			"Shift Supervisor",
+			"Only halfway through the shift. Keep going!"
+		)
+
 func shifts_init():
-	_zeroing_main_variables()
-	_introduction()
+	reset_all()
 	_shift_start()
 
 func _shift_start():
-	_zeroing_shift_variables()
+	reset_shift()
 	shift_number += 1
 
 	var conveyor = find_parent("Game").get_node("LevelContainer/Level/Room/Conveyor")
@@ -92,23 +81,18 @@ func _shift_start():
 		robot_timer.wait_time = 60 / robot_skill
 		robot_timer.start()
 
+	var max_part_index: int = 9
 	if shift_number == 1:
 		max_part_index = 2
 	elif shift_number == 2:
 		max_part_index = 3
 	elif shift_number == 3:
 		max_part_index = 4
-	else:
-		max_part_index = 9
+
 	conveyor.set_difficulty_params(min(2 + shift_number, 16), 5 + shift_number, max_part_index)
 
 	print("current Robot Skill: ",robot_skill)
-	assembly_line_works = true
 	shift_timer.start()
-	time_left = 0
-
-#	print("\n-- start of ",shift_number," shift --")
-#	print("Assemble as much as possible devices in ", shift_time_limit, " seconds.")
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()
 	shift_ambience.start()
@@ -145,63 +129,26 @@ func _shift_start():
 		conveyor.start_robot()
 
 func _shift_end():
-#	print("-- end of ",shift_number," shift --")
 	shift_music.stop()
 	shift_ambience.stop()
 	emit_signal("stop_production")
-	assembly_line_works = false
 	robot_timer.stop()
 
 	_calculate_shift_stats()
-	_win_lose_check()
 	transition_screen.fade_in()
 	yield(get_tree().create_timer(0.5), "timeout")
 
-	if is_lose:
+	if is_game_lost():
 		_unload_level()
 		_gameover()
 	else:
 		_unload_level()
 		_intermission()
 
-func _win_lose_check():
-	if simplified_win_lose:
-		if player_attachments_current_shift < attaches_to_pass_shift:
-			is_lose = true
-		print("\nis_lose: ", is_lose, "\n")
-	else:
-		if robot_money_total > player_money_total:
-			if (robot_money_total-player_money_total) >= points_treshold:
-				pass#print("You have fired!")
-				is_lose = true
-			else:
-				pass#print ("Work faster, or you will be fired!")
-		elif robot_money_total < player_money_total:
-			pass#print("Congrats! You are ahead of robot!")
-		else:
-			pass#print("You are neck-and-neck with robot! Work faster!")
-
-func _process(delta):
-	# assembly line kicks in
-	if assembly_line_works:
-		_seconds_counter()
-
-		if !said_halftime && shift_timer.time_left < (shift_timer.wait_time * 0.5):
-			said_halftime = true
-			Notification.push(
-				"Shift Supervisor",
-				"Only halfway through the shift. Keep going!"
-			)
-
-func _seconds_counter():
-	time_left = floor(shift_timer.get_time_left())
-	if time_left != time_left_prev:
-#		print(time_left," seconds left")
-		pass
-	time_left_prev = time_left
+func is_game_lost() -> bool:
+	return (robot_money_total - player_money_total) >= points_treshold
 
 func _calculate_shift_stats():
-
 	player_assembled_total += player_assembled_current_shift
 	player_attachments_total += player_attachments_current_shift
 	player_money_total += player_money_current_shift
@@ -209,29 +156,7 @@ func _calculate_shift_stats():
 	robot_assembled_total += robot_assembled_current_shift
 	robot_money_total += robot_money_current_shift
 
-
-#	print("\nPLAYER SHIFT RESULTS:")
-#	print("Attached: ", player_attachments_current_shift," blanks.")
-#	print("Assembled: ", player_assembled_current_shift," models")
-#	print("Earned: ", player_money_current_shift, " scores.")
-#
-#	print("\nROBOT SHIFT RESULTS:")
-#	print("Robot attached: ", robot_attachments_current_shift," models.")
-#	print("Robot assembled: ", robot_assembled_current_shift," models.")
-#	print("Robot earned: ", robot_money_current_shift, " scores.")
-#
-#	print("\nOVERALL PLAYER RESULTS:")
-#	print("Attached: ", player_attachments_total," blanks total.")
-#	print("Assembled: ", player_assembled_total," models total.")
-#	print("Earned: ", player_money_total, " scores total.")
-#
-#	print("\nOVERALL ROBOT RESULTS:")
-#	print("Attached: ", robot_attachments_total," blanks total.")
-#	print("Assembled: ", robot_assembled_total," models total.")
-#	print("Earned: ", robot_money_total, " scores total.")
-
-
-func _zeroing_main_variables():
+func reset_all():
 	player_assembled_total = 0
 	robot_assembled_total = 0
 	player_attachments_total = 0
@@ -239,17 +164,15 @@ func _zeroing_main_variables():
 	player_money_total = 0
 	robot_money_total = 0
 	shift_number = 0
-	is_lose = false
 	emit_signal("stats_updated")
 
-func _zeroing_shift_variables():
+func reset_shift():
 	player_attachments_current_shift = 0
 	player_assembled_current_shift = 0
 	player_money_current_shift = 0
 	robot_attachments_current_shift = 0
 	robot_assembled_current_shift = 0
 	robot_money_current_shift = 0
-	assembly_line_works = false
 	player_grade_last_assembly = 0.0
 	player_grade_current_shift = 0.0
 	robot_grade_last_assembly = 0.0
@@ -266,92 +189,74 @@ func _load_level():
 	var game_node:Node = get_node("/root/Game")
 	game_node.load_level()
 
-func _introduction():
-	pass#print("Dummy INTRODUCTION")
-
 func _intermission():
-	var node:Control = get_node("/root/Game/UI/InfoScreens")
-	node.shift_stats_screen()
+	intermission_ui.shift_stats_screen()
 	transition_screen.fade_out()
 	yield(transition_screen, "animation_finished")
 
-	yield(node, "dismissed")
+	yield(intermission_ui, "dismissed")
 
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
-	node.shiftstats.visible = false
-	node.bar_is_shown = false
-	node.hide()
+	intermission_ui.reset()
 
 	if shift_number == 1:
-		_hello_robot()
+		intro_robot()
 	else:
 		_load_level()
 		_shift_start()
 
-func _hello_robot():
-#	print("spawning of robot welcome screen")
-	var node:Control = get_node("/root/Game/UI/InfoScreens")
-	node.hellorobot_screen()
+func intro_robot():
+	intermission_ui.hellorobot_screen()
 	transition_screen.fade_out()
 	yield(transition_screen, "animation_finished")
 
-	yield(node, "dismissed")
+	yield(intermission_ui, "dismissed")
 
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
-	node.hellorobot.visible = false
-	node.bar_is_shown = false
-	node.hide()
+	intermission_ui.reset()
 	_load_level()
 	_shift_start()
 
 func _gameover():
-#	print("\n--- GAME OVER! ---\n")
 	Sound.play("YouLost")
 	transition_screen.fade_out()
-	var node:Control = get_node("/root/Game/UI/InfoScreens")
-	node.gameover_screen()
+	intermission_ui.gameover_screen()
 
-	yield(node, "dismissed")
+	yield(intermission_ui, "dismissed")
 
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
-	node.gameover.visible = false
-	node.bar_is_shown = false
-	node.hide()
+	intermission_ui.reset()
 	get_node("/root/Game").back_to_menu()
 	transition_screen.fade_out()
 
 func _on_RobotTimer_timeout():
-	if assembly_line_works:
-		#roll base model size
-#		var base_model_size = randi() % (max_part_index + 1) + 1
-		var base_model_size = randi()%16+1
-		#how many robot will attach?
-		var how_many_attachments:int
-		if robot_skill < base_model_size:
-			how_many_attachments = randi()%int(base_model_size)+1
-		else:
-			how_many_attachments = base_model_size
+	#roll base model size
+	var base_model_size = randi()%16+1
+	#how many robot will attach?
+	var how_many_attachments:int
+	if robot_skill < base_model_size:
+		how_many_attachments = randi()%int(base_model_size)+1
+	else:
+		how_many_attachments = base_model_size
 
-		robot_attachments_current_shift += how_many_attachments
-#		print("~~~ Robot: I just attached ",how_many_attachments," details!")
-		add_money("robot",how_many_attachments * money_for_one_blank)
+	robot_attachments_current_shift += how_many_attachments
+	add_money("robot",how_many_attachments * money_for_one_blank)
 
-		robot_grade_last_assembly = float(how_many_attachments) / float(base_model_size)
-		robot_grade_current_shift = (
-			(robot_grade_current_shift * robot_assembled_current_shift)
-			+ robot_grade_last_assembly
-		) / (robot_assembled_current_shift + 1)
+	robot_grade_last_assembly = float(how_many_attachments) / float(base_model_size)
+	robot_grade_current_shift = (
+		(robot_grade_current_shift * robot_assembled_current_shift)
+		+ robot_grade_last_assembly
+	) / (robot_assembled_current_shift + 1)
 
-		add_assembly("robot")
-		if how_many_attachments == base_model_size:
-			add_money("robot",base_model_size * money_for_one_blank * money_for_fully_assembled_base_multiplier)
-#			print("~~~ Robot: I have fully assembled base!")
-		robot_timer.start()
+	add_assembly("robot")
+	if how_many_attachments == base_model_size:
+		add_money("robot",base_model_size * money_for_one_blank * money_for_fully_assembled_base_multiplier)
+	robot_timer.start()
 
-		emit_signal("stats_updated")
+	emit_signal("stats_updated")
 
 #############################################
 #     P U B L I C     F U N C T I O N S     #
@@ -362,22 +267,13 @@ func return_to_menu() -> void:
 	shift_music.stop()
 	shift_number = 0
 	emit_signal("stop_production")
-	assembly_line_works = false
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
 	get_node("/root/Game").back_to_menu()
 	transition_screen.fade_out()
 
-func get_stats(what):
-	pass#print("SUCCESFULLY CALLED get_stats() from GameLoopController")
-
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
-#	print("yeet " + str(num_attachments) + "/" + str(num_connectors))
-#	if !said_announcment:
 	Sound.play("Announcer")
-#		said_announcment = true
-#	else:
-#		said_announcment = false
 
 	player_grade_last_assembly = float(num_attachments) / float(num_connectors)
 	player_grade_current_shift = (
@@ -393,27 +289,16 @@ func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 
 	emit_signal("stats_updated")
 
-func add_assembly(recipient:String  = 'undefined'):
-	if assembly_line_works:
-		if recipient == "player":
+func add_assembly(recipient: String = "undefined"):
+	match recipient:
+		"player":
 			player_assembled_current_shift += 1
-		if recipient == "robot":
+		"robot":
 			robot_assembled_current_shift += 1
-		if recipient != "player" and recipient != "robot":
-			pass#("ERROR: undefined recipient in the 'add_assembly' func.")
-	else:
-		pass#("ERROR. Can not add assembled counter: line is not working!")
 
-func add_money(recipient:String="undefined",money_amount:int = 100):
-	if assembly_line_works:
-		match recipient:
-			"player":
-				player_money_current_shift += money_amount
-			"robot":
-				robot_money_current_shift += money_amount
-			_: pass#("ERROR. Can not add money: Recipient is not defined!")
-	else:
-		pass#("ERROR. Can not add money: line is not working!")
-
-
-
+func add_money(recipient: String = "undefined", money_amount: int = 100):
+	match recipient:
+		"player":
+			player_money_current_shift += money_amount
+		"robot":
+			robot_money_current_shift += money_amount

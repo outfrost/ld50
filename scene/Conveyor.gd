@@ -59,7 +59,6 @@ func _ready() -> void:
 	tween.connect("tween_completed", self, "tween_completed")
 	for bucket in $BucketSupport/PartsBuckets.get_children():
 		bucket.connect("part_picked", self, "part_picked")
-	gameloopcontroller.get_stats("hello")
 	if gameloopcontroller.shift_number >= 1:
 		robot = preload("res://assets/robotScene.tscn").instance()
 		$Robotspawn.add_child(robot)

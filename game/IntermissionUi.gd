@@ -2,41 +2,15 @@ extends Control
 
 signal dismissed()
 
-onready var intro:Control = $IntroGame
 onready var shiftstats:Control = $ShiftStats
 onready var hellorobot:Control = $IntroRobot
 onready var gameover:Control = $GameOver
 onready var loopcontroller: Node = get_node("/root/Game/GameLoopController")
 
-var bar_is_shown:bool = false
-
 func _ready():
-	self.visible = false
-	shiftstats.visible = false
-	intro.visible = false
-	hellorobot.visible = false
-	gameover.visible = false
-
-#player_attachments_current_shift
-#player_assembled_current_shift
-#player_money_current_shift
-#robot_attachments_current_shift
-#robot_assembled_current_shift
-#robot_money_current_shift
-#player_grade_last_assembly
-#player_grade_current_shift
-#robot_grade_last_assembly
-#robot_grade_current_shift
-#
-#player_attachments_total
-#player_assembled_total
-#player_money_total
-#robot_assembled_total
-#robot_money_total
+	reset()
 
 func shift_stats_screen():
-#	print("shift_stats_screen() called")
-	bar_is_shown = true
 	get_node("ShiftStats/StatsMultiline").bbcode_text = (
 		"End of shift [b]" + str(loopcontroller.shift_number) + "[/b]" +
 		"\n\nYou finished [b]" + str(loopcontroller.player_assembled_current_shift) + "[/b] assemblies" +
@@ -54,8 +28,6 @@ func shift_stats_screen():
 	$ShiftStats/NextShift.grab_focus()
 
 func gameover_screen():
-#	print("gameover_screen() called")
-	bar_is_shown = true
 	get_node("GameOver/GamoverMultiline").bbcode_text = (
 		"[color=#ff6020]You're officially too slow! After [b]" + str(loopcontroller.shift_number) + "[/b] shifts, you're fired![/color]" +
 		"\n\nYou finished [b]" + str(loopcontroller.player_assembled_current_shift) + "[/b] assemblies" +
@@ -73,7 +45,6 @@ func gameover_screen():
 	$GameOver/ExitToMenu.grab_focus()
 
 func hellorobot_screen():
-	bar_is_shown = true
 	get_node("IntroRobot/AboutRobot").bbcode_text = (
 		"Please welcome:" +
 		"\nOur newest hire and latest addition to the factory floor, the 6DoF Assembly Line Robot!" +
@@ -83,9 +54,12 @@ func hellorobot_screen():
 	hellorobot.visible = true
 	$IntroRobot/Proceed.grab_focus()
 
-func intro():
-	pass
-
 func _on_Button_pressed():
 	Sound.play("GUI Proceed")
 	emit_signal("dismissed")
+
+func reset():
+	self.visible = false
+	shiftstats.visible = false
+	hellorobot.visible = false
+	gameover.visible = false

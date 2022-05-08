@@ -2,7 +2,7 @@
 
 [ext_resource path="res://fonts/sans/large_reg.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/sans/large_bold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://game/StatsShowcase.gd" type="Script" id=3]
+[ext_resource path="res://game/IntermissionUi.gd" type="Script" id=3]
 [ext_resource path="res://game/ui-theme/ui_theme.tres" type="Theme" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -60,17 +60,13 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="InfoScreens" type="Control"]
+[node name="IntermissionUi" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource( 4 )
 script = ExtResource( 3 )
-
-[node name="IntroGame" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
 
 [node name="ShiftStats" type="Control" parent="."]
 anchor_right = 1.0
