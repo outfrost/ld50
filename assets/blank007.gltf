@@ -4,7 +4,6 @@
         "version" : "2.0"
     },
     "extensionsUsed" : [
-        "KHR_materials_clearcoat",
         "KHR_materials_transmission"
     ],
     "scene" : 0,
@@ -26,35 +25,14 @@
         {
             "doubleSided" : true,
             "extensions" : {
-                "KHR_materials_clearcoat" : {
-                    "clearcoatFactor" : 0.4285714030265808,
-                    "clearcoatRoughnessFactor" : 0.27551019191741943
-                }
-            },
-            "name" : "BlackMetal",
-            "pbrMetallicRoughness" : {
-                "baseColorFactor" : [
-                    0.02197943441569805,
-                    0.02197943441569805,
-                    0.02197943441569805,
-                    1
-                ],
-                "metallicFactor" : 0.875,
-                "roughnessFactor" : 0.4659860134124756
-            }
-        },
-        {
-            "doubleSided" : true,
-            "extensions" : {
-                "KHR_materials_clearcoat" : {
-                    "clearcoatFactor" : 0.5714285969734192,
-                    "clearcoatRoughnessFactor" : 0.053809523582458496
-                },
                 "KHR_materials_transmission" : {
                     "transmissionFactor" : 0.5884353518486023
                 }
             },
             "name" : "BlackPlastic.001",
+            "normalTexture" : {
+                "index" : 0
+            },
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.025393981486558914,
@@ -63,7 +41,7 @@
                     1
                 ],
                 "metallicFactor" : 0,
-                "roughnessFactor" : 0.5
+                "roughnessFactor" : 0.7636363506317139
             }
         },
         {
@@ -100,7 +78,7 @@
                         "TEXCOORD_0" : 6
                     },
                     "indices" : 7,
-                    "material" : 1
+                    "material" : 0
                 },
                 {
                     "attributes" : {
@@ -109,9 +87,22 @@
                         "TEXCOORD_0" : 10
                     },
                     "indices" : 11,
-                    "material" : 2
+                    "material" : 1
                 }
             ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "BlackPlasticBump",
+            "uri" : "BlackPlasticBump.png"
         }
     ],
     "accessors" : [
@@ -152,7 +143,7 @@
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 774,
+            "count" : 776,
             "max" : [
                 0.04999999701976776,
                 0.050000011920928955,
@@ -168,13 +159,13 @@
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 774,
+            "count" : 776,
             "type" : "VEC3"
         },
         {
             "bufferView" : 6,
             "componentType" : 5126,
-            "count" : 774,
+            "count" : 776,
             "type" : "VEC2"
         },
         {
@@ -241,48 +232,54 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 9288,
+            "byteLength" : 9312,
             "byteOffset" : 3776
         },
         {
             "buffer" : 0,
-            "byteLength" : 9288,
-            "byteOffset" : 13064
+            "byteLength" : 9312,
+            "byteOffset" : 13088
         },
         {
             "buffer" : 0,
-            "byteLength" : 6192,
-            "byteOffset" : 22352
+            "byteLength" : 6208,
+            "byteOffset" : 22400
         },
         {
             "buffer" : 0,
             "byteLength" : 3078,
-            "byteOffset" : 28544
+            "byteOffset" : 28608
         },
         {
             "buffer" : 0,
             "byteLength" : 1860,
-            "byteOffset" : 31624
+            "byteOffset" : 31688
         },
         {
             "buffer" : 0,
             "byteLength" : 1860,
-            "byteOffset" : 33484
+            "byteOffset" : 33548
         },
         {
             "buffer" : 0,
             "byteLength" : 1240,
-            "byteOffset" : 35344
+            "byteOffset" : 35408
         },
         {
             "buffer" : 0,
             "byteLength" : 546,
-            "byteOffset" : 36584
+            "byteOffset" : 36648
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 37132,
+            "byteLength" : 37196,
             "uri" : "blank007.bin"
         }
     ]

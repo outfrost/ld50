@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/attachment006.gltf-5942cb990435b3545cfbfd95d14bbb74.scn"
+path="res://.import/basePineapple.gltf-5424728a0b50e0cc93bd7f647feab5c7.scn"
 
 [deps]
 
-source_file="res://assets/attachment006.gltf"
-dest_files=[ "res://.import/attachment006.gltf-5942cb990435b3545cfbfd95d14bbb74.scn" ]
+source_file="res://assets/basePineapple.gltf"
+dest_files=[ "res://.import/basePineapple.gltf-5424728a0b50e0cc93bd7f647feab5c7.scn" ]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/storage=0
 nodes/use_legacy_names=false
 materials/location=1
 materials/storage=2
-materials/keep_on_reimport=false
+materials/keep_on_reimport=true
 meshes/octahedral_compression=true
 meshes/compress=4286
 meshes/ensure_tangents=true

@@ -4,7 +4,6 @@
         "version" : "2.0"
     },
     "extensionsUsed" : [
-        "KHR_materials_clearcoat",
         "KHR_materials_transmission"
     ],
     "scene" : 0,
@@ -26,15 +25,14 @@
         {
             "doubleSided" : true,
             "extensions" : {
-                "KHR_materials_clearcoat" : {
-                    "clearcoatFactor" : 0.5714285969734192,
-                    "clearcoatRoughnessFactor" : 0.053809523582458496
-                },
                 "KHR_materials_transmission" : {
                     "transmissionFactor" : 0.5884353518486023
                 }
             },
             "name" : "BlackPlastic.001",
+            "normalTexture" : {
+                "index" : 0
+            },
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.025393981486558914,
@@ -43,7 +41,7 @@
                     1
                 ],
                 "metallicFactor" : 0,
-                "roughnessFactor" : 0.5
+                "roughnessFactor" : 0.7636363506317139
             }
         },
         {
@@ -118,11 +116,24 @@
             ]
         }
     ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "BlackPlasticBump",
+            "uri" : "BlackPlasticBump.png"
+        }
+    ],
     "accessors" : [
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 1896,
+            "count" : 1876,
             "max" : [
                 0.04999998211860657,
                 0.07000000029802322,
@@ -138,13 +149,13 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 1896,
+            "count" : 1876,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 1896,
+            "count" : 1876,
             "type" : "VEC2"
         },
         {
@@ -225,68 +236,74 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 22752,
+            "byteLength" : 22512,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 22752,
-            "byteOffset" : 22752
+            "byteLength" : 22512,
+            "byteOffset" : 22512
         },
         {
             "buffer" : 0,
-            "byteLength" : 15168,
-            "byteOffset" : 45504
+            "byteLength" : 15008,
+            "byteOffset" : 45024
         },
         {
             "buffer" : 0,
             "byteLength" : 6048,
-            "byteOffset" : 60672
+            "byteOffset" : 60032
         },
         {
             "buffer" : 0,
             "byteLength" : 768,
-            "byteOffset" : 66720
+            "byteOffset" : 66080
         },
         {
             "buffer" : 0,
             "byteLength" : 768,
-            "byteOffset" : 67488
+            "byteOffset" : 66848
         },
         {
             "buffer" : 0,
             "byteLength" : 512,
-            "byteOffset" : 68256
+            "byteOffset" : 67616
         },
         {
             "buffer" : 0,
             "byteLength" : 192,
-            "byteOffset" : 68768
+            "byteOffset" : 68128
         },
         {
             "buffer" : 0,
             "byteLength" : 2100,
-            "byteOffset" : 68960
+            "byteOffset" : 68320
         },
         {
             "buffer" : 0,
             "byteLength" : 2100,
-            "byteOffset" : 71060
+            "byteOffset" : 70420
         },
         {
             "buffer" : 0,
             "byteLength" : 1400,
-            "byteOffset" : 73160
+            "byteOffset" : 72520
         },
         {
             "buffer" : 0,
             "byteLength" : 528,
-            "byteOffset" : 74560
+            "byteOffset" : 73920
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 75088,
+            "byteLength" : 74448,
             "uri" : "attachment002.bin"
         }
     ]
