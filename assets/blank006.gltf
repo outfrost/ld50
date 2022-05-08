@@ -46,15 +46,14 @@
         {
             "doubleSided" : true,
             "extensions" : {
-                "KHR_materials_clearcoat" : {
-                    "clearcoatFactor" : 0.5714285969734192,
-                    "clearcoatRoughnessFactor" : 0.053809523582458496
-                },
                 "KHR_materials_transmission" : {
                     "transmissionFactor" : 0.5884353518486023
                 }
             },
             "name" : "BlackPlastic.001",
+            "normalTexture" : {
+                "index" : 0
+            },
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.025393981486558914,
@@ -63,7 +62,7 @@
                     1
                 ],
                 "metallicFactor" : 0,
-                "roughnessFactor" : 0.5
+                "roughnessFactor" : 0.7636363506317139
             }
         },
         {
@@ -114,6 +113,19 @@
             ]
         }
     ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "BlackPlasticBump",
+            "uri" : "BlackPlasticBump.png"
+        }
+    ],
     "accessors" : [
         {
             "bufferView" : 0,
@@ -152,7 +164,7 @@
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 810,
+            "count" : 797,
             "max" : [
                 0.050000011920928955,
                 0.050000011920928955,
@@ -168,13 +180,13 @@
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 810,
+            "count" : 797,
             "type" : "VEC3"
         },
         {
             "bufferView" : 6,
             "componentType" : 5126,
-            "count" : 810,
+            "count" : 797,
             "type" : "VEC2"
         },
         {
@@ -241,48 +253,54 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 9720,
+            "byteLength" : 9564,
             "byteOffset" : 2880
         },
         {
             "buffer" : 0,
-            "byteLength" : 9720,
-            "byteOffset" : 12600
+            "byteLength" : 9564,
+            "byteOffset" : 12444
         },
         {
             "buffer" : 0,
-            "byteLength" : 6480,
-            "byteOffset" : 22320
+            "byteLength" : 6376,
+            "byteOffset" : 22008
         },
         {
             "buffer" : 0,
             "byteLength" : 3036,
-            "byteOffset" : 28800
+            "byteOffset" : 28384
         },
         {
             "buffer" : 0,
             "byteLength" : 4392,
-            "byteOffset" : 31836
+            "byteOffset" : 31420
         },
         {
             "buffer" : 0,
             "byteLength" : 4392,
-            "byteOffset" : 36228
+            "byteOffset" : 35812
         },
         {
             "buffer" : 0,
             "byteLength" : 2928,
-            "byteOffset" : 40620
+            "byteOffset" : 40204
         },
         {
             "buffer" : 0,
             "byteLength" : 1224,
-            "byteOffset" : 43548
+            "byteOffset" : 43132
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 44772,
+            "byteLength" : 44356,
             "uri" : "blank006.bin"
         }
     ]

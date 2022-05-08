@@ -4,7 +4,6 @@
         "version" : "2.0"
     },
     "extensionsUsed" : [
-        "KHR_materials_clearcoat",
         "KHR_materials_transmission"
     ],
     "scene" : 0,
@@ -26,35 +25,14 @@
         {
             "doubleSided" : true,
             "extensions" : {
-                "KHR_materials_clearcoat" : {
-                    "clearcoatFactor" : 0.4285714030265808,
-                    "clearcoatRoughnessFactor" : 0.27551019191741943
-                }
-            },
-            "name" : "BlackMetal",
-            "pbrMetallicRoughness" : {
-                "baseColorFactor" : [
-                    0.02197943441569805,
-                    0.02197943441569805,
-                    0.02197943441569805,
-                    1
-                ],
-                "metallicFactor" : 0.875,
-                "roughnessFactor" : 0.4659860134124756
-            }
-        },
-        {
-            "doubleSided" : true,
-            "extensions" : {
-                "KHR_materials_clearcoat" : {
-                    "clearcoatFactor" : 0.5714285969734192,
-                    "clearcoatRoughnessFactor" : 0.053809523582458496
-                },
                 "KHR_materials_transmission" : {
                     "transmissionFactor" : 0.5884353518486023
                 }
             },
             "name" : "BlackPlastic.001",
+            "normalTexture" : {
+                "index" : 0
+            },
             "pbrMetallicRoughness" : {
                 "baseColorFactor" : [
                     0.025393981486558914,
@@ -63,7 +41,7 @@
                     1
                 ],
                 "metallicFactor" : 0,
-                "roughnessFactor" : 0.5
+                "roughnessFactor" : 0.7636363506317139
             }
         },
         {
@@ -100,7 +78,7 @@
                         "TEXCOORD_0" : 6
                     },
                     "indices" : 7,
-                    "material" : 1
+                    "material" : 0
                 },
                 {
                     "attributes" : {
@@ -109,16 +87,29 @@
                         "TEXCOORD_0" : 10
                     },
                     "indices" : 11,
-                    "material" : 2
+                    "material" : 1
                 }
             ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "BlackPlasticBump",
+            "uri" : "BlackPlasticBump.png"
         }
     ],
     "accessors" : [
         {
             "bufferView" : 0,
             "componentType" : 5126,
-            "count" : 86,
+            "count" : 128,
             "max" : [
                 0.050000011920928955,
                 7.450580596923828e-09,
@@ -134,13 +125,13 @@
         {
             "bufferView" : 1,
             "componentType" : 5126,
-            "count" : 86,
+            "count" : 128,
             "type" : "VEC3"
         },
         {
             "bufferView" : 2,
             "componentType" : 5126,
-            "count" : 86,
+            "count" : 128,
             "type" : "VEC2"
         },
         {
@@ -152,7 +143,7 @@
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 206,
+            "count" : 224,
             "max" : [
                 0.050000011920928955,
                 0.025000013411045074,
@@ -168,13 +159,13 @@
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 206,
+            "count" : 224,
             "type" : "VEC3"
         },
         {
             "bufferView" : 6,
             "componentType" : 5126,
-            "count" : 206,
+            "count" : 224,
             "type" : "VEC2"
         },
         {
@@ -221,68 +212,74 @@
     "bufferViews" : [
         {
             "buffer" : 0,
-            "byteLength" : 1032,
+            "byteLength" : 1536,
             "byteOffset" : 0
         },
         {
             "buffer" : 0,
-            "byteLength" : 1032,
-            "byteOffset" : 1032
+            "byteLength" : 1536,
+            "byteOffset" : 1536
         },
         {
             "buffer" : 0,
-            "byteLength" : 688,
-            "byteOffset" : 2064
+            "byteLength" : 1024,
+            "byteOffset" : 3072
         },
         {
             "buffer" : 0,
             "byteLength" : 384,
-            "byteOffset" : 2752
+            "byteOffset" : 4096
         },
         {
             "buffer" : 0,
-            "byteLength" : 2472,
-            "byteOffset" : 3136
+            "byteLength" : 2688,
+            "byteOffset" : 4480
         },
         {
             "buffer" : 0,
-            "byteLength" : 2472,
-            "byteOffset" : 5608
+            "byteLength" : 2688,
+            "byteOffset" : 7168
         },
         {
             "buffer" : 0,
-            "byteLength" : 1648,
-            "byteOffset" : 8080
+            "byteLength" : 1792,
+            "byteOffset" : 9856
         },
         {
             "buffer" : 0,
             "byteLength" : 720,
-            "byteOffset" : 9728
+            "byteOffset" : 11648
         },
         {
             "buffer" : 0,
             "byteLength" : 768,
-            "byteOffset" : 10448
+            "byteOffset" : 12368
         },
         {
             "buffer" : 0,
             "byteLength" : 768,
-            "byteOffset" : 11216
+            "byteOffset" : 13136
         },
         {
             "buffer" : 0,
             "byteLength" : 512,
-            "byteOffset" : 11984
+            "byteOffset" : 13904
         },
         {
             "buffer" : 0,
             "byteLength" : 192,
-            "byteOffset" : 12496
+            "byteOffset" : 14416
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
         }
     ],
     "buffers" : [
         {
-            "byteLength" : 12688,
+            "byteLength" : 14608,
             "uri" : "blank002.bin"
         }
     ]
