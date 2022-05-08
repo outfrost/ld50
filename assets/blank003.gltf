@@ -164,7 +164,7 @@
         {
             "bufferView" : 4,
             "componentType" : 5126,
-            "count" : 251,
+            "count" : 252,
             "max" : [
                 0.050000011920928955,
                 0.050000011920928955,
@@ -180,13 +180,13 @@
         {
             "bufferView" : 5,
             "componentType" : 5126,
-            "count" : 251,
+            "count" : 252,
             "type" : "VEC3"
         },
         {
             "bufferView" : 6,
             "componentType" : 5126,
-            "count" : 251,
+            "count" : 252,
             "type" : "VEC2"
         },
         {
@@ -253,43 +253,43 @@
         },
         {
             "buffer" : 0,
-            "byteLength" : 3012,
+            "byteLength" : 3024,
             "byteOffset" : 2880
         },
         {
             "buffer" : 0,
-            "byteLength" : 3012,
-            "byteOffset" : 5892
+            "byteLength" : 3024,
+            "byteOffset" : 5904
         },
         {
             "buffer" : 0,
-            "byteLength" : 2008,
-            "byteOffset" : 8904
+            "byteLength" : 2016,
+            "byteOffset" : 8928
         },
         {
             "buffer" : 0,
             "byteLength" : 972,
-            "byteOffset" : 10912
+            "byteOffset" : 10944
         },
         {
             "buffer" : 0,
             "byteLength" : 1176,
-            "byteOffset" : 11884
+            "byteOffset" : 11916
         },
         {
             "buffer" : 0,
             "byteLength" : 1176,
-            "byteOffset" : 13060
+            "byteOffset" : 13092
         },
         {
             "buffer" : 0,
             "byteLength" : 784,
-            "byteOffset" : 14236
+            "byteOffset" : 14268
         },
         {
             "buffer" : 0,
             "byteLength" : 312,
-            "byteOffset" : 15020
+            "byteOffset" : 15052
         }
     ],
     "samplers" : [
@@ -300,7 +300,7 @@
     ],
     "buffers" : [
         {
-            "byteLength" : 15332,
+            "byteLength" : 15364,
             "uri" : "blank003.bin"
         }
     ]
