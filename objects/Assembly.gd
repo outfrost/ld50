@@ -75,8 +75,6 @@ func try_place_attachment(attachment_scene: PackedScene, rotation_deg: Vector3) 
 		hover_vis.flash_red()
 		return false
 
-#	print(str(hovered_blank.rotation_degrees) + " --- " + str(rotation_deg))
-
 	# determine attachment orientation
 	var adjusted_rotation: Vector3 = rotation_deg - hovered_blank.rotation_degrees
 	adjusted_rotation = adjusted_rotation.round()

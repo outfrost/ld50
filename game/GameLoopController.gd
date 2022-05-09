@@ -91,7 +91,6 @@ func _shift_start():
 
 	conveyor.set_difficulty_params(min(2 + shift_number, 16), 5 + shift_number, max_part_index)
 
-	print("current Robot Skill: ",robot_skill)
 	shift_timer.start()
 
 	shift_music.param("Speedup", clamp(0.1 * (shift_number - 1), 0.0, 1.0)).start()

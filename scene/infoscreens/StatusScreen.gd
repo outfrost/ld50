@@ -74,7 +74,6 @@ func hide_notification() -> void:
 	tween.start()
 
 func tween_all_completed() -> void:
-	print("all completed, ", hiding)
 	if hiding:
 		notif_panel.hide()
 		hiding = false

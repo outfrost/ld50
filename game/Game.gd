@@ -58,7 +58,6 @@ func unload_level() -> void:
 		level_container.remove_child(level)
 		level.queue_free()
 		level = null
-		print("level unloaded")
 
 func load_level() -> void:
 	level = level_scene.instance()
@@ -66,4 +65,3 @@ func load_level() -> void:
 	loop_controller.connect("spawn_first_assembly", level.get_node("Room/Conveyor"), "spawn_assembly")
 	loop_controller.connect("stop_production", level.get_node("Room/Conveyor"), "stop_production")
 	level.get_node("Room/Conveyor").connect("finished_assembly", loop_controller, "finished_assembly")
-	print ("level loaded")
