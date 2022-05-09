@@ -265,6 +265,7 @@ func _on_RobotTimer_timeout():
 func return_to_menu() -> void:
 	shift_timer.stop()
 	shift_music.stop()
+	shift_ambience.stop()
 	shift_number = 0
 	emit_signal("stop_production")
 	transition_screen.fade_in()
