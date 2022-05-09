@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Cleaning build outputs" >&2
+rm -rf build/RePlacement-Linux/
+rm -rf build/RePlacement-Windows/
+
 echo "Creating build directories" >&2
 mkdir -p build/RePlacement-Linux/
 mkdir -p build/RePlacement-Windows/
