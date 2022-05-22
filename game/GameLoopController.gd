@@ -7,7 +7,7 @@ signal stats_updated()
 onready var game: Game = find_parent("Game")
 
 onready var transition_screen: TransitionScreen = game.get_node("UI/TransitionScreen")
-onready var intermission_ui: Control = game.get_node("UI/IntermissionUi")
+onready var intermission_ui: Control = $IntermissionUi
 
 # CORE STATS
 const money_for_one_blank: int = 100
@@ -101,27 +101,7 @@ func _shift_start():
 
 	yield(get_tree().create_timer(2.0), "timeout")
 	if shift_number == 1:
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"This is your daily manufacturing process reminder.")
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"Identify connectors on assembly. Click to grab part from appropriate bucket.")
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"Rotate part using\n[Q] [W] [E] [A] [S] [D].")
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"Click matching slot on assembly to attach part. Repeat.")
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"When done, press green button to advance the conveyor belt.")
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"Right click to place part back in the bucket.")
-		Notification.push(
-			"Manufacturing Assistant [BOT]",
-			"Your performance will be evaluated at the end of your shift.")
+		push_tutorial_messages()
 
 	# Delay first incoming assemblies
 	yield(get_tree().create_timer(1.0), "timeout")
@@ -145,6 +125,29 @@ func _shift_end():
 	else:
 		game.unload_level()
 		_intermission()
+
+func push_tutorial_messages() -> void:
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"This is your daily manufacturing process reminder.")
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"Identify connectors on assembly. Click to grab part from appropriate bucket.")
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"Rotate part using\n[Q] [W] [E] [A] [S] [D].")
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"Click matching slot on assembly to attach part. Repeat.")
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"When done, press green button to advance the conveyor belt.")
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"Right click to place part back in the bucket.")
+	Notification.push(
+		"Manufacturing Assistant [BOT]",
+		"Your performance will be evaluated at the end of your shift.")
 
 func is_game_lost() -> bool:
 	return (robot_money_total - player_money_total) >= points_treshold

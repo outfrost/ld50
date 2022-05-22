@@ -5,7 +5,7 @@ signal dismissed()
 onready var shiftstats:Control = $ShiftStats
 onready var hellorobot:Control = $IntroRobot
 onready var gameover:Control = $GameOver
-onready var loopcontroller: Node = get_node("/root/Game/GameLoopController")
+onready var loopcontroller: Node = find_parent("GameLoopController")
 
 func _ready():
 	reset()
