@@ -4,10 +4,24 @@ signal spawn_first_assembly()
 signal stop_production()
 signal stats_updated()
 
-onready var game: Game = find_parent("Game")
+enum State {
+	IDLE,
+	SHIFT_LOADING,
+	SHIFT_ONGOING,
+	INTERMISSION_LOADING,
+	INTERMISSION_ONGOING,
+	ROBOT_INTRO_LOADING,
+	ROBOT_INTRO_ONGOING,
+	GAMEOVER_LOADING,
+	GAMEOVER_ONGOING,
+	RETURNING_TO_MENU,
+}
 
+onready var game: Game = find_parent("Game")
 onready var transition_screen: TransitionScreen = game.get_node("UI/TransitionScreen")
 onready var intermission_ui: Control = $IntermissionUi
+
+var state = State.IDLE
 
 # CORE STATS
 const money_for_one_blank: int = 100
@@ -59,9 +73,15 @@ func _ready():
 	shift_timer.wait_time = shift_time_limit
 	shift_music = Sound.instance("Music Gameplay")
 	shift_ambience = Sound.instance("Ambience")
+	intermission_ui.connect("dismissed", self, "intermission_dismissed")
+	transition_screen.connect("animation_finished", self, "transition_finished")
 
 func _process(delta):
-	if !said_halftime && !shift_timer.is_stopped() && shift_timer.time_left < (shift_timer.wait_time * 0.5):
+	if (
+		state == State.SHIFT_ONGOING
+		&& !said_halftime
+		&& shift_timer.time_left < (shift_timer.wait_time * 0.5)
+	):
 		said_halftime = true
 		Notification.push(
 			"Shift Supervisor",
@@ -116,14 +136,10 @@ func _shift_end():
 	robot_timer.stop()
 
 	_calculate_shift_stats()
-	transition_screen.fade_in()
-	yield(get_tree().create_timer(0.5), "timeout")
 
 	if is_game_lost():
-		game.unload_level()
 		_gameover()
 	else:
-		game.unload_level()
 		_intermission()
 
 func push_tutorial_messages() -> void:
@@ -185,47 +201,58 @@ func reset_shift():
 	emit_signal("stats_updated")
 
 func _intermission():
-	intermission_ui.shift_stats_screen()
-	transition_screen.fade_out()
-	yield(transition_screen, "animation_finished")
-
-	yield(intermission_ui, "dismissed")
-
+	state = State.INTERMISSION_LOADING
 	transition_screen.fade_in()
-	yield(transition_screen, "animation_finished")
-	intermission_ui.reset()
-
-	if shift_number == 1:
-		intro_robot()
-	else:
-		game.load_level()
-		_shift_start()
-
-func intro_robot():
-	intermission_ui.hellorobot_screen()
-	transition_screen.fade_out()
-	yield(transition_screen, "animation_finished")
-
-	yield(intermission_ui, "dismissed")
-
-	transition_screen.fade_in()
-	yield(transition_screen, "animation_finished")
-	intermission_ui.reset()
-	game.load_level()
-	_shift_start()
 
 func _gameover():
-	Sound.play("YouLost")
-	transition_screen.fade_out()
-	intermission_ui.gameover_screen()
-
-	yield(intermission_ui, "dismissed")
-
+	state = State.GAMEOVER_LOADING
 	transition_screen.fade_in()
-	yield(transition_screen, "animation_finished")
-	intermission_ui.reset()
-	game.back_to_menu()
-	transition_screen.fade_out()
+
+func intermission_dismissed() -> void:
+	match state:
+		State.INTERMISSION_ONGOING:
+			if shift_number == 1:
+				state = State.ROBOT_INTRO_LOADING
+			else:
+				state = State.SHIFT_LOADING
+			transition_screen.fade_in()
+		State.ROBOT_INTRO_ONGOING:
+			state = State.SHIFT_LOADING
+			transition_screen.fade_in()
+		State.GAMEOVER_ONGOING:
+			state = State.RETURNING_TO_MENU
+			transition_screen.fade_in()
+
+func transition_finished() -> void:
+	match state:
+		State.SHIFT_LOADING:
+			intermission_ui.reset()
+			game.load_level()
+			state = State.SHIFT_ONGOING
+			_shift_start()
+		State.INTERMISSION_LOADING:
+			game.unload_level()
+			intermission_ui.reset()
+			intermission_ui.shift_stats_screen()
+			state = State.INTERMISSION_ONGOING
+			transition_screen.fade_out()
+		State.ROBOT_INTRO_LOADING:
+			intermission_ui.reset()
+			intermission_ui.hellorobot_screen()
+			state = State.ROBOT_INTRO_ONGOING
+			transition_screen.fade_out()
+		State.GAMEOVER_LOADING:
+			game.unload_level()
+			Sound.play("YouLost")
+			intermission_ui.reset()
+			intermission_ui.gameover_screen()
+			state = State.GAMEOVER_ONGOING
+			transition_screen.fade_out()
+		State.RETURNING_TO_MENU:
+			intermission_ui.reset()
+			game.back_to_menu()
+			state = State.IDLE
+			transition_screen.fade_out()
 
 func _on_RobotTimer_timeout():
 	#roll base model size
@@ -263,10 +290,8 @@ func return_to_menu() -> void:
 	shift_ambience.stop()
 	shift_number = 0
 	emit_signal("stop_production")
+	state = State.RETURNING_TO_MENU
 	transition_screen.fade_in()
-	yield(transition_screen, "animation_finished")
-	game.back_to_menu()
-	transition_screen.fade_out()
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
 	Sound.play("Announcer")
