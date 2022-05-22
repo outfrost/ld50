@@ -22,7 +22,7 @@ func _ready():
 		Fmod.desc_load_sample_data(fmod_event_name)
 	if autoplay:
 		play()
-		
+
 func _exit_tree():
 	if event_id != UNDEFINED:
 		if attached:
@@ -31,11 +31,11 @@ func _exit_tree():
 			Fmod.stop_event(event_id, Fmod.FMOD_STUDIO_STOP_ALLOWFADEOUT)
 		else:
 			Fmod.stop_event(event_id, Fmod.FMOD_STUDIO_STOP_IMMEDIATE)
-			
+
 func set_param(key:String, value:float) -> void:
 	params[key] = value
 	_set_fmod_param(key, value)
-	
+
 func is_paused() -> bool:
 	if event_id == UNDEFINED:
 		return false
@@ -48,15 +48,15 @@ func play() -> void:
 		_play_looped()
 	else:
 		_play_one_shot()
-		
+
 func pause() -> void:
 	if event_id != UNDEFINED:
 		Fmod.set_event_paused(event_id, true)
-	
+
 func _unpause() -> void:
 	if event_id != UNDEFINED:
 		Fmod.set_event_paused(event_id, false)
-		
+
 func _play_one_shot() -> void:
 	if !attached:
 		if params.size() > 0:

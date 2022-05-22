@@ -5,5 +5,3 @@
 [node name="FmodEventEmitter" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 1 )
-params = {
-}
