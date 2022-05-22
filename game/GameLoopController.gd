@@ -95,6 +95,7 @@ func shifts_init():
 func _shift_start():
 	reset_shift()
 	shift_number += 1
+	Notification.reset()
 
 	var conveyor = game.get_node("LevelContainer/Level/Room/Conveyor")
 

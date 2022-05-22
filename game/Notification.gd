@@ -42,3 +42,9 @@ func next_message() -> void:
 	if msg:
 		emit_signal("show_notif", msg)
 		timer.start()
+
+func reset() -> void:
+	hide_message()
+	timer.stop()
+	hiding = false
+	clear_queue()
