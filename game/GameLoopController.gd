@@ -4,8 +4,10 @@ signal spawn_first_assembly()
 signal stop_production()
 signal stats_updated()
 
-onready var transition_screen: TransitionScreen = get_node("/root/Game/UI/TransitionScreen")
-onready var intermission_ui: Control = get_node("/root/Game/UI/IntermissionUi")
+onready var game: Game = find_parent("Game")
+
+onready var transition_screen: TransitionScreen = game.get_node("UI/TransitionScreen")
+onready var intermission_ui: Control = game.get_node("UI/IntermissionUi")
 
 # CORE STATS
 const money_for_one_blank: int = 100
@@ -19,7 +21,7 @@ var shift_number: int
 var robot_skill:int = 0
 
 # ASSEMBLY LINE TIMING STUFF
-export var shift_time_limit: int = 60 # seconds
+const shift_time_limit: int = 180 # seconds
 
 export(NodePath) var shift_timer_path
 onready var shift_timer: Node = get_node(shift_timer_path)
@@ -74,7 +76,7 @@ func _shift_start():
 	reset_shift()
 	shift_number += 1
 
-	var conveyor = find_parent("Game").get_node("LevelContainer/Level/Room/Conveyor")
+	var conveyor = game.get_node("LevelContainer/Level/Room/Conveyor")
 
 	if shift_number >= 2:
 		robot_skill = shift_number - 1 + robot_initial_skill_bonus
@@ -138,10 +140,10 @@ func _shift_end():
 	yield(get_tree().create_timer(0.5), "timeout")
 
 	if is_game_lost():
-		_unload_level()
+		game.unload_level()
 		_gameover()
 	else:
-		_unload_level()
+		game.unload_level()
 		_intermission()
 
 func is_game_lost() -> bool:
@@ -179,15 +181,6 @@ func reset_shift():
 	said_halftime = false
 	emit_signal("stats_updated")
 
-func _unload_level():
-	var game_node:Node = get_node("/root/Game")
-	game_node.unload_level()
-	yield(get_tree().create_timer(1.0), "timeout")
-
-func _load_level():
-	var game_node:Node = get_node("/root/Game")
-	game_node.load_level()
-
 func _intermission():
 	intermission_ui.shift_stats_screen()
 	transition_screen.fade_out()
@@ -202,7 +195,7 @@ func _intermission():
 	if shift_number == 1:
 		intro_robot()
 	else:
-		_load_level()
+		game.load_level()
 		_shift_start()
 
 func intro_robot():
@@ -215,7 +208,7 @@ func intro_robot():
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
 	intermission_ui.reset()
-	_load_level()
+	game.load_level()
 	_shift_start()
 
 func _gameover():
@@ -228,7 +221,7 @@ func _gameover():
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
 	intermission_ui.reset()
-	get_node("/root/Game").back_to_menu()
+	game.back_to_menu()
 	transition_screen.fade_out()
 
 func _on_RobotTimer_timeout():
@@ -269,7 +262,7 @@ func return_to_menu() -> void:
 	emit_signal("stop_production")
 	transition_screen.fade_in()
 	yield(transition_screen, "animation_finished")
-	get_node("/root/Game").back_to_menu()
+	game.back_to_menu()
 	transition_screen.fade_out()
 
 func finished_assembly(num_connectors: int, num_attachments: int) -> void:
